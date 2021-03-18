@@ -32,5 +32,6 @@ group :test do
 end
 
 gem 'react-rails'
+gem 'devise'
 
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
