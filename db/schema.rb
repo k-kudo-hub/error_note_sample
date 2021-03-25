@@ -10,7 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_18_115702) do
+ActiveRecord::Schema.define(version: 2021_03_19_121028) do
+
+  create_table "logs", charset: "utf8", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.text "error", null: false
+    t.text "solution"
+    t.text "environment"
+    t.text "memo"
+    t.integer "language"
+    t.boolean "release"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.string "title", null: false
+    t.index ["user_id"], name: "index_logs_on_user_id"
+  end
 
   create_table "users", charset: "utf8", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -26,4 +40,5 @@ ActiveRecord::Schema.define(version: 2021_03_18_115702) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "logs", "users"
 end

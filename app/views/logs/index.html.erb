@@ -1,0 +1,14 @@
+<h1>Logs#index</h1>
+<p>Find me in app/views/logs/index.html.erb</p>
+<div class="log-area">
+  <% @logs.each do |log| %>
+    ・<%= link_to log.title, "users/#{log.user.id}/logs/#{log.id}" %><br >
+  <% end %>
+</div>
+<% if user_signed_in? %>
+  <%= link_to "エラーを記録する", "/users/#{current_user.id}/logs/new", method: :get %>
+  <%= link_to "マイページ", "/users/#{current_user.id}" %>
+<% else %>
+  <%= link_to "ログイン", 'users/sign_in', method: :get %>
+  <%= link_to "新規登録", 'users/sign_up', method: :get %>
+<% end %>

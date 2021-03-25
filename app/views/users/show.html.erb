@@ -1,9 +1,17 @@
-<% if user_signed_in? %>
-  <h1>Hello,World!!</h1>
-  <%= link_to "Edit profile", 'users/edit', method: :get %>
-  <%= link_to "Sign out", 'users/sign_out', method: :delete %>
+<% if user_signed_in? && (current_user.id == @user.id) %>
+  <h1><%= @user.name %>のマイページ</h1>
+  <div>
+    <%= link_to "エラーを記録する", "#{current_user.id}/logs/new", method: :get %>
+    <%= link_to "トップページへ", root_path %>
+  </div>
+  <div>
+    <%= link_to "プロフィール編集", edit_user_registration_path, method: :get %>
+    <%= link_to "ログアウト", '/users/sign_out', method: :delete %>
+  </div>
+<% elsif user_signed_in? && (current_user.id != @user.id) %>
+  <p>誰かのページ</p>
 <% else %>
   <h1>Welcome,Guest!!</h1>
-  <%= link_to "Sign in", 'users/sign_in', method: :get %>
-  <%= link_to "Sign up", 'users/sign_up', method: :get %>
+  <%= link_to "ログイン", '/users/sign_in', method: :get %>
+  <%= link_to "新規登録", '/users/sign_up', method: :get %>
 <% end %>
