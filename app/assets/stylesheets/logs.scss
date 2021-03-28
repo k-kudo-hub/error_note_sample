@@ -1,3 +1,42 @@
 // Place all the styles related to the logs controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+
+$site-main-color: rgb(227, 249, 192);
+
+.log-table {
+  border: 1px solid silver;
+  margin: 0 auto 30px;
+  .log-index-small-col {
+    width: 15%;
+  }
+  td,th {
+    border: 1px solid silver;
+    padding: 5px;
+    line-height: 1.5;
+  }
+  .log-show-th {
+    width: 30%;
+  }
+  tr {
+    height: 50px;
+  }
+}
+
+.log-index-head {
+  background-color: $site-main-color;
+  th {
+    letter-spacing: 1.5px;
+  }
+}
+
+.log-title {
+  padding: 30px 0;
+  text-align: center;
+}
+
+.log-updated-at {
+  color: silver;
+  margin: 0 20px 20px 0;
+  text-align: right;
+}
