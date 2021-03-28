@@ -12,6 +12,10 @@ td,th {padding: 0};
   text-align: center;
 }
 
+form {
+  margin: 32px;
+}
+
 @mixin inner-base {
   background-color: white;
   max-width: 700px;
@@ -23,13 +27,13 @@ td,th {padding: 0};
 }
 
 .app-body {
-  min-height: calc(100vh - 70px - 200px - 44px);
+  min-height: calc(100vh - 50px - 264px - 80px);
   background-color: rgb(240, 240, 240);
   padding: 30px 0 50px;
   .app-body-inner {
     @include inner-base;
     margin: 0 auto;
-    min-height: calc(100vh - 70px - 200px - 44px);
+    min-height: calc(100vh - 50px - 264px - 164px);
   }
   .app-bottom-inner {
     @include inner-base;
@@ -40,7 +44,7 @@ td,th {padding: 0};
     display: flex;
     justify-content: space-around;
     margin: 20px auto;
-    width: 60%;
+    width: 65%;
   }
 }
 
@@ -50,6 +54,9 @@ td,th {padding: 0};
   margin: 20px auto;
   padding: 1.2vh 2.5vw;
   text-decoration: none;
+  &:hover {
+    cursor: pointer;
+  }
 }
 
 @mixin btn-empty {
@@ -78,6 +85,13 @@ td,th {padding: 0};
     @include btn-empty;
     transition-duration: 0.25s;
   }
+}
+
+.devise-links {
+  display: flex;
+  flex-direction: column;
+  margin-right: 20px;
+  text-align: right;
 }
 
 // header style
@@ -185,3 +199,27 @@ td,th {padding: 0};
   }
 }
 // end footer style
+
+// Devise style
+.input-field,
+.check-field {
+  margin-top: 30px;
+  text-align: center;
+}
+.input-field {
+  width: 66%;
+  text-align: right;
+}
+.input {
+  height: 30px;
+  width: 200px;
+}
+.silver-font {
+  color: silver;
+  text-decoration: none;
+  &:hover {
+    color: rgb(130, 130, 130);
+    transition-duration: 0.25s;
+  }
+}
+// end Devise style
