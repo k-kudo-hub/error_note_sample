@@ -1,6 +1,6 @@
 class LogsController < ApplicationController
   def index
-    @logs = Log.all.includes(:user).first(10)
+    @logs = Log.all.includes(:user).order('updated_at DESC').first(10)
   end
 
   def new
@@ -19,6 +19,20 @@ class LogsController < ApplicationController
 
   def show
     @log = Log.find(params[:id])
+  end
+  
+  def edit
+    @log = Log.find(params[:id])
+  end
+  
+  def update
+    @log = Log.find(params[:id])
+    if @log.valid?
+      @log.update(log_params)
+      render "logs/update"
+    else
+      render :edit
+    end
   end
 
   private
