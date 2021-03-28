@@ -11,6 +11,10 @@
   </head>
 
   <body>
-    <%= yield %>
+    <%= render "shared/header" %>
+    <div class="app-body">
+      <%= yield %>
+    </div>
+    <%= render "shared/footer" %>
   </body>
 </html>

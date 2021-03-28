@@ -1,0 +1,19 @@
+<div class="header-area">
+  <div class="header-left flex-3">
+    <%= image_tag 'note.png', size: '30x30' %>
+    <h1><%= link_to "Error Note", root_path %></h1>
+  </div>
+  <div class="header-center flex-3">
+  </div>
+  <div class="header-right flex-3">
+    <div class="header-btn-wrap">
+      <% if user_signed_in? %>
+        <%= link_to("記録する", "/users/#{current_user.id}/logs/new", { method: :get, class: "header-btn"}) %>
+        <%= link_to("マイページ", "/users/#{current_user.id}", { class: "header-btn" }) %>
+      <% else %>
+        <%= link_to("ログイン", '/users/sign_in', { method: :get, class: "header-btn"}) %>
+        <%= link_to("新規登録", '/users/sign_up', { method: :get, class: "header-btn"}) %>  
+      <% end %>
+    </div>
+  </div>
+</div>

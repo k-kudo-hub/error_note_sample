@@ -1,3 +1,42 @@
-<h1>Logs#show</h1>
-<%= @log.title %>
-<%= link_to "トップに戻る", root_path %>
+<section class="app-body-inner">
+  <h1><%= @log.title %></h1>
+  <div class="log-updated-at">
+    <p>最終更新日：<%= l @log.updated_at, format: :default %></p>
+  </div>
+  <table class="log-table" width="90%">
+    <tbody>
+      <tr>
+        <th class="log-show-th">エラー文</th>
+        <td><%= @log.error %></td>
+      </tr>
+      <tr>
+        <th class="log-show-th">解決法</th>
+        <td><%= @log.solution %></td>
+      </tr>
+      <tr>
+        <th class="log-show-th">メモ</th>
+        <td><%= @log.memo %></td>
+      </tr>
+      <tr>
+        <th class="log-show-th">開発環境</th>
+        <td><%= @log.environment %></td>
+      </tr>
+      <tr>
+        <th class="log-show-th">開発言語</th>
+        <td><%= @log.language %></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="inner-bottom-btn-wrap">
+    <% if user_signed_in? && ( current_user.id == @log.user.id ) %>
+      <%= link_to("ログを編集する", "/users/#{current_user.id}/logs/#{@log.id}/edit", {class: "btn-filled"}) %>
+    <% else %>
+      <%= link_to("ストックする", "#", {class: "btn-filled"}) %>
+    <% end %>
+    <%= link_to("トップに戻る", root_path, {class: "btn-default"}) %>
+  </div>
+</section>
+<div class="app-bottom-inner">
+  
+</div>
