@@ -1,5 +1,7 @@
-$site-main-color: rgb(227, 249, 192);
-$site-font-color: green;
+$site-main-color: #80c683;
+$site-dark-color: #509556;
+$site-light-color: #b1f9b3;
+$site-font-color: black;
 $site-footer-bg-color: rgb(82, 82, 82);
 $header-height: 50px;
 
@@ -49,7 +51,7 @@ form {
 }
 
 @mixin btn {
-  border: 2px solid green;
+  border: 2px solid $site-dark-color;
   border-radius: 20px;
   margin: 20px auto;
   padding: 1.2vh 2.5vw;
@@ -61,11 +63,11 @@ form {
 
 @mixin btn-empty {
   background-color: white;
-  color: green;
+  color: $site-dark-color;
 }
 
 @mixin btn-fill {
-  background-color: green;
+  background-color: $site-dark-color;
   color: white;
 }
 
