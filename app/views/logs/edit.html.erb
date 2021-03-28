@@ -1,6 +1,6 @@
 <section class="app-body-inner">
   <h1>エラーを記録する</h1>
-  <%= form_with model: @log, url: user_logs_path do |f| %>
+  <%= form_with model: @log, url: user_log_path, method: :patch do |f| %>
     <div class="form_bind">
       <%= f.label :title, "タイトル：" %>
       <%= f.text_field :title, class: "log_field" ,id: "title" %>

@@ -1,0 +1,187 @@
+$site-main-color: rgb(227, 249, 192);
+$site-font-color: green;
+$site-footer-bg-color: rgb(82, 82, 82);
+$header-height: 50px;
+
+// add reset css
+h1,h2,h3,h4,h5,h6,p {margin: 0};
+td,th {padding: 0};
+// end
+
+.align-center {
+  text-align: center;
+}
+
+@mixin inner-base {
+  background-color: white;
+  max-width: 700px;
+  padding: 32px;
+  h1 {
+    text-align: center;
+    margin: 20px auto;
+  }
+}
+
+.app-body {
+  min-height: calc(100vh - 70px - 200px - 44px);
+  background-color: rgb(240, 240, 240);
+  padding: 30px 0 50px;
+  .app-body-inner {
+    @include inner-base;
+    margin: 0 auto;
+    min-height: calc(100vh - 70px - 200px - 44px);
+  }
+  .app-bottom-inner {
+    @include inner-base;
+    margin: 30px auto;
+    min-height: 200px;
+  }
+  .inner-bottom-btn-wrap {
+    display: flex;
+    justify-content: space-around;
+    margin: 20px auto;
+    width: 60%;
+  }
+}
+
+@mixin btn {
+  border: 2px solid green;
+  border-radius: 20px;
+  margin: 20px auto;
+  padding: 1.2vh 2.5vw;
+  text-decoration: none;
+}
+
+@mixin btn-empty {
+  background-color: white;
+  color: green;
+}
+
+@mixin btn-fill {
+  background-color: green;
+  color: white;
+}
+
+.btn-default {
+  @include btn;
+  @include btn-empty;
+  &:hover {
+    @include btn-fill;
+    transition-duration: 0.25s;
+  }
+}
+
+.btn-filled {
+  @include btn;
+  @include btn-fill;
+  &:hover {
+    @include btn-empty;
+    transition-duration: 0.25s;
+  }
+}
+
+// header style
+.header-area {
+  background: $site-main-color;
+  display: flex;
+  height: $header-height;
+  text-align: center;
+  .flex-3 {
+    display: flex;
+    height: 100%;
+    position: relative;
+    width: 33%;
+    .header-btn-wrap {
+      position: absolute;
+      top: 30%;
+      right: 20%;
+      .header-btn {
+        color: $site-font-color;
+        margin: 20px 10px;
+        text-decoration: none;
+      }
+    }
+    h1 {
+      font-size: 1.4rem;
+      left: 20%;
+      position: absolute;
+      top: 20%;
+      a {
+        color: $site-font-color;
+        text-decoration: none;
+      }
+    }
+    img {
+      position: absolute;
+      left: 8%;
+      top: 20%;
+    }
+  }
+}
+// end header style
+
+// footer style
+.footer-area {
+  background-color: $site-footer-bg-color;
+  height: 200px;
+  padding: 32px 16px;
+  position: relative;
+  .footer-top {
+    display: flex;
+    height: 80%;
+    .footer-left,
+    .footer-right {
+      width: 50%;
+      .footer-site-name {
+        font-size: 2rem;
+        font-weight: bold;
+        margin: 0 0 20px;
+      }
+      a,
+      p {
+        color: white;
+        text-decoration: none;
+      }
+    }
+    .footer-left {
+      margin-left: 5%;
+      p {
+        margin: 10px 0;
+      }
+      .footer-sns-area {
+        display: flex;
+        img {
+          margin-right: 20px;
+        }
+      }
+    }
+    .footer-right {
+      display: flex;
+      .footer-right-start,
+      .footer-right-end {
+        width: 50%;
+        display: flex;
+        flex-direction: column;
+        p:first-child {
+          margin: 0;
+          font-weight: bold;
+        }
+        a {
+          color: rgb(159, 159, 159);
+          margin-top: 1em;
+        }
+      }
+    }
+  }
+  .footer-copy {
+    border-top: 1px solid rgb(159, 159, 159);
+    bottom: 30px;
+    color: rgb(159, 159, 159) !important;
+    font-size: 0.8rem;
+    margin: 0;
+    padding: 10px 0 10px 5%;
+    position: absolute;
+    width: 90%;
+  }
+}
+// end footer style
