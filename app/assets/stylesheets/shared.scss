@@ -1,5 +1,7 @@
-$site-main-color: rgb(227, 249, 192);
-$site-font-color: green;
+$site-main-color: #80c683;
+$site-dark-color: #509556;
+$site-light-color: #b1f9b3;
+$site-font-color: black;
 $site-footer-bg-color: rgb(82, 82, 82);
 $header-height: 50px;
 
@@ -10,6 +12,10 @@ td,th {padding: 0};
 
 .align-center {
   text-align: center;
+}
+
+form {
+  margin: 32px;
 }
 
 @mixin inner-base {
@@ -23,13 +29,13 @@ td,th {padding: 0};
 }
 
 .app-body {
-  min-height: calc(100vh - 70px - 200px - 44px);
+  min-height: calc(100vh - 50px - 264px - 80px);
   background-color: rgb(240, 240, 240);
   padding: 30px 0 50px;
   .app-body-inner {
     @include inner-base;
     margin: 0 auto;
-    min-height: calc(100vh - 70px - 200px - 44px);
+    min-height: calc(100vh - 50px - 264px - 164px);
   }
   .app-bottom-inner {
     @include inner-base;
@@ -40,25 +46,28 @@ td,th {padding: 0};
     display: flex;
     justify-content: space-around;
     margin: 20px auto;
-    width: 60%;
+    width: 65%;
   }
 }
 
 @mixin btn {
-  border: 2px solid green;
+  border: 2px solid $site-dark-color;
   border-radius: 20px;
   margin: 20px auto;
   padding: 1.2vh 2.5vw;
   text-decoration: none;
+  &:hover {
+    cursor: pointer;
+  }
 }
 
 @mixin btn-empty {
   background-color: white;
-  color: green;
+  color: $site-dark-color;
 }
 
 @mixin btn-fill {
-  background-color: green;
+  background-color: $site-dark-color;
   color: white;
 }
 
@@ -78,6 +87,13 @@ td,th {padding: 0};
     @include btn-empty;
     transition-duration: 0.25s;
   }
+}
+
+.devise-links {
+  display: flex;
+  flex-direction: column;
+  margin-right: 20px;
+  text-align: right;
 }
 
 // header style
@@ -129,19 +145,23 @@ td,th {padding: 0};
   .footer-top {
     display: flex;
     height: 80%;
-    .footer-left,
-    .footer-right {
-      width: 50%;
+    max-width: 800px;
+    margin: 0 auto;
+    .footer-left  {
+      width: 60%;
       .footer-site-name {
         font-size: 2rem;
         font-weight: bold;
         margin: 0 0 20px;
       }
-      a,
-      p {
-        color: white;
-        text-decoration: none;
-      }
+    }
+    .footer-right {
+      width: 40%;
+    }
+    a,
+    p {
+      color: white;
+      text-decoration: none;
     }
     .footer-left {
       margin-left: 5%;
@@ -173,15 +193,46 @@ td,th {padding: 0};
       }
     }
   }
-  .footer-copy {
-    border-top: 1px solid rgb(159, 159, 159);
-    bottom: 30px;
-    color: rgb(159, 159, 159) !important;
-    font-size: 0.8rem;
-    margin: 0;
-    padding: 10px 0 10px 5%;
-    position: absolute;
-    width: 90%;
+  .footer-bottom {
+    display: flex;
+    justify-content: center;
+    height: 20%;
+    max-width: 700px;
+    margin: 0 auto;
+    text-align: center;
+    .footer-copy {
+      border-top: 1px solid rgb(159, 159, 159);
+      bottom: 30px;
+      color: rgb(159, 159, 159) !important;
+      font-size: 0.8rem;
+      padding: 10px 0;
+      width: 70%;
+    }
   }
 }
 // end footer style
+
+// Devise style
+.input-field,
+.check-field {
+  margin-top: 30px;
+  text-align: center;
+}
+.input-field {
+  width: 66%;
+  text-align: right;
+}
+.input {
+  height: 30px;
+  width: 200px;
+}
+.silver-font {
+  color: silver;
+  text-decoration: none;
+  &:hover {
+    color: rgb(130, 130, 130);
+    transition-duration: 0.25s;
+  }
+}
+// end Devise style
+
