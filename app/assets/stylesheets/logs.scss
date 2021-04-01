@@ -4,8 +4,47 @@
 
 $site-main-color: #80c683;
 
+// Devise style
+.log-input-field,
+.log-input-field-small,
+.log-check-field {
+  margin-top: 30px;
+  text-align: center;
+}
+.log-input {
+  height: 30px;
+  width: 400px;
+  vertical-align: middle;
+  &-field {
+    text-align: right;
+    width: 85%;
+    &-small {
+      text-align: right;
+      width: 65%;
+    }
+  }
+  &-large {
+    height: 100px;
+    width: 400px;
+    vertical-align: middle;
+  }
+  &-small {
+    height: 30px;
+    width: 200px;
+  }
+}
+// end Devise style
+
+.log-index-head {
+  background-color: $site-main-color;
+  th {
+    letter-spacing: 1.5px;
+  }
+}
+
 .log-table {
   border: 1px solid silver;
+  border-collapse: collapse;
   margin: 0 auto 30px;
   .log-index-small-col {
     width: 15%;
@@ -20,13 +59,6 @@ $site-main-color: #80c683;
   }
   tr {
     height: 50px;
-  }
-}
-
-.log-index-head {
-  background-color: $site-main-color;
-  th {
-    letter-spacing: 1.5px;
   }
 }
 
