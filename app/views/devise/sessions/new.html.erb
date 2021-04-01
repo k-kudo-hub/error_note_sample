@@ -1,16 +1,16 @@
 <section class="app-body-inner">
   <h1>ログイン</h1>
   <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-    <div class="input-field">
+    <div class="user-input-field">
       <%= f.label "メールアドレス" %>
-      <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "input" %>
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "user-input" %>
     </div>
-    <div class="input-field">
+    <div class="user-input-field">
       <%= f.label "パスワード" %>
-      <%= f.password_field :password, autocomplete: "current-password", class: "input" %>
+      <%= f.password_field :password, autocomplete: "current-password", class: "user-input" %>
     </div>
     <% if devise_mapping.rememberable? %>
-      <div class="check-field">
+      <div class="user-check-field">
         <%= f.check_box :remember_me %>
         <%= f.label "パスワードを記憶する" %>
       </div>

@@ -2,28 +2,28 @@
   <h1>アカウント作成</h1>
   <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
     <%= render "devise/shared/error_messages", resource: resource %>
-    <div class="input-field">
+    <div class="user-input-field">
       <%= f.label "お名前" %>
-      <%= f.text_field :name, autofocus: true, autocomplete: "name", placeholder: "例）鈴木太郎", maxlength: 10, class: "input" %>
+      <%= f.text_field :name, autofocus: true, autocomplete: "name", placeholder: "例）鈴木太郎", maxlength: 10, class: "user-input" %>
     </div>
-    <div class="input-field">
+    <div class="user-input-field">
       <%= f.label "フリガナ" %>
-      <%= f.text_field :kana, autofocus: true, autocomplete: "kana", placeholder: "例）スズキタロウ", maxlength: 14, class: "input" %>
+      <%= f.text_field :kana, autofocus: true, autocomplete: "kana", placeholder: "例）スズキタロウ", maxlength: 14, class: "user-input" %>
     </div>
-    <div class="input-field">
+    <div class="user-input-field">
       <%= f.label "メールアドレス" %>
-      <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "taro@gmail.com", class: "input" %>
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "taro@gmail.com", class: "user-input" %>
     </div>
-    <div class="input-field">
+    <div class="user-input-field">
       <%= f.label "パスワード" %>
       <% if @minimum_password_length %>
       <em>(<%= @minimum_password_length %> 文字以上)</em>
       <% end %>
-      <%= f.password_field :password, autocomplete: "new-password", class: "input" %>
+      <%= f.password_field :password, autocomplete: "new-password", class: "user-input" %>
     </div>
-    <div class="input-field">
+    <div class="user-input-field">
       <%= f.label "パスワード（確認）" %>
-      <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "input" %>
+      <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "user-input" %>
     </div>
     <div class="inner-bottom-btn-wrap">
       <%= f.submit "登録する", class: "btn-default" %>

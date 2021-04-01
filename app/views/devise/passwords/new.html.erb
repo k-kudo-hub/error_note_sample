@@ -2,9 +2,9 @@
   <h1>パスワードをお忘れの方</h1>
   <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
-  <div class="input-field">
+  <div class="user-input-field">
     <%= f.label "メールアドレス" %>
-    <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "input" %>
+    <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "user-input" %>
   </div>
   <div class="inner-bottom-btn-wrap">
     <%= f.submit "パスワードを再発行する", class: "btn-default" %>
