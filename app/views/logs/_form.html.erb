@@ -1,0 +1,31 @@
+<%= form_with model: model, url: url, method: method do |f| %>
+  <div class="log-input-field">
+    <%= f.label :title, "タイトル" %>
+    <%= f.text_field :title, class: "log-input" ,id: "title" %>
+  </div>
+  <div class="log-input-field">
+    <%= f.label :error, "エラーの内容" %>
+    <%= f.text_area :error, class: "log-input-large" ,id: "error" %>
+  </div>
+  <div class="log-input-field">
+    <%= f.label :solution, "解決方法" %>
+    <%= f.text_area :solution, class: "log-input-large" ,id: "solution" %>
+  </div>
+  <div class="log-input-field">
+    <%= f.label :memo, "メモ" %>
+    <%= f.text_area :memo, class: "log-input" ,id: "memo" %>
+  </div>
+  <div class="log-input-field-small">
+    <%= f.label :language, "言語" %>
+    <%= f.select :language, [ ["Python", 1],["Ruby", 2],["PHP", 3] ],{ prompt: "言語を選択してください" }, { class: "log-input-small", id: "language" } %>
+  </div>
+  <div class="log-input-field-small">
+    <%= f.label :release, "公開状態" %>
+    <%= f.radio_button :release, "公開", class: "log-input-radio", id: "release", checked: "checked" %>公開
+    <%= f.radio_button :release, "非公開", class: "log-input-radio", id: "release" %>非公開
+  </div>
+  <div class="inner-bottom-btn-wrap">
+    <%= f.submit "保存する", class: "btn-default" %>
+  </div>
+<% end %>
+

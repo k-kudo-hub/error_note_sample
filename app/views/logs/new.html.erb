@@ -1,31 +1,5 @@
 <section class="app-body-inner">
   <h1>エラーを記録する</h1>
-  <%= form_with model: @log, url: user_logs_path do |f| %>
-    <div class="form_bind">
-      <%= f.label :title, "タイトル：" %>
-      <%= f.text_field :title, class: "log_field" ,id: "title" %>
-    </div>
-    <div class="form_bind">
-      <%= f.label :error, "エラーの内容：" %>
-      <%= f.text_area :error, class: "log_field" ,id: "error" %>
-    </div>
-    <div class="form_b">
-      <%= f.label :solution, "解決方法：" %>
-      <%= f.text_area :solution, class: "log_field" ,id: "solution" %>
-    </div>
-    <div class="form_bind">
-      <%= f.label :memo, "メモ：" %>
-      <%= f.text_area :memo, class: "log_field" ,id: "memo" %>
-    </div>
-    <div class="form_bind">
-      <%= f.label :language, "言語：" %>
-      <%= f.select :language, [ ["Python", 1],["Ruby", 2],["PHP", 3] ],{ class: "log_field", id: "language", prompt: "言語を選択してください" } %>
-    </div>
-    <div class="form_bind">
-      <%= f.label :release, "公開状態：" %>
-      <%= f.radio_button :release, "公開", class: "log_field", id: "release", checked: "checked" %>公開
-      <%= f.radio_button :release, "非公開", class: "log_field", id: "release" %>非公開
-    </div>
-    <%= f.submit "記録する" %>
-  <% end %>
+  <%= render "form", model: @log, url: user_logs_path, method: :post %>
 </section>
+
