@@ -17,7 +17,7 @@
   </div>
   <div class="log-input-field-small">
     <%= f.label :language, "言語" %>
-    <%= f.select :language, [ ["Python", 1],["Ruby", 2],["PHP", 3] ],{ prompt: "言語を選択してください" }, { class: "log-input-small", id: "language" } %>
+    <%= f.collection_check_boxes :language_ids, Language.all, :id, :name, { prompt: "言語を選択してください" }, { class: "log-input-small", id: "language" } %>
   </div>
   <div class="log-input-field-small">
     <%= f.label :release, "公開状態" %>
