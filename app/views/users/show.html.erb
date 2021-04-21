@@ -14,7 +14,7 @@
       <tr class="log-index-body">
         <td class="align-center"><%= l log.updated_at, format: :shortest %></td>
         <td><%= link_to log.title, "#{log.user_id}/logs/#{log.id}" %></td>
-        <td class="align-center"><%= log.language %></td>
+        <td class="align-center"><%= display_languages(log.languages) %></td>
         <td class="align-center"><%= log.release %></td>
       </tr>
       <% end %>

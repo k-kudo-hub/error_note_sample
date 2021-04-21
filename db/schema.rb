@@ -10,15 +10,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_19_121028) do
+ActiveRecord::Schema.define(version: 2021_04_21_103946) do
+
+  create_table "languages", charset: "utf8", force: :cascade do |t|
+    t.string "name", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "log_languages", charset: "utf8", force: :cascade do |t|
+    t.bigint "log_id"
+    t.bigint "language_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["language_id"], name: "index_log_languages_on_language_id"
+    t.index ["log_id"], name: "index_log_languages_on_log_id"
+  end
 
   create_table "logs", charset: "utf8", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.text "error", null: false
     t.text "solution"
-    t.text "environment"
     t.text "memo"
-    t.integer "language"
     t.boolean "release"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -40,5 +53,7 @@ ActiveRecord::Schema.define(version: 2021_03_19_121028) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "log_languages", "languages"
+  add_foreign_key "log_languages", "logs"
   add_foreign_key "logs", "users"
 end

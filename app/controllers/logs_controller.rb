@@ -38,6 +38,6 @@ class LogsController < ApplicationController
   private
 
   def log_params
-    params.require(:log).permit(:title, :error, :solution, :memo, :language, :release).merge(user_id: current_user.id)
+    params.require(:log).permit(:title, :error, :solution, :memo, :release, {language_ids: []}).merge(user_id: current_user.id)
   end
 end
