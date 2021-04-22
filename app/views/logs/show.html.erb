@@ -45,7 +45,7 @@
   </div>
   <div class="bottom-profile__lower">
     <div class="profile-btn__container">
-      <%= link_to "フォローする", "#", class: "btn-filled" if current_user.id == @log.user %>
+      <%= link_to "フォローする", "#", class: "btn-filled" if current_user.id != @log.user.id %>
       <%= link_to "プロフィールへ", [@log.user], class: "btn-default" %>
     </div>
   </div>
