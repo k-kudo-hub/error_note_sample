@@ -40,12 +40,65 @@ form {
   .app-bottom-inner {
     @include inner-base;
     margin: 30px auto;
-    min-height: 200px;
+    height: 200px;
   }
   .inner-bottom-btn-wrap {
     display: flex;
     justify-content: space-around;
     margin: 20px auto;
+    width: 65%;
+  }
+}
+
+.bottom-profile {
+  &__upper {
+    height: 70%;
+    width: 100%;
+    display: flex;
+  }
+  
+  &__lower {
+    height: 30%;
+    width: 100%;
+  }
+}
+
+.profile-img {
+  &__container {
+    text-align: center;
+    width: 25%;
+    height: 100%;
+    img {
+      border-radius: 70px;
+      width: 135px;
+      height: 135px;
+    }
+  }
+}
+
+.profile-introduce {
+  &__container {
+    width: 75%;
+    height: 100%;
+  }
+  &__name {
+    height: 30%;
+    h2 {
+      margin: 10px auto 10px 20px;
+    }
+  }
+  &__word {
+    color: rgb(109, 109, 109);
+    line-height: 1.25;
+    padding: 5px 10px;
+  }
+}
+
+.profile-btn {
+  &__container {
+    display: flex;
+    justify-content: space-around;
+    margin: 5px auto;
     width: 65%;
   }
 }
