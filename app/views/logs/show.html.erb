@@ -30,5 +30,23 @@
   </div>
 </section>
 <div class="app-bottom-inner">
-  
+  <div class="bottom-profile__upper">
+    <div class="profile-img__container">
+      <%= image_tag('site-bg.png') %>
+    </div>
+    <div class="profile-introduce__container">
+      <div class="profile-introduce__name">
+        <h2><%= @log.user.name %></h2>
+      </div>
+      <div class="profile-introduce__word">
+        <p>これはダミーテキストです。これはダミーテキストです。これはダミーテキストです。これはダミーテキストです。これはダミーテキストです。これはダミーテキストです。これはダミーテキストです。これはダミーテキストです。</p>
+      </div>
+    </div>
+  </div>
+  <div class="bottom-profile__lower">
+    <div class="profile-btn__container">
+      <%= link_to "フォローする", "#", class: "btn-filled" if current_user.id != @log.user.id %>
+      <%= link_to "プロフィールへ", [@log.user], class: "btn-default" %>
+    </div>
+  </div>
 </div>
