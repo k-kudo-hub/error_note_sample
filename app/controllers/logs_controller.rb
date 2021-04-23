@@ -19,6 +19,7 @@ class LogsController < ApplicationController
 
   def show
     @log = Log.find(params[:id])
+    @stock = Stock.new
   end
   
   def edit

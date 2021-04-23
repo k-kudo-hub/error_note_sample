@@ -24,7 +24,12 @@
     <% if user_signed_in? && ( current_user.id == @log.user.id ) %>
       <%= link_to("ログを編集する", "/users/#{current_user.id}/logs/#{@log.id}/edit", {class: "btn-filled"}) %>
     <% else %>
-      <%= link_to("ストックする", "#", {class: "btn-filled"}) %>
+      <%= "ストックされた数:#{@log.stocks.count}" %>
+      <% if current_user.already_stocked?(@log) %>
+        <%= button_to 'ストックを取り消す', user_log_stock_path(current_user, @log), method: :delete %>
+      <% else %>
+        <%= button_to 'ストック', user_log_stocks_path(current_user, @log) %>
+      <% end %>
     <% end %>
     <%= link_to("トップに戻る", root_path, {class: "btn-default"}) %>
   </div>
