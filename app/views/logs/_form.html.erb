@@ -11,9 +11,9 @@
     <%= f.label :solution, "解決方法" %>
     <%= f.text_area :solution, class: "log-input-large" ,id: "solution" %>
   </div>
-  <div class="log-input-field-small">
-    <%= f.label :language, "言語" %>
-    <%= f.collection_check_boxes :language_ids, Language.all, :id, :name, { prompt: "言語を選択してください" }, { class: "log-input-small", id: "language" } %>
+  <div class="log-input-field-lang">
+  <%= f.label :language, "開発言語", class: "label-center" %>
+  <%= f.collection_check_boxes :language_ids, Language.all, :id, :name, { class: "log-input-small", id: "language" } %>
   </div>
   <div class="log-input-field-small">
     <%= f.label :release, "公開状態" %>
