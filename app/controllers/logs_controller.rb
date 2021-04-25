@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class LogsController < ApplicationController
   def index
     @logs = Log.all.includes(:user).order('updated_at DESC').first(10)
@@ -11,7 +13,7 @@ class LogsController < ApplicationController
     @log = Log.new(log_params)
     if @log.valid?
       @log.save
-      render "logs/create"
+      render 'logs/create'
     else
       render :new
     end
@@ -21,16 +23,16 @@ class LogsController < ApplicationController
     @log = Log.find(params[:id])
     @stock = Stock.new
   end
-  
+
   def edit
     @log = Log.find(params[:id])
   end
-  
+
   def update
     @log = Log.find(params[:id])
     if @log.valid?
       @log.update(log_params)
-      render "logs/update"
+      render 'logs/update'
     else
       render :edit
     end
@@ -38,7 +40,7 @@ class LogsController < ApplicationController
 
   private
 
-  def log_params
-    params.require(:log).permit(:title, :error, :solution, :release, {language_ids: []}).merge(user_id: current_user.id)
-  end
+    def log_params
+      params.require(:log).permit(:title, :error, :solution, :release, { language_ids: [] }).merge(user_id: current_user.id)
+    end
 end
