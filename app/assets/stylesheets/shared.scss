@@ -34,7 +34,7 @@ form {
   padding: 30px 0 50px;
   &-inner {
     @include inner-base;
-    margin: 0 auto;
+    margin: 0 auto 30px;
     min-height: calc(100vh - 50px - 264px - 164px);
   }
   .app-bottom-inner {
@@ -47,8 +47,12 @@ form {
     justify-content: space-around;
     margin: 20px auto;
     width: 65%;
+    form {
+      margin: 0 auto;
+    }
   }
 }
+
 
 .bottom-profile {
   &__upper {
@@ -106,6 +110,7 @@ form {
 @mixin btn {
   border: 2px solid $site-dark-color;
   border-radius: 20px;
+  height: fit-content;
   margin: 20px auto;
   padding: 1.2vh 2.5vw;
   text-decoration: none;
@@ -130,6 +135,17 @@ form {
   &:hover {
     @include btn-fill;
     transition-duration: 0.25s;
+    .stock-count__number {
+      @include btn-empty();
+      padding: 3px 5px;
+      border-radius: 20px;
+      transition-duration: 0.25s;
+    }
+  }
+  .stock-count__number {
+    @include btn-fill;
+    padding: 3px 5px;
+    border-radius: 20px;
   }
 }
 
@@ -139,6 +155,17 @@ form {
   &:hover {
     @include btn-empty;
     transition-duration: 0.25s;
+    .stock-count__number {
+      @include btn-fill();
+      padding: 3px 5px;
+      border-radius: 20px;
+      transition-duration: 0.25s;
+    }
+  }
+  .stock-count__number {
+    @include btn-empty();
+    padding: 3px 5px;
+    border-radius: 20px;
   }
 }
 
@@ -200,50 +227,10 @@ form {
     height: 80%;
     max-width: 800px;
     margin: 0 auto;
-    .footer-left  {
-      width: 60%;
-      .footer-site-name {
-        font-size: 2rem;
-        font-weight: bold;
-        margin: 0 0 20px;
-      }
-    }
-    .footer-right {
-      width: 40%;
-    }
     a,
     p {
       color: white;
       text-decoration: none;
-    }
-    .footer-left {
-      margin-left: 5%;
-      p {
-        margin: 10px 0;
-      }
-      .footer-sns-area {
-        display: flex;
-        img {
-          margin-right: 20px;
-        }
-      }
-    }
-    .footer-right {
-      display: flex;
-      &-start,
-      &-end {
-        width: 50%;
-        display: flex;
-        flex-direction: column;
-        p:first-child {
-          margin: 0;
-          font-weight: bold;
-        }
-        a {
-          color: rgb(159, 159, 159);
-          margin-top: 1em;
-        }
-      }
     }
   }
   .footer-bottom {
@@ -262,6 +249,44 @@ form {
       width: 70%;
     }
   }
+  
+.footer-left  {
+  width: 60%;
+  margin-left: 5%;
+  p {
+    margin: 10px 0;
+  }
+  .footer-sns-area {
+    display: flex;
+    img {
+      margin-right: 20px;
+    }
+  }
+  .footer-site-name {
+    font-size: 2rem;
+    font-weight: bold;
+    margin: 0 0 20px;
+  }
+}
+.footer-right {
+  width: 40%;
+  display: flex;
+  &-start,
+  &-end {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    p:first-child {
+      margin: 0;
+      font-weight: bold;
+    }
+    a {
+      color: rgb(159, 159, 159);
+      margin-top: 1em;
+    }
+  }
+}
+  
 }
 // end footer style
 
