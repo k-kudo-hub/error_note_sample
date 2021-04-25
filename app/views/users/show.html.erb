@@ -22,6 +22,12 @@
   </table>
   <div class="inner-bottom-btn-wrap">
     <% if user_signed_in? && (current_user.id == @user.id) %>
+      <div>
+        <% current_user.stocks.each do |stock| %>
+          <% log = stock.log %>
+          <p><%= link_to("#{log.title}", user_log_path(log.user, log)) %></p>
+        <% end %>
+      </div>
       <%= link_to("プロフィール編集", edit_user_registration_path,{ method: :get, class: "btn-filled" }) %>
       <%= link_to("ログアウト", '/users/sign_out',{ method: :delete, class: "btn-default" }) %>
     <% else %>

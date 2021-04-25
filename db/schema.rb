@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_21_113804) do
+ActiveRecord::Schema.define(version: 2021_04_22_142726) do
 
   create_table "languages", charset: "utf8", force: :cascade do |t|
     t.string "name", null: false
@@ -38,6 +38,15 @@ ActiveRecord::Schema.define(version: 2021_04_21_113804) do
     t.index ["user_id"], name: "index_logs_on_user_id"
   end
 
+  create_table "stocks", charset: "utf8", force: :cascade do |t|
+    t.bigint "log_id", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["log_id"], name: "index_stocks_on_log_id"
+    t.index ["user_id"], name: "index_stocks_on_user_id"
+  end
+
   create_table "users", charset: "utf8", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -55,4 +64,6 @@ ActiveRecord::Schema.define(version: 2021_04_21_113804) do
   add_foreign_key "log_languages", "languages"
   add_foreign_key "log_languages", "logs"
   add_foreign_key "logs", "users"
+  add_foreign_key "stocks", "logs"
+  add_foreign_key "stocks", "users"
 end
