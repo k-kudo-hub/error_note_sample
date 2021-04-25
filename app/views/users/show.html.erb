@@ -1,37 +1,40 @@
 <section class="app-body-inner">
-  <h1><%= @user.name %>のマイページ</h1>
-  <table class="log-table" width="90%">
-    <thead>
-      <tr class="log-index-head">
-        <th class="log-index-small-col">更新日</th>
-        <th class="log-index-big-col">タイトル</th>
-        <th class="log-index-small-col">言語</th>
-        <th class="log-index-small-col">公開</th>
-      </tr>
-    </thead> 
-    <tbody>
-      <% @logs.each do |log| %>
-      <tr class="log-index-body">
-        <td class="align-center"><%= l log.updated_at, format: :shortest %></td>
-        <td><%= link_to log.title, "#{log.user_id}/logs/#{log.id}" %></td>
-        <td class="align-center"><%= display_languages(log.languages) %></td>
-        <td class="align-center"><%= log.release %></td>
-      </tr>
-      <% end %>
-    </tbody>
-  </table>
+  <h1><%= @user.name %>のノート</h1>
+  <%= render "table", logs: @logs, stock: "false" %>
   <div class="inner-bottom-btn-wrap">
-    <% if user_signed_in? && (current_user.id == @user.id) %>
-      <div>
-        <% current_user.stocks.each do |stock| %>
-          <% log = stock.log %>
-          <p><%= link_to("#{log.title}", user_log_path(log.user, log)) %></p>
-        <% end %>
-      </div>
-      <%= link_to("プロフィール編集", edit_user_registration_path,{ method: :get, class: "btn-filled" }) %>
-      <%= link_to("ログアウト", '/users/sign_out',{ method: :delete, class: "btn-default" }) %>
-    <% else %>
-      <%= link_to("フォローする", '#',{ class: "btn-filled" }) %>
-    <% end %>
   </div>
 </section>
+
+<% if user_signed_in? && (current_user.id == @user.id) %>
+  <section class="app-body-inner">
+    <h1>最近のストック</h1>
+    <%- mystocks = @user.my_stocks %>
+    <%= render "table", logs: mystocks, stock: "true" %>
+  </section>
+<% end %>
+
+<div class="app-bottom-inner">
+  <div class="bottom-profile__upper">
+    <div class="profile-img__container">
+      <%= image_tag('site-bg.png') %>
+    </div>
+    <div class="profile-introduce__container">
+      <div class="profile-introduce__name">
+        <h2><%= @user.name %></h2>
+      </div>
+      <div class="profile-introduce__word">
+        <p>これはダミーテキストです。これはダミーテキストです。これはダミーテキストです。これはダミーテキストです。これはダミーテキストです。これはダミーテキストです。これはダミーテキストです。これはダミーテキストです。</p>
+      </div>
+    </div>
+  </div>
+  <div class="bottom-profile__lower">
+    <div class="profile-btn__container">
+      <% if user_signed_in? && (current_user.id == @user.id) %>
+        <%= link_to("プロフィール編集", edit_user_registration_path,{ method: :get, class: "btn-filled" }) %>
+        <%= link_to("ログアウト", '/users/sign_out',{ method: :delete, class: "btn-default" }) %>
+      <% elsif user_signed_in? && (current_user.id != @user.id) %>
+        <%= link_to("フォローする", '#',{ class: "btn-filled" }) %>
+      <% end %>
+    </div>
+  </div>
+</div>
