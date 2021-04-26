@@ -1,4 +1,5 @@
 <%= form_with model: model, url: url, method: method do |f| %>
+  <%= render "shared/error_message", model: f.object %>
   <div class="log-input-field">
     <%= f.label :title, "タイトル" %>
     <%= f.text_field :title, class: "log-input" ,id: "title" %>
