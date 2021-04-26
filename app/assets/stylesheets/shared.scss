@@ -289,3 +289,26 @@ form {
 }
 // end Devise style
 
+// Error message style
+
+.error-message {
+  &__container {
+    background-color: $site-light-color;
+    border: 5px solid $site-main-color;
+    border-radius: 20px;
+    margin: 0 auto;
+    width: 80%;
+  }
+  &__text {
+    list-style: none;
+    line-height: 1.5;
+  }
+}
+
+.field_with_errors,
+.field_with_errors label {
+  color: $site-dark-color;
+  display: inline;
+}
+
+// end error message style
