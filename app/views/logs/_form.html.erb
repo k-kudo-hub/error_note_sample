@@ -11,14 +11,16 @@
     <%= f.label :solution, "解決方法" %>
     <%= f.text_area :solution, class: "log-input-large" ,id: "solution" %>
   </div>
-  <div class="log-input-field-small">
-    <%= f.label :language, "言語" %>
-    <%= f.collection_check_boxes :language_ids, Language.all, :id, :name, { prompt: "言語を選択してください" }, { class: "log-input-small", id: "language" } %>
+  <div class="log-input-field-lang">
+  <%= f.label :language, "開発言語", class: "label-center" %>
+  <%= f.collection_check_boxes :language_ids, Language.all, :id, :name, { class: "log-input-small", id: "language" } %>
   </div>
-  <div class="log-input-field-small">
-    <%= f.label :release, "公開状態" %>
-    <%= f.radio_button :release, "公開", class: "log-input-radio", id: "release", checked: "checked" %>公開
-    <%= f.radio_button :release, "非公開", class: "log-input-radio", id: "release" %>非公開
+  <div class="log-input-field-lang">
+    <%= f.label :release, "公開状態", class: "label-center" %>
+    <%= f.radio_button :release, true, class: "log-input-radio", id: "release" %>
+    <%= f.label :release, "公開", value: true %>
+    <%= f.radio_button :release, false, class: "log-input-radio", id: "release" %>
+    <%= f.label :release, "非公開", value: false %>
   </div>
   <div class="inner-bottom-btn-wrap">
     <%= f.submit "保存する", class: "btn-default" %>

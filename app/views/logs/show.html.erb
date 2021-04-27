@@ -22,14 +22,17 @@
 
   <div class="inner-bottom-btn-wrap">
     <% if user_signed_in? %>
-      <%= "ストックされた数:#{@log.stocks.count}" %>
       <% if current_user.id == @log.user.id %>
         <%= link_to("ログを編集する", "/users/#{current_user.id}/logs/#{@log.id}/edit", {class: "btn-filled"}) %>
       <% else %>
         <% if current_user.already_stocked?(@log) %>
-          <%= button_to 'ストックを取り消す', user_log_stock_path(current_user, @log), method: :delete %>
+          <%= button_to user_log_stock_path(current_user, @log), method: :delete, class:"btn-filled" do %>
+            <p>ストックを取り消す <span class="stock-count__number"><%= @log.stocks.count %></span></p>
+          <% end %>
         <% else %>
-          <%= button_to 'ストック', user_log_stocks_path(current_user, @log) %>
+          <%= button_to user_log_stocks_path(current_user, @log), class:"btn-default" do %>
+            <p>ストックする <span class="stock-count__number"><%= @log.stocks.count %></span></p>
+          <% end %>
         <% end %>
       <% end %>
     <% end %>
@@ -52,7 +55,7 @@
   </div>
   <div class="bottom-profile__lower">
     <div class="profile-btn__container">
-      <%= link_to "フォローする", "#", class: "btn-filled" if current_user.id != @log.user.id %>
+      <%= link_to "フォローする", "#", class: "btn-filled" if user_signed_in? && (current_user.id != @log.user.id) %>
       <%= link_to "プロフィールへ", [@log.user], class: "btn-default" %>
     </div>
   </div>

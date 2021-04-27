@@ -4,7 +4,6 @@
 
 $site-main-color: #80c683;
 
-// Devise style
 .log-input-field,
 .log-input-field-small,
 .log-check-field {
@@ -20,7 +19,19 @@ $site-main-color: #80c683;
     width: 85%;
     &-small {
       text-align: right;
-      width: 65%;
+      width: 63%;
+    }
+    &-lang {
+      line-height: 1.5;
+      text-align: center;
+      width: 58%;
+      margin: 30px auto 0;
+      input {
+        margin-right: 5px;
+      }
+      label {
+        margin-right: 20px;
+      }
     }
   }
   &-large {
@@ -33,7 +44,12 @@ $site-main-color: #80c683;
     width: 200px;
   }
 }
-// end Devise style
+
+.label-center {
+  display: block;
+  text-align: center;
+  margin-bottom: 10px;
+}
 
 .log-index-head {
   background-color: $site-main-color;
