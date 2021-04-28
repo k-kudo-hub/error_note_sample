@@ -11,7 +11,7 @@ class LogsController < ApplicationController
     @log = Log.new(log_params)
     if @log.valid?
       @log.save
-      render "logs/create"
+      redirect_to user_path(current_user)
     else
       render :new
     end
@@ -28,9 +28,9 @@ class LogsController < ApplicationController
   
   def update
     @log = Log.find(params[:id])
-    if @log.valid?
+    if @log.update(log_params)
       @log.update(log_params)
-      render "logs/update"
+      redirect_to user_path(current_user)
     else
       render :edit
     end
