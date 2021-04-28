@@ -9,8 +9,7 @@ class LogsController < ApplicationController
 
   def create
     @log = Log.new(log_params)
-    if @log.valid?
-      @log.save
+    if @log.save
       redirect_to user_path(current_user)
     else
       render :new
