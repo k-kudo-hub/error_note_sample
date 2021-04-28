@@ -1,4 +1,6 @@
 class LogsController < ApplicationController
+  before_action :find_log, only: [:show, :edit, :update]
+
   def index
     @logs = Log.all.includes(:user).order('updated_at DESC').first(10)
   end
@@ -17,16 +19,12 @@ class LogsController < ApplicationController
   end
 
   def show
-    @log = Log.find(params[:id])
     @stock = Stock.new
   end
   
-  def edit
-    @log = Log.find(params[:id])
-  end
-  
+  def edit; end
+
   def update
-    @log = Log.find(params[:id])
     if @log.update(log_params)
       redirect_to user_path(current_user)
     else
@@ -38,5 +36,9 @@ class LogsController < ApplicationController
 
   def log_params
     params.require(:log).permit(:title, :error, :solution, :release, {language_ids: []}).merge(user_id: current_user.id)
+  end
+
+  def find_log
+    @log = Log.find(params[:id])
   end
 end
