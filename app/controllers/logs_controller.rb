@@ -29,7 +29,6 @@ class LogsController < ApplicationController
   def update
     @log = Log.find(params[:id])
     if @log.update(log_params)
-      @log.update(log_params)
       redirect_to user_path(current_user)
     else
       render :edit
