@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   }
   root 'logs#index'
   resources :users, only: [:index, :show] do
-    resources :logs,  only: [:index, :new, :create, :show, :edit, :update] do
+    resources :logs do
       resources :stocks, only: [:create, :destroy]
     end
   end
