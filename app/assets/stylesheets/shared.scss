@@ -3,6 +3,8 @@ $site-dark-color: #509556;
 $site-light-color: #b1f9b3;
 $site-font-color: black;
 $site-footer-bg-color: rgb(82, 82, 82);
+$site-error-border-color: rgb(182, 0, 0); 
+$site-error-bg-color: rgb(255, 187, 187); 
 $header-height: 50px;
 
 // add reset css
@@ -46,7 +48,7 @@ form {
     display: flex;
     justify-content: space-around;
     margin: 20px auto;
-    width: 65%;
+    width: 75%;
     form {
       margin: 0 auto;
     }
@@ -291,6 +293,22 @@ form {
 // end footer style
 
 // Devise style
+#error_explanation {
+  background-color: $site-error-bg-color;
+  border: 5px solid $site-error-border-color;
+  border-radius: 20px;
+  margin: 0 auto;
+  width: 80%;
+  h2 {
+    font-size: 1rem;
+    padding: 10px;
+  }
+  li {
+    list-style: none;
+    line-height: 1.5;
+  }
+}
+
 .user-input-field,
 .user-check-field {
   margin-top: 30px;
@@ -318,8 +336,8 @@ form {
 
 .error-message {
   &__container {
-    background-color: $site-light-color;
-    border: 5px solid $site-main-color;
+    background-color: $site-error-bg-color;
+    border: 5px solid $site-error-border-color;
     border-radius: 20px;
     margin: 0 auto;
     width: 80%;
@@ -332,7 +350,7 @@ form {
 
 .field_with_errors,
 .field_with_errors label {
-  color: $site-dark-color;
+  color: $site-error-border-color;
   display: inline;
 }
 

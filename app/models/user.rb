@@ -8,7 +8,6 @@ class User < ApplicationRecord
   with_options presence: { message: 'が入力されていません。'} do 
     validates :name
     validates :kana, format: { with: /\A[ァ-ヶー－]+\z/, message: 'は全角カタカナのみ登録できます。' }
-    validates :email
   end
 
   def already_stocked?(log)
