@@ -2,7 +2,7 @@ class LogsController < ApplicationController
   before_action :find_log, only: [:show, :edit, :update]
 
   def index
-    @logs = Log.all.includes(:user).order('updated_at DESC').first(10)
+    @logs = Log.all.includes(:user, :languages).order('updated_at DESC').first(10)
   end
 
   def new
