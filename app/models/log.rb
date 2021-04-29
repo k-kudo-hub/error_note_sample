@@ -9,4 +9,12 @@ class Log < ApplicationRecord
     validates :title
     validates :error
   end
+
+  def self.search(keyword)
+    logs = if keyword.empty?
+             Log.all
+           else
+             Log.where('title LIKE(?)', "%#{keyword}%")
+           end
+  end
 end

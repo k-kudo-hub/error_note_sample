@@ -5,6 +5,9 @@ Rails.application.routes.draw do
   root 'logs#index'
   resources :users, only: [:index, :show] do
     resources :logs do
+      collection do
+        get 'search'
+      end
       resources :stocks, only: [:create, :destroy]
     end
   end

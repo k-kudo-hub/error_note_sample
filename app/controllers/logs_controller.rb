@@ -38,6 +38,10 @@ class LogsController < ApplicationController
     redirect_to user_path(current_user)
   end
 
+  def search
+    @logs = Log.search(params[:keyword])
+  end
+
   private
 
   def log_params
