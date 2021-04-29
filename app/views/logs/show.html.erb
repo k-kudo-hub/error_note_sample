@@ -23,8 +23,8 @@
   <div class="inner-bottom-btn-wrap">
     <% if user_signed_in? %>
       <% if current_user.id == @log.user.id %>
-        <%= link_to 'ログを編集する', edit_user_log_path(user_id: current_user.id, id: @log.id), class: "btn-filled" %>
-        <%= link_to 'ログを削除する', user_log_path(user_id: current_user.id, id: @log.id), method: :delete, class: "btn-filled", data: {confirm: "削除しますか？"} %>
+        <%= link_to 'ログを編集する', edit_user_log_path(user_id: current_user.id, id: @log.id), class: "btn-default" %>
+        <%= link_to 'ログを削除する', user_log_path(user_id: current_user.id, id: @log.id), method: :delete, class: "btn-danger", data: {confirm: "削除しますか？"} %>
       <% else %>
         <% if current_user.already_stocked?(@log) %>
           <%= button_to user_log_stock_path(current_user, @log), method: :delete, class:"btn-filled" do %>
@@ -37,7 +37,6 @@
         <% end %>
       <% end %>
     <% end %>
-    <%= link_to("トップに戻る", root_path, {class: "btn-default"}) %>
   </div>
 </section>
 <div class="app-bottom-inner">

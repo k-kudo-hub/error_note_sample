@@ -3,8 +3,8 @@ $site-dark-color: #509556;
 $site-light-color: #b1f9b3;
 $site-font-color: black;
 $site-footer-bg-color: rgb(82, 82, 82);
-$site-error-border-color: rgb(182, 0, 0); 
-$site-error-bg-color: rgb(255, 187, 187); 
+$site-danger-border-color: rgb(182, 0, 0); 
+$site-danger-bg-color: rgb(255, 187, 187); 
 $header-height: 50px;
 
 // add reset css
@@ -131,6 +131,18 @@ form {
   color: white;
 }
 
+@mixin btn-danger {
+  background-color: white;
+  color: $site-danger-border-color;
+  border: 2px solid $site-danger-border-color;
+}
+
+@mixin btn-danger-fill {
+  background-color: $site-danger-border-color;
+  color: white;
+  border: 2px solid $site-danger-border-color;
+}
+
 .btn-default {
   @include btn;
   @include btn-empty;
@@ -168,6 +180,15 @@ form {
     @include btn-empty();
     padding: 3px 5px;
     border-radius: 20px;
+  }
+}
+
+.btn-danger {
+  @include btn;
+  @include btn-danger;
+  &:hover {
+    @include btn-danger-fill;
+    transition-duration: 0.25s;
   }
 }
 
@@ -294,8 +315,8 @@ form {
 
 // Devise style
 #error_explanation {
-  background-color: $site-error-bg-color;
-  border: 5px solid $site-error-border-color;
+  background-color: $site-danger-bg-color;
+  border: 5px solid $site-danger-border-color;
   border-radius: 20px;
   margin: 0 auto;
   width: 80%;
@@ -336,8 +357,8 @@ form {
 
 .error-message {
   &__container {
-    background-color: $site-error-bg-color;
-    border: 5px solid $site-error-border-color;
+    background-color: $site-danger-bg-color;
+    border: 5px solid $site-danger-border-color;
     border-radius: 20px;
     margin: 0 auto;
     width: 80%;
@@ -350,7 +371,7 @@ form {
 
 .field_with_errors,
 .field_with_errors label {
-  color: $site-error-border-color;
+  color: $site-danger-border-color;
   display: inline;
 }
 
