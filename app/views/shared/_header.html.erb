@@ -4,6 +4,15 @@
     <h1><%= link_to "Error Note", root_path %></h1>
   </div>
   <div class="header-center flex-3">
+    <% if user_signed_in? %>
+      <%= form_with(url: search_user_logs_path(current_user), local: true, method: :get) do |form| %>
+        <span class="fa-stack">
+          <%= form.text_field :keyword, placeholder:"キーワードを入力", class: "fa-lg fa-stack-2x" ,style:"width: 25vw; padding: 5px 5px 5px 32px; font-size: 1em; text-align: left;" %>
+          <i class="fas fa-search fa-lg fa-stack-1x" style="font-size: 1em;"></i>
+        </span>
+        <%= form.submit "検索", type: "hidden" %>
+      <% end %>
+    <% end %>
   </div>
   <div class="header-right flex-3">
     <div class="header-btn-wrap">

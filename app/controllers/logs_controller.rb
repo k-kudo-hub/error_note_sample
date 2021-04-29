@@ -2,7 +2,7 @@ class LogsController < ApplicationController
   before_action :find_log, only: [:show, :edit, :update]
 
   def index
-    @logs = Log.all.includes(:user).order('updated_at DESC').first(10)
+    @logs = Log.all.includes(:user, :languages).order('updated_at DESC').first(10)
   end
 
   def new
@@ -36,6 +36,10 @@ class LogsController < ApplicationController
     log = Log.find(params[:id])
     log.destroy
     redirect_to user_path(current_user)
+  end
+
+  def search
+    @logs = Log.search(params[:keyword])
   end
 
   private
