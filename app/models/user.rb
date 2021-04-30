@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  mount_uploader :picture, PictureUploader
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   has_many :logs
@@ -7,7 +8,6 @@ class User < ApplicationRecord
   
   with_options presence: { message: 'が入力されていません。'} do 
     validates :name
-    validates :kana, format: { with: /\A[ァ-ヶー－]+\z/, message: 'は全角カタカナのみ登録できます。' }
   end
 
   def already_stocked?(log)
