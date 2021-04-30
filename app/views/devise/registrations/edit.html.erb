@@ -7,12 +7,16 @@
       <%= f.text_field :name, class: "user-input" %>
     </div>
     <div class="user-input-field">
-      <%= f.label "フリガナ" %>
-      <%= f.text_field :kana, class: "user-input" %>
-    </div>
-    <div class="user-input-field" style="margin-bottom:50px;">
       <%= f.label "メールアドレス" %>
       <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "user-input" %>
+    </div>
+    <div class="user-input-field">
+      <%= f.label "自己紹介" %>
+      <%= f.text_area :introduce, autofocus: true, autocomplete: "introduce", class: "user-input-large" %>
+    </div>
+    <div class="user-input-field"  style="margin-bottom:50px;">
+      <%= f.label "プロフィール画像" %>
+      <%= f.file_field :picture, autofocus: true, autocomplete: "picture", class: "user-input" %>
     </div>
     <div class="inner-bottom-btn-wrap">
       <%= link_to "キャンセル", :back, class: "btn-default" %>

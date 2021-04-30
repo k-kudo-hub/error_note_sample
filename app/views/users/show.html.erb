@@ -14,27 +14,5 @@
 <% end %>
 
 <div class="app-bottom-inner">
-  <div class="bottom-profile__upper">
-    <div class="profile-img__container">
-      <%= image_tag 'site-bg.png' %>
-    </div>
-    <div class="profile-introduce__container">
-      <div class="profile-introduce__name">
-        <h2><%= @user.name %></h2>
-      </div>
-      <div class="profile-introduce__word">
-        <p>これはダミーテキストです。これはダミーテキストです。これはダミーテキストです。これはダミーテキストです。これはダミーテキストです。これはダミーテキストです。これはダミーテキストです。これはダミーテキストです。</p>
-      </div>
-    </div>
-  </div>
-  <div class="bottom-profile__lower">
-    <div class="profile-btn__container">
-      <% if user_signed_in? && (current_user.id == @user.id) %>
-        <%= link_to("プロフィール編集", edit_user_registration_path,{ method: :get, class: "btn-filled" }) %>
-        <%= link_to("ログアウト", '/users/sign_out',{ method: :delete, class: "btn-default" }) %>
-      <% elsif user_signed_in? && (current_user.id != @user.id) %>
-        <%= link_to("フォローする", '#',{ class: "btn-filled" }) %>
-      <% end %>
-    </div>
-  </div>
+  <%= render "users/profile", user: @user, use_case: "user" %>
 </div>

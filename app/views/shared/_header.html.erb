@@ -20,7 +20,11 @@
             <i class="fas fa-pen fa-lg"></i>
           <% end %>
           <%= link_to "/users/#{current_user.id}", class: "header-btn" do %>
-            <%= image_tag 'site-bg.png', size: '30x30' %>
+            <% if current_user.picture? %>
+              <%= image_tag current_user.picture.url, size: '30x30' %>
+            <% else %>
+              <%= image_tag "human", size: '30x30' %>
+            <% end %>
           <% end %>
         </div>
       <% else %>

@@ -14,7 +14,6 @@ ja:
       user:
         id: ID
         name: 名前
-        kana: 名前（カタカナ）
         picture: 画像
         introduce: 自己紹介
         email: メールアドレス
