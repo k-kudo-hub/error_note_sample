@@ -263,6 +263,7 @@ form {
   }
   img {
     border-radius: 20px;
+    background-color: white;
   }
 }
 
@@ -379,12 +380,17 @@ form {
   text-align: center;
 }
 .user-input-field {
-  width: 66%;
+  width: 74%;
   text-align: right;
 }
 .user-input {
   height: 30px;
-  width: 200px;
+  width: 300px;
+  &-large {
+    height: 80px;
+    width: 300px;
+    vertical-align: middle;
+  }
 }
 .silver-font {
   color: silver;
