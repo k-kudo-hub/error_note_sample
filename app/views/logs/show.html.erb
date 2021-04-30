@@ -40,27 +40,5 @@
   </div>
 </section>
 <div class="app-bottom-inner">
-  <div class="bottom-profile__upper">
-    <div class="profile-img__container">
-      <% if @log.user.picture? %>
-        <%= image_tag @log.user.picture.url %>
-      <% else %>
-        <%= image_tag "site-bg" %>
-      <% end %>
-    </div>
-    <div class="profile-introduce__container">
-      <div class="profile-introduce__name">
-        <h2><%= @log.user.name %></h2>
-      </div>
-      <div class="profile-introduce__word">
-        <%= @log.user.introduce %>
-      </div>
-    </div>
-  </div>
-  <div class="bottom-profile__lower">
-    <div class="profile-btn__container">
-      <%= link_to "フォローする", "#", class: "btn-filled" if user_signed_in? && (current_user.id != @log.user.id) %>
-      <%= link_to "プロフィールへ", [@log.user], class: "btn-default" %>
-    </div>
-  </div>
+  <%= render "users/profile", user: @log.user, use_case: "log" %>
 </div>
