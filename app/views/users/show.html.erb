@@ -16,14 +16,18 @@
 <div class="app-bottom-inner">
   <div class="bottom-profile__upper">
     <div class="profile-img__container">
-      <%= image_tag 'site-bg.png' %>
+      <% if @user.picture? %>
+        <%= image_tag @user.picture.url %>
+      <% else %>
+        <%= image_tag "site-bg" %>
+      <% end %>
     </div>
     <div class="profile-introduce__container">
       <div class="profile-introduce__name">
         <h2><%= @user.name %></h2>
       </div>
       <div class="profile-introduce__word">
-        <p>これはダミーテキストです。これはダミーテキストです。これはダミーテキストです。これはダミーテキストです。これはダミーテキストです。これはダミーテキストです。これはダミーテキストです。これはダミーテキストです。</p>
+        <%= @user.introduce %>
       </div>
     </div>
   </div>
