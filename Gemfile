@@ -37,5 +37,6 @@ gem 'devise-i18n'
 gem 'rails-i18n'
 gem 'carrierwave'
 gem 'rmagick'
+gem 'kaminari'
 
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
