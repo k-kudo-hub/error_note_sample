@@ -36,6 +36,10 @@
           <% end %>
         <% end %>
       <% end %>
+    <% else %>
+      <%= button_to new_user_session_path, class:"btn-default" do %>
+        <p>ストックする <span class="stock-count__number"><%= @log.stocks.count %></span></p>
+      <% end %>
     <% end %>
   </div>
 </section>

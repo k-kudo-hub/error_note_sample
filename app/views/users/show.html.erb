@@ -5,7 +5,7 @@
   </div>
 </section>
 
-<% if user_signed_in? && (current_user.id == @user.id) %>
+<% if current_user.id == @user.id %>
   <section class="app-body-inner">
     <h1>最近のストック</h1>
     <%- mystocks = @user.my_stocks %>
