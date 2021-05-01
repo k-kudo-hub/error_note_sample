@@ -1,4 +1,6 @@
 class StocksController < ApplicationController
+  before_action :authenticate_user!, only: [:show]
+
   def create
     @stock = current_user.stocks.create(log_id: params[:log_id])
     redirect_to user_log_path(current_user, params[:log_id])
