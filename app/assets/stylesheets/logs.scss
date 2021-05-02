@@ -109,6 +109,7 @@ $site-main-color: #80c683;
     width: 20px;
     &:hover {
       background-color: $site-main-color;
+      transition-duration: 0.25s;
       & a, i {
       color: white;
       }
