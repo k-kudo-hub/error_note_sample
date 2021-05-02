@@ -1,23 +1,4 @@
 <section class="app-body-inner">
   <h1>検索結果</h1>
-  <table class="log-table" width="90%">
-    <thead>
-      <tr class="log-index-head">
-        <th class="log-index-small-col">更新日</th>
-        <th class="log-index-big-col">タイトル</th>
-        <th class="log-index-small-col">言語</th>
-        <th class="log-index-small-col">ユーザー</th>
-      </tr>
-    </thead> 
-    <tbody>
-      <% @logs.each do |log| %>
-      <tr class="log-index-body">
-        <td class="align-center"><%= l log.updated_at, format: :shortest %></td>
-        <td><%= link_to log.title, user_log_path(log.user, log) %></td>
-        <td class="align-center"><%= display_languages(log.languages) %></td>
-        <td class="align-center"><%= log.user.name %></td>
-      </tr>
-      <% end %>
-    </tbody>
-  </table>
+  <%= render "table", logs: @logs, stock: "true" %>
 </section>

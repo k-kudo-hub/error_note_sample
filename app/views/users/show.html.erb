@@ -1,15 +1,12 @@
 <section class="app-body-inner">
   <h1><%= @user.name %>のノート</h1>
-  <%= render "table", logs: @logs, stock: "false" %>
-  <div class="inner-bottom-btn-wrap">
-  </div>
+  <%= render "logs/table", logs: @logs, stock: "false" %>
 </section>
 
 <% if user_signed_in? && (current_user.id == @user.id) %>
   <section class="app-body-inner">
     <h1>最近のストック</h1>
-    <%- mystocks = @user.my_stocks %>
-    <%= render "table", logs: mystocks, stock: "true" %>
+    <%= render "logs/table", logs: @stocks, stock: "true" %>
   </section>
 <% end %>
 
