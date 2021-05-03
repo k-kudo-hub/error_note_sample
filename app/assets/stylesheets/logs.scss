@@ -21,6 +21,9 @@ $site-main-color: #80c683;
       a {
         color: black;
         text-decoration: none;
+        &:hover {
+          color: rgba(0, 0, 0, 0.5);
+        }
       }
     }
   }
