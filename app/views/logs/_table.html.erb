@@ -1,29 +1,28 @@
-<table class="log-table" width="90%">
-  <thead>
-    <tr class="log-index-head">
-      <th class="log-index-small-col">更新日</th>
-      <th class="log-index-big-col">タイトル</th>
-      <th class="log-index-small-col">言語</th>
-      <% if stock == "false" %>
-        <th class="log-index-small-col">公開状態</th>
-      <% else %>
-        <th class="log-index-small-col">ユーザー</th>
-      <% end %>
-    </tr>
-  </thead> 
-  <tbody>
-    <% logs.each do |log| %>
-    <tr class="log-index-body">
-      <td class="align-center"><%= l log.updated_at, format: :shortest %></td>
-      <td><%= link_to log.title, user_log_path(log.user_id, log.id) %></td>
-      <td class="align-center"><%= display_languages(log.languages) %></td>
-      <% if stock == "false" %>
-        <td class="align-center"><%= display_release(log.release) %></td>
-      <% else %>
-        <td class="align-center"><%= log.user.name %></td>
-      <% end %>
-    </tr>
-    <% end %>
-  </tbody>
-</table>
+<div class="log-container">
+  <% logs.each do |log| %>
+    <article class="log-block" style="height: 50px;">
+      <div class="log-block__upper">
+        <h2><%= link_to log.title, user_log_path(log.user_id, log.id) %></h2>
+      </div>
+      <div class="log-block__lower">
+        <div class="log-block__lower-languages">
+          <% log.languages.each do |lang| %>
+            <p class="lang <%= lang.trim %>"><%= lang.name %></p>
+          <% end %>
+        </div>
+        <div class="log-block__lower-user">
+          <% if log.user.picture? %>  
+            <%= image_tag log.user.picture.url, size: "25x25" %>
+          <% else %>
+            <%= image_tag "human.png", size: "25x25" %>
+          <% end %>
+          <div class="text-container">
+            <p><%= log.user.name %> が</p>
+            <p><%= l log.updated_at, format: :default %>に公開</p>
+          </div>
+        </div>
+      </div>
+    </article>
+  <% end %>
+</div>
 <%= paginate logs %>
