@@ -16,9 +16,13 @@
           <% else %>
             <%= image_tag "human.png", size: "25x25" %>
           <% end %>
-          <div class="text-container">
-            <p><%= log.user.name %> が</p>
-            <p><%= l log.updated_at, format: :default %>に公開</p>
+          <div class="log-block__text-container">
+            <% if log.release == true %>
+              <p class="mgr-5"><%= link_to log.user.name, user_path(log.user) %></p>
+              <p>が<%= l log.updated_at, format: :default %>に公開</p>
+            <% else %>  
+              <p> 非公開（<%= l log.updated_at, format: :default %>作成）</p>
+            <% end %>
           </div>
         </div>
       </div>
