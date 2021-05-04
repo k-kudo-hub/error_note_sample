@@ -51,16 +51,22 @@ $site-main-color: #80c683;
         border-radius: 20px;
         margin-right: 10px;
       }
-      .text-container {
-        font-size: 0.8rem;
-        height: fit-content;
-        display: flex;
-        margin-top: 6px;
+    }
+  }
+  &__text-container {
+    font-size: 0.8rem;
+    height: fit-content;
+    display: flex;
+    margin-top: 6px;
+    a {
+      color: gray;
+      text-decoration: none;
+      &:hover {
+        border-bottom: 1px solid rgb(181, 181, 181);
       }
     }
   }
 }
-
 
 // ----------------- //
 
