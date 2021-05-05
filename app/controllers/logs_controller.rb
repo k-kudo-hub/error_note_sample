@@ -40,7 +40,7 @@ class LogsController < ApplicationController
   end
 
   def search
-    @logs = Log.search(params[:keyword])
+    @logs = Log.search(params[:keyword]).order('updated_at DESC').page(params[:page]).per(10)
   end
 
   private
