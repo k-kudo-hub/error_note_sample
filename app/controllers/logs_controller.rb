@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 class LogsController < ApplicationController
-  before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
-  before_action :find_log, only: [:show, :edit, :update]
+  before_action :authenticate_user!, only: %i[new create edit update destroy]
+  before_action :find_log, only: %i[show edit update]
 
   def index
     @logs = Log.all.includes(:user, :languages).order('updated_at DESC').page(params[:page]).per(10)
@@ -25,7 +25,7 @@ class LogsController < ApplicationController
   def show
     @stock = Stock.new
   end
- 
+
   def edit; end
 
   def update
@@ -48,11 +48,11 @@ class LogsController < ApplicationController
 
   private
 
-  def log_params
-    params.require(:log).permit(:title, :error, :solution, :release, {language_ids: []}).merge(user_id: current_user.id)
-  end
+    def log_params
+      params.require(:log).permit(:title, :error, :solution, :release, { language_ids: [] }).merge(user_id: current_user.id)
+    end
 
-  def find_log
-    @log = Log.find(params[:id])
-  end
+    def find_log
+      @log = Log.find(params[:id])
+    end
 end
