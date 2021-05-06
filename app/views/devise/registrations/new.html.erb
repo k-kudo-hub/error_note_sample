@@ -7,23 +7,24 @@
       <%= f.text_field :name, autofocus: true, autocomplete: "name", placeholder: "例）鈴木太郎", maxlength: 10, class: "user-input" %>
     </div>
     <div class="user-input-field">
-      <%= f.label "フリガナ" %>
-      <%= f.text_field :kana, autofocus: true, autocomplete: "kana", placeholder: "例）スズキタロウ", maxlength: 14, class: "user-input" %>
-    </div>
-    <div class="user-input-field">
       <%= f.label "メールアドレス" %>
       <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "taro@gmail.com", class: "user-input" %>
     </div>
     <div class="user-input-field">
+      <%= f.label "自己紹介" %>
+      <%= f.text_area :introduce, autofocus: true, autocomplete: "introduce", class: "user-input-large" %>
+    </div>
+    <div class="user-input-field">
+      <%= f.label "プロフィール画像" %>
+      <%= f.file_field :picture, autofocus: true, autocomplete: "picture", class: "user-input" %>
+    </div>
+    <div class="user-input-field">
       <%= f.label "パスワード" %>
-      <% if @minimum_password_length %>
-      <em>(<%= @minimum_password_length %> 文字以上)</em>
-      <% end %>
-      <%= f.password_field :password, autocomplete: "new-password", class: "user-input" %>
+      <%= f.password_field :password, autocomplete: "new-password", placeholder: "6文字以上で入力してください", class: "user-input" %>
     </div>
     <div class="user-input-field">
       <%= f.label "パスワード（確認）" %>
-      <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "user-input" %>
+      <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: "確認のためもう一度入力してください", class: "user-input" %>
     </div>
     <div class="inner-bottom-btn-wrap">
       <%= f.submit "登録する", class: "btn-default" %>

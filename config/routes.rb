@@ -5,9 +5,13 @@ Rails.application.routes.draw do
     registrations: 'users/registrations'
   }
   root 'logs#index'
-  resources :users, only: %i[index show] do
-    resources :logs, only: %i[index new create show edit update] do
-      resources :stocks, only: %i[create destroy]
+
+  resources :users, only: [:index, :show] do
+    resources :logs do
+      collection do
+        get 'search'
+      end
+      resources :stocks, only: [:create, :destroy]
     end
   end
 end

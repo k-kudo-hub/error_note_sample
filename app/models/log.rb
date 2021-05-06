@@ -10,6 +10,13 @@ class Log < ApplicationRecord
   with_options presence: { message: 'が入力されていません。' } do
     validates :title
     validates :error
-    validates :release
+  end
+
+  def self.search(keyword)
+    logs = if keyword.empty?
+             Log.all.includes(:user, :languages).order('updated_at DESC').first(10)
+           else
+             Log.where('title LIKE(?)', "%#{keyword}%").includes(:user, :languages).order('updated_at DESC')
+           end
   end
 end

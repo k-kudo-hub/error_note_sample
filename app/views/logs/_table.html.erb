@@ -1,0 +1,29 @@
+<table class="log-table" width="90%">
+  <thead>
+    <tr class="log-index-head">
+      <th class="log-index-small-col">更新日</th>
+      <th class="log-index-big-col">タイトル</th>
+      <th class="log-index-small-col">言語</th>
+      <% if stock == "false" %>
+        <th class="log-index-small-col">公開状態</th>
+      <% else %>
+        <th class="log-index-small-col">ユーザー</th>
+      <% end %>
+    </tr>
+  </thead> 
+  <tbody>
+    <% logs.each do |log| %>
+    <tr class="log-index-body">
+      <td class="align-center"><%= l log.updated_at, format: :shortest %></td>
+      <td><%= link_to log.title, user_log_path(log.user_id, log.id) %></td>
+      <td class="align-center"><%= display_languages(log.languages) %></td>
+      <% if stock == "false" %>
+        <td class="align-center"><%= display_release(log.release) %></td>
+      <% else %>
+        <td class="align-center"><%= log.user.name %></td>
+      <% end %>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+<%= paginate logs %>

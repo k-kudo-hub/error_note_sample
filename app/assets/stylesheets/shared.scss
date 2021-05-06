@@ -3,12 +3,23 @@ $site-dark-color: #509556;
 $site-light-color: #b1f9b3;
 $site-font-color: black;
 $site-footer-bg-color: rgb(82, 82, 82);
+$site-danger-border-color: rgb(182, 0, 0); 
+$site-danger-bg-color: rgb(255, 187, 187); 
 $header-height: 50px;
 
 // add reset css
 h1,h2,h3,h4,h5,h6,p {margin: 0};
 td,th {padding: 0};
 // end
+
+html {
+  font-family: "Helvetica Neue",
+  Arial,
+  "Hiragino Kaku Gothic ProN",
+  "Hiragino Sans",
+  Meiryo,
+  sans-serif;
+}
 
 .align-center {
   text-align: center;
@@ -34,7 +45,7 @@ form {
   padding: 30px 0 50px;
   &-inner {
     @include inner-base;
-    margin: 0 auto;
+    margin: 0 auto 30px;
     min-height: calc(100vh - 50px - 264px - 164px);
   }
   .app-bottom-inner {
@@ -46,9 +57,13 @@ form {
     display: flex;
     justify-content: space-around;
     margin: 20px auto;
-    width: 65%;
+    width: 75%;
+    form {
+      margin: 0 auto;
+    }
   }
 }
+
 
 .bottom-profile {
   &__upper {
@@ -106,6 +121,7 @@ form {
 @mixin btn {
   border: 2px solid $site-dark-color;
   border-radius: 20px;
+  height: fit-content;
   margin: 20px auto;
   padding: 1.2vh 2.5vw;
   text-decoration: none;
@@ -124,12 +140,35 @@ form {
   color: white;
 }
 
+@mixin btn-danger {
+  background-color: white;
+  color: $site-danger-border-color;
+  border: 2px solid $site-danger-border-color;
+}
+
+@mixin btn-danger-fill {
+  background-color: $site-danger-border-color;
+  color: white;
+  border: 2px solid $site-danger-border-color;
+}
+
 .btn-default {
   @include btn;
   @include btn-empty;
   &:hover {
     @include btn-fill;
     transition-duration: 0.25s;
+    .stock-count__number {
+      @include btn-empty();
+      padding: 3px 5px;
+      border-radius: 20px;
+      transition-duration: 0.25s;
+    }
+  }
+  .stock-count__number {
+    @include btn-fill;
+    padding: 3px 5px;
+    border-radius: 20px;
   }
 }
 
@@ -138,6 +177,26 @@ form {
   @include btn-fill;
   &:hover {
     @include btn-empty;
+    transition-duration: 0.25s;
+    .stock-count__number {
+      @include btn-fill();
+      padding: 3px 5px;
+      border-radius: 20px;
+      transition-duration: 0.25s;
+    }
+  }
+  .stock-count__number {
+    @include btn-empty();
+    padding: 3px 5px;
+    border-radius: 20px;
+  }
+}
+
+.btn-danger {
+  @include btn;
+  @include btn-danger;
+  &:hover {
+    @include btn-danger-fill;
     transition-duration: 0.25s;
   }
 }
@@ -151,25 +210,20 @@ form {
 
 // header style
 .header-area {
+  background-color: $site-main-color;
+}
+.header-container {
   background: $site-main-color;
   display: flex;
   height: $header-height;
   text-align: center;
-  .flex-3 {
+  max-width: 900px;
+  margin: 0 auto;
+  .header-left {
     display: flex;
     height: 100%;
     position: relative;
-    width: 33%;
-    .header-btn-wrap {
-      position: absolute;
-      top: 30%;
-      right: 20%;
-      .header-btn {
-        color: $site-font-color;
-        margin: 20px 10px;
-        text-decoration: none;
-      }
-    }
+    width: 35%;
     h1 {
       font-size: 1.4rem;
       left: 20%;
@@ -186,6 +240,55 @@ form {
       top: 20%;
     }
   }
+  .header-center {
+    width: 15%;
+  }
+  .header-right {
+    display: flex;
+    position: relative;
+    width: 50%;
+    form {
+      margin: 7.5px 0 0 60px;
+    }
+  }
+}
+
+.header-btn {
+  height: 30px;
+  width: 30px;
+  &-wrap {
+    position: absolute;
+    display: flex;
+    justify-content: space-around;
+    right: 5px;
+    top: 10px;
+    width: 100px;
+  }
+  i {
+    color: white;
+    height: 30px;
+    width: 30px;
+    margin-top: 7px;
+  }
+  img {
+    border-radius: 20px;
+    background-color: white;
+  }
+}
+
+.fa-stack {
+  input {
+    border: none;
+    width: 240px;
+    padding: 5px 5px 5px 32px;
+    font-size: 1em;
+    text-align: left;
+    margin: 0;
+  }
+  i {
+    color: gray;
+    font-size: 1rem;
+  }
 }
 // end header style
 
@@ -200,50 +303,10 @@ form {
     height: 80%;
     max-width: 800px;
     margin: 0 auto;
-    .footer-left  {
-      width: 60%;
-      .footer-site-name {
-        font-size: 2rem;
-        font-weight: bold;
-        margin: 0 0 20px;
-      }
-    }
-    .footer-right {
-      width: 40%;
-    }
     a,
     p {
       color: white;
       text-decoration: none;
-    }
-    .footer-left {
-      margin-left: 5%;
-      p {
-        margin: 10px 0;
-      }
-      .footer-sns-area {
-        display: flex;
-        img {
-          margin-right: 20px;
-        }
-      }
-    }
-    .footer-right {
-      display: flex;
-      &-start,
-      &-end {
-        width: 50%;
-        display: flex;
-        flex-direction: column;
-        p:first-child {
-          margin: 0;
-          font-weight: bold;
-        }
-        a {
-          color: rgb(159, 159, 159);
-          margin-top: 1em;
-        }
-      }
     }
   }
   .footer-bottom {
@@ -262,22 +325,81 @@ form {
       width: 70%;
     }
   }
+  
+.footer-left  {
+  width: 60%;
+  margin-left: 5%;
+  p {
+    margin: 10px 0;
+  }
+  .footer-sns-area {
+    display: flex;
+    img {
+      margin-right: 20px;
+    }
+  }
+  .footer-site-name {
+    font-size: 2rem;
+    font-weight: bold;
+    margin: 0 0 20px;
+  }
+}
+.footer-right {
+  width: 40%;
+  display: flex;
+  &-start,
+  &-end {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    p:first-child {
+      margin: 0;
+      font-weight: bold;
+    }
+    a {
+      color: rgb(159, 159, 159);
+      margin-top: 1em;
+    }
+  }
+}
+  
 }
 // end footer style
 
 // Devise style
+#error_explanation {
+  background-color: $site-danger-bg-color;
+  border: 5px solid $site-danger-border-color;
+  border-radius: 20px;
+  margin: 0 auto;
+  width: 80%;
+  h2 {
+    font-size: 1rem;
+    padding: 10px;
+  }
+  li {
+    list-style: none;
+    line-height: 1.5;
+  }
+}
+
 .user-input-field,
 .user-check-field {
   margin-top: 30px;
   text-align: center;
 }
 .user-input-field {
-  width: 66%;
+  width: 74%;
   text-align: right;
 }
 .user-input {
   height: 30px;
-  width: 200px;
+  width: 300px;
+  &-large {
+    height: 80px;
+    width: 300px;
+    vertical-align: middle;
+  }
 }
 .silver-font {
   color: silver;
@@ -289,3 +411,26 @@ form {
 }
 // end Devise style
 
+// Error message style
+
+.error-message {
+  &__container {
+    background-color: $site-danger-bg-color;
+    border: 5px solid $site-danger-border-color;
+    border-radius: 20px;
+    margin: 0 auto;
+    width: 80%;
+  }
+  &__text {
+    list-style: none;
+    line-height: 1.5;
+  }
+}
+
+.field_with_errors,
+.field_with_errors label {
+  color: $site-danger-border-color;
+  display: inline;
+}
+
+// end error message style

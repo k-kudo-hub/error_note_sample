@@ -1,37 +1,15 @@
 <section class="app-body-inner">
-  <h1><%= @user.name %>のマイページ</h1>
-  <table class="log-table" width="90%">
-    <thead>
-      <tr class="log-index-head">
-        <th class="log-index-small-col">更新日</th>
-        <th class="log-index-big-col">タイトル</th>
-        <th class="log-index-small-col">言語</th>
-        <th class="log-index-small-col">公開</th>
-      </tr>
-    </thead> 
-    <tbody>
-      <% @logs.each do |log| %>
-      <tr class="log-index-body">
-        <td class="align-center"><%= l log.updated_at, format: :shortest %></td>
-        <td><%= link_to log.title, "#{log.user_id}/logs/#{log.id}" %></td>
-        <td class="align-center"><%= display_languages(log.languages) %></td>
-        <td class="align-center"><%= log.release %></td>
-      </tr>
-      <% end %>
-    </tbody>
-  </table>
-  <div class="inner-bottom-btn-wrap">
-    <% if user_signed_in? && (current_user.id == @user.id) %>
-      <div>
-        <% current_user.stocks.each do |stock| %>
-          <% log = stock.log %>
-          <p><%= link_to("#{log.title}", user_log_path(log.user, log)) %></p>
-        <% end %>
-      </div>
-      <%= link_to("プロフィール編集", edit_user_registration_path,{ method: :get, class: "btn-filled" }) %>
-      <%= link_to("ログアウト", '/users/sign_out',{ method: :delete, class: "btn-default" }) %>
-    <% else %>
-      <%= link_to("フォローする", '#',{ class: "btn-filled" }) %>
-    <% end %>
-  </div>
+  <h1><%= @user.name %>のノート</h1>
+  <%= render "logs/table", logs: @logs, stock: "false" %>
 </section>
+
+<% if user_signed_in? && (current_user.id == @user.id) %>
+  <section class="app-body-inner">
+    <h1>最近のストック</h1>
+    <%= render "logs/table", logs: @stocks, stock: "true" %>
+  </section>
+<% end %>
+
+<div class="app-bottom-inner">
+  <%= render "users/profile", user: @user, use_case: "user" %>
+</div>

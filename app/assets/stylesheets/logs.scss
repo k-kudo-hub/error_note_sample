@@ -4,7 +4,6 @@
 
 $site-main-color: #80c683;
 
-// Devise style
 .log-input-field,
 .log-input-field-small,
 .log-check-field {
@@ -20,7 +19,19 @@ $site-main-color: #80c683;
     width: 85%;
     &-small {
       text-align: right;
-      width: 65%;
+      width: 63%;
+    }
+    &-lang {
+      line-height: 1.5;
+      text-align: center;
+      width: 58%;
+      margin: 30px auto 0;
+      input {
+        margin-right: 5px;
+      }
+      label {
+        margin-right: 20px;
+      }
     }
   }
   &-large {
@@ -33,7 +44,12 @@ $site-main-color: #80c683;
     width: 200px;
   }
 }
-// end Devise style
+
+.label-center {
+  display: block;
+  text-align: center;
+  margin-bottom: 10px;
+}
 
 .log-index-head {
   background-color: $site-main-color;
@@ -72,3 +88,55 @@ $site-main-color: #80c683;
   margin: 0 20px 20px 0;
   text-align: right;
 }
+
+// pagination style //
+
+.pagination {
+  color: $site-main-color;
+  display: flex;
+  height: 40px;
+  justify-content: center;
+  margin: 0 auto;
+  width: 80%;
+  span {
+    border: 1px solid $site-main-color;
+    border-radius: 20px;
+    display: block;
+    height: 20px;
+    margin-right: 10px;
+    padding: 7px;
+    text-align: center;
+    width: 20px;
+    &:hover {
+      background-color: $site-main-color;
+      transition-duration: 0.25s;
+      & a, i {
+      color: white;
+      }
+    }
+    a {
+      color: $site-main-color;
+      display: block;
+      text-decoration: none;
+      height: 100%;
+      width: 100%;
+    }
+    i {
+      color: $site-main-color;
+    }
+  }
+  .current {
+    background-color: $site-main-color;
+    color: white;
+  }
+  .gap {
+    border: none;
+    &:hover {
+      background-color: white;
+    }
+  }
+}
+
+
+
+// ---------------- //

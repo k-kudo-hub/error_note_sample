@@ -1,18 +1,41 @@
 <div class="header-area">
-  <div class="header-left flex-3">
-    <%= image_tag 'note.png', size: '30x30' %>
-    <h1><%= link_to "Error Note", root_path %></h1>
-  </div>
-  <div class="header-center flex-3">
-  </div>
-  <div class="header-right flex-3">
-    <div class="header-btn-wrap">
+  <div class="header-container">
+    <div class="header-left flex-3">
+      <%= image_tag 'note.png', size: '30x30' %>
+      <h1><%= link_to "Error Note", root_path %></h1>
+    </div>
+    <div class="header-center flex-3">
+    </div>
+    <div class="header-right flex-3">
       <% if user_signed_in? %>
-        <%= link_to("記録する", "/users/#{current_user.id}/logs/new", { method: :get, class: "header-btn"}) %>
-        <%= link_to("マイページ", "/users/#{current_user.id}", { class: "header-btn" }) %>
+        <%= form_with(url: search_user_logs_path(current_user), local: true, method: :get) do |form| %>
+          <span class="fa-stack">
+            <%= form.text_field :keyword, placeholder:"キーワードを入力", class: "fa-lg fa-stack-2x" %>
+            <i class="fas fa-search fa-lg fa-stack-1x"></i>
+          </span>
+          <%= form.submit "検索", type: "hidden" %>
+        <% end %>
+        <div class="header-btn-wrap">
+          <%= link_to "/users/#{current_user.id}/logs/new", method: :get, class: "header-btn" do %>
+            <i class="fas fa-pen fa-lg"></i>
+          <% end %>
+          <%= link_to "/users/#{current_user.id}", class: "header-btn" do %>
+            <% if current_user.picture? %>
+              <%= image_tag current_user.picture.url, size: '30x30' %>
+            <% else %>
+              <%= image_tag "human", size: '30x30' %>
+            <% end %>
+          <% end %>
+        </div>
       <% else %>
-        <%= link_to("ログイン", '/users/sign_in', { method: :get, class: "header-btn"}) %>
-        <%= link_to("新規登録", '/users/sign_up', { method: :get, class: "header-btn"}) %>  
+        <div class="header-btn-wrap">
+          <%= link_to '/users/sign_in', method: :get, class: "header-btn" do %>
+            <i class="fas fa-sign-in-alt fa-lg"></i>
+          <% end %>
+          <%= link_to '/users/sign_up', method: :get, class: "header-btn" do %>
+            <i class="fas fa-user-plus fa-lg"></i>
+          <% end %>
+        </div>
       <% end %>
     </div>
   </div>

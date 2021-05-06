@@ -22,38 +22,27 @@
 
   <div class="inner-bottom-btn-wrap">
     <% if user_signed_in? %>
-      <%= "ストックされた数:#{@log.stocks.count}" %>
       <% if current_user.id == @log.user.id %>
-        <%= link_to("ログを編集する", "/users/#{current_user.id}/logs/#{@log.id}/edit", {class: "btn-filled"}) %>
+        <%= link_to 'ログを編集する', edit_user_log_path(user_id: current_user.id, id: @log.id), class: "btn-default" %>
+        <%= link_to 'ログを削除する', user_log_path(user_id: current_user.id, id: @log.id), method: :delete, class: "btn-danger", data: {confirm: "削除しますか？"} %>
       <% else %>
         <% if current_user.already_stocked?(@log) %>
-          <%= button_to 'ストックを取り消す', user_log_stock_path(current_user, @log), method: :delete %>
+          <%= button_to user_log_stock_path(current_user, @log), method: :delete, class:"btn-filled" do %>
+            <p>ストックを取り消す <span class="stock-count__number"><%= @log.stocks.count %></span></p>
+          <% end %>
         <% else %>
-          <%= button_to 'ストック', user_log_stocks_path(current_user, @log) %>
+          <%= button_to user_log_stocks_path(current_user, @log), class:"btn-default" do %>
+            <p>ストックする <span class="stock-count__number"><%= @log.stocks.count %></span></p>
+          <% end %>
         <% end %>
       <% end %>
+    <% else %>
+      <%= button_to new_user_session_path, class:"btn-default" do %>
+        <p>ストックする <span class="stock-count__number"><%= @log.stocks.count %></span></p>
+      <% end %>
     <% end %>
-    <%= link_to("トップに戻る", root_path, {class: "btn-default"}) %>
   </div>
 </section>
 <div class="app-bottom-inner">
-  <div class="bottom-profile__upper">
-    <div class="profile-img__container">
-      <%= image_tag('site-bg.png') %>
-    </div>
-    <div class="profile-introduce__container">
-      <div class="profile-introduce__name">
-        <h2><%= @log.user.name %></h2>
-      </div>
-      <div class="profile-introduce__word">
-        <p>これはダミーテキストです。これはダミーテキストです。これはダミーテキストです。これはダミーテキストです。これはダミーテキストです。これはダミーテキストです。これはダミーテキストです。これはダミーテキストです。</p>
-      </div>
-    </div>
-  </div>
-  <div class="bottom-profile__lower">
-    <div class="profile-btn__container">
-      <%= link_to "フォローする", "#", class: "btn-filled" if current_user.id != @log.user.id %>
-      <%= link_to "プロフィールへ", [@log.user], class: "btn-default" %>
-    </div>
-  </div>
+  <%= render "users/profile", user: @log.user, use_case: "log" %>
 </div>
