@@ -2,6 +2,8 @@
 
 require 'test_helper'
 
+require 'test_helper'
+
 module ApplicationCable
   class ConnectionTest < ActionCable::Connection::TestCase
     # test "connects with cookies" do

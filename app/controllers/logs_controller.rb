@@ -14,6 +14,7 @@ class LogsController < ApplicationController
 
   def create
     @log = Log.new(log_params)
+
     if @log.save
       redirect_to user_path(current_user)
     else
@@ -52,7 +53,7 @@ class LogsController < ApplicationController
                                 { language_ids: [] }).merge(user_id: current_user.id)
   end
 
-  def find_log
-    @log = Log.find(params[:id])
-  end
+    def find_log
+      @log = Log.find(params[:id])
+    end
 end
