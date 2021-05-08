@@ -14,9 +14,9 @@ class Log < ApplicationRecord
 
   def self.search(keyword)
     if keyword.empty?
-      Log.where(release: true).order('updated_at DESC').first(10)
+      Log.where(release: true).includes(:user, :languages).order('updated_at DESC')
     else
-      Log.where('title LIKE(?)', "%#{keyword}%").where(release: true).order('updated_at DESC')
+      Log.where('title LIKE(?)', "%#{keyword}%").where(release: true).includes(:user, :languages).order('updated_at DESC')
     end
   end
 end

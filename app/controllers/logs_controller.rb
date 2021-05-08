@@ -5,7 +5,7 @@ class LogsController < ApplicationController
   before_action :find_log, only: %i[show edit update]
 
   def index
-    @logs = Log.where(release: true).order('updated_at DESC').page(params[:page]).per(10)
+    @logs = Log.where(release: true).includes(:user, :languages).order('updated_at DESC').page(params[:page]).per(10)
   end
 
   def new
