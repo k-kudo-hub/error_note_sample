@@ -5,6 +5,7 @@ Rails.application.routes.draw do
     registrations: 'users/registrations'
   }
   root 'logs#index'
+
   resources :users, only: %i[index show] do
     resources :logs do
       collection do
