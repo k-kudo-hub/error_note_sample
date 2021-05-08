@@ -11,12 +11,11 @@ class UsersController < ApplicationController
 
   private
 
-  def published_log
-    if user_signed_in? && (@user.id == current_user.id)
-      @user.logs.all.includes(:user)
-    else
-      @user.logs.where(release: true)
+    def published_log
+      if user_signed_in? && (@user.id == current_user.id)
+        @user.logs.all.includes(:user)
+      else
+        @user.logs.where(release: true)
+      end
     end
-  end
-
 end
