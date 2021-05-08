@@ -17,7 +17,7 @@
             <%= image_tag "human.png", size: "25x25" %>
           <% end %>
           <div class="log-block__text-container">
-            <% if log.release == true %>
+            <% if log.release %>
               <p class="mgr-5"><%= link_to log.user.name, user_path(log.user) %></p>
               <p>が<%= l log.updated_at, format: :default %>に公開</p>
             <% else %>  
