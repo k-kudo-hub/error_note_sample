@@ -48,9 +48,10 @@ class LogsController < ApplicationController
 
   private
 
-    def log_params
-      params.require(:log).permit(:title, :error, :solution, :release, { language_ids: [] }).merge(user_id: current_user.id)
-    end
+  def log_params
+    params.require(:log).permit(:title, :error, :solution, :release,
+                                { language_ids: [] }).merge(user_id: current_user.id)
+  end
 
     def find_log
       @log = Log.find(params[:id])

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateLogLanguages < ActiveRecord::Migration[6.1]
   def change
     create_table :log_languages do |t|

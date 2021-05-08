@@ -6,7 +6,7 @@ module UsersHelper
   end
 
   def display_release(release)
-    if release == true
+    if release
       '公開'
     else
       '非公開'
