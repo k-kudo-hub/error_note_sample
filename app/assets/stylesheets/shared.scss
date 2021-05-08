@@ -1,11 +1,4 @@
-$site-main-color: #80c683;
-$site-dark-color: #509556;
-$site-light-color: #b1f9b3;
-$site-font-color: black;
-$site-footer-bg-color: rgb(82, 82, 82);
-$site-danger-border-color: rgb(182, 0, 0); 
-$site-danger-bg-color: rgb(255, 187, 187); 
-$header-height: 50px;
+@import "colors.scss";
 
 // add reset css
 h1,h2,h3,h4,h5,h6,p {margin: 0};
@@ -219,7 +212,7 @@ form {
 .header-container {
   background: $site-main-color;
   display: flex;
-  height: $header-height;
+  height: 50px;
   text-align: center;
   max-width: 900px;
   margin: 0 auto;

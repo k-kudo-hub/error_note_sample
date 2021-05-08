@@ -2,7 +2,7 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
 
-$site-main-color: #80c683;
+@import "colors.scss";
 
 // logs#table styles //
 .log-container {
