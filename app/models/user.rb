@@ -24,11 +24,4 @@ class User < ApplicationRecord
     Log.where(id: stock_ids).order(created_at: :desc)
   end
 
-  def stock_ids
-    Stock.where(user_id: id).pluck(:log_id)
-  end
-
-  def my_stocks
-    Log.where(id: stock_ids).order(created_at: :desc)
-  end
 end
