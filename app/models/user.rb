@@ -23,5 +23,4 @@ class User < ApplicationRecord
   def my_stocks
     Log.where(id: stock_ids).order(created_at: :desc)
   end
-
 end
