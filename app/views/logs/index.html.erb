@@ -1,4 +1,55 @@
-<section class="app-body-inner">
-  <h1>新着ノート</h1>
-  <%= render "table", logs: @logs, stock: "true" %>
-</section>
+<div class="top-flex">
+  <section class="nav-bar">
+    <div class="nav-bar__navigation">
+      <div class="navigation__link-wrap">
+        <i class="far fa-clock"></i>
+        <%= link_to "新着ノート", "#" %>
+      </div>
+      <div class="navigation__link-wrap">
+        <i class="fas fa-fire-alt"></i>
+        <%= link_to "話題のノート", "#" %>
+      </div>
+      <% if user_signed_in? %>
+        <div class="navigation__link-wrap">
+          <i class="fas fa-users"></i>
+          <%= link_to "フォローの注目ノート", "#" %>
+        </div>
+        <div class="navigation__link-wrap">
+          <i class="fas fa-cubes"></i>
+          <%= link_to "最近ストックしたノート", "#" %>
+        </div>
+      <% end %>
+    </div>
+  </section>
+  <section class="app-body-inner inner-narrow">
+    <h1>新着ノート</h1>
+    <%= render "table", logs: @logs, stock: "true" %>
+  </section>
+  <section class="nav-bar">
+    <div class="nav-bar__usage">
+      <iframe width="300"
+              height="200"
+              src="https://www.youtube-nocookie.com/embed/4dnT-kKIO6Y" 
+              title="YouTube video player" 
+              frameborder="0" 
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+              allowfullscreen>
+      </iframe>
+    </div>
+    <div class="nav-bar__lang-rank">
+      <h2>言語ランキング</h2>
+      <p class="lang-rank__date"><%= l Time.now, format: :default %> 現在</p>
+      <% @top_lang.each_with_index do |lang, index| %>
+        <div class="lang-rank__box">
+          <div class="lang-rank__box-left">
+            <p class="lang-rank__index"><%= index + 1 %></p>
+            <p class="lang <%= lang.trim %>"><%= lang.name %></p>
+          </div>
+          <div class="lang-rank__box-right">
+            <p class="lang-rank__count"><%= lang.rank_count %> Notes</p>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </section>
+</div>

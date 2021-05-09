@@ -7,4 +7,12 @@ class Language < ApplicationRecord
   def trim
     name.downcase.delete(' ').tr('#', 's').tr('+', 'p').tr('.', 'd')
   end
+
+  def self.rank
+    self.find(LogLanguage.group(:language_id).order('count(language_id) desc').limit(5).pluck(:language_id))
+  end
+
+  def rank_count
+    LogLanguage.where(language_id: self.id).count
+  end
 end

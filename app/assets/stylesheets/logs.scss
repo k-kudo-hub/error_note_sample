@@ -34,19 +34,11 @@
     &-languages {
       display: flex;
       width: 50%;
-      .lang {
-        border-radius: 10px;
-        color: white;
-        height: fit-content;
-        padding: 0.3vh 0.75vw;
-        width: fit-content;
-        margin-right: 5px;
-      }
     }
     &-user {
       width: 50%;
       display: flex;
-      color: gray;
+      color: $site-font-color-gray;
       img {
         border-radius: 20px;
         margin-right: 10px;
@@ -59,7 +51,7 @@
     display: flex;
     margin-top: 6px;
     a {
-      color: gray;
+      color: $site-font-color-gray;
       text-decoration: none;
       &:hover {
         border-bottom: 1px solid rgb(181, 181, 181);
@@ -68,6 +60,14 @@
   }
 }
 
+.lang {
+  border-radius: 10px;
+  color: white;
+  height: fit-content;
+  padding: 0.3vh 0.75vw;
+  width: fit-content;
+  margin-right: 5px;
+}
 // ----------------- //
 
 
