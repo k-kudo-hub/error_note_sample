@@ -61,6 +61,83 @@ form {
   }
 }
 
+.inner-narrow {
+  width: 640px !important;
+}
+
+.nav-bar {
+  width: 300px;
+  margin: 0 30px 30px;
+  > * {
+    background-color: white;
+    margin-bottom: 30px;
+  }
+  &__navigation {
+    background-color: #f0f0f0;
+    height: 300px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+  }
+  &__usage {
+    height: 200px;
+  }
+  &__lang-rank {
+    height: 280px;
+    padding: 20px;
+    h2 {
+      font-size: 1rem;
+      text-align: center;
+      padding-bottom: 20px;
+    }
+  }
+}
+
+.lang-rank {
+  &__box {
+    display: flex;
+    justify-content: space-between;
+    height: 30px;
+    margin-bottom: 10px;
+    &-left {
+      display: flex;
+    }
+  }
+  &__count {
+    color: $site-font-color-gray;
+  }
+  &__date {
+    font-size: 0.8rem;
+    color: $site-font-color-gray;
+    margin-bottom: 20px;
+    text-align: right;
+  }
+  &__index {
+    margin-right: 20px;
+  }
+}
+
+.navigation__link-wrap {
+  margin-bottom: 15px;
+  * {
+    text-decoration: none;
+    color: $site-font-color-gray;
+  }
+  a {
+    margin-left: 10px;
+  }
+  a:hover {
+    color: $site-font-color;
+  }
+  i {
+    height: 15px;
+    width: 15px;
+  }
+}
+
+.top-flex {
+  display: flex;
+}
 
 .bottom-profile {
   &__upper {
@@ -284,7 +361,7 @@ form {
     margin: 0;
   }
   i {
-    color: gray;
+    color: $site-font-color-gray;
     font-size: 1rem;
   }
 }
