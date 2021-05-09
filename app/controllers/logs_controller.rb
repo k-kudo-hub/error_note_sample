@@ -6,6 +6,7 @@ class LogsController < ApplicationController
 
   def index
     @logs = Log.where(release: true).includes(:user, :languages).order('updated_at DESC').page(params[:page]).per(10)
+    @top_lang = Language.rank
   end
 
   def new
