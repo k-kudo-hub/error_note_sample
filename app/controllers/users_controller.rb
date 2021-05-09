@@ -13,9 +13,9 @@ class UsersController < ApplicationController
 
     def published_log
       if user_signed_in? && (@user.id == current_user.id)
-        @user.logs.all.includes(:user)
+        @user.logs.all.includes(:user, :languages)
       else
-        @user.logs.where(release: true)
+        @user.logs.where(release: true).includes(:user, :languages)
       end
     end
 end
