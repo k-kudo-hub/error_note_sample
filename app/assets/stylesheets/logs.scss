@@ -11,9 +11,9 @@
 }
 
 .log-block {
-  padding: 20px 20px 5px;
-  min-height: 80px;
   border-bottom: 1px solid rgb(209, 209, 209);
+  min-height: 80px;
+  padding: 20px 20px 5px;
   &__upper {
     height: 60%;
     h2 {
@@ -28,17 +28,17 @@
     }
   }
   &__lower {
+    display: flex;
     height: 40%;
     width: 100%;
-    display: flex;
     &-languages {
       display: flex;
       width: 50%;
     }
     &-user {
-      width: 50%;
       display: flex;
       color: $site-font-color-gray;
+      width: 50%;
       img {
         border-radius: 20px;
         margin-right: 10px;
@@ -46,9 +46,9 @@
     }
   }
   &__text-container {
+    display: flex;
     font-size: 0.8rem;
     height: fit-content;
-    display: flex;
     margin-top: 6px;
     a {
       color: $site-font-color-gray;
@@ -64,9 +64,9 @@
   border-radius: 10px;
   color: white;
   height: fit-content;
+  margin-right: 5px;
   padding: 0.3vh 0.75vw;
   width: fit-content;
-  margin-right: 5px;
 }
 // ----------------- //
 
@@ -88,29 +88,34 @@
     &-small {
       text-align: right;
       width: 63%;
+      label {
+        margin-right: 15px;
+      }
+    }
+    &-large {
+      height: 100px;
+      width: 400px;
+      vertical-align: middle;
     }
     &-lang {
-      line-height: 1.5;
-      text-align: center;
-      width: 58%;
-      margin: 30px auto 0;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: stretch;
+      line-height: 1.7;
+      margin: 0 10% 0 25%;
+      width: 65%;
+      &__box {
+        margin-right: 20px;
+      }
       input {
         margin-right: 5px;
       }
-      label {
-        margin-right: 20px;
-      }
     }
   }
-  &-large {
-    height: 100px;
-    width: 400px;
-    vertical-align: middle;
-  }
-  &-small {
-    height: 30px;
-    width: 200px;
-  }
+}
+
+.mat-30 {
+  margin-top: 30px;
 }
 
 .label-center {
@@ -135,8 +140,8 @@
   }
   td,th {
     border: 1px solid silver;
-    padding: 5px;
     line-height: 1.5;
+    padding: 5px;
   }
   .log-show-th {
     width: 30%;

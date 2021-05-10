@@ -6,18 +6,23 @@
   </div>
   <div class="log-input-field">
     <%= f.label :error, "エラーの内容" %>
-    <%= f.text_area :error, class: "log-input-large" ,id: "error" %>
+    <%= f.text_area :error, class: "log-input-field-large" ,id: "error" %>
   </div>
   <div class="log-input-field">
     <%= f.label :solution, "解決方法" %>
-    <%= f.text_area :solution, class: "log-input-large" ,id: "solution" %>
+    <%= f.text_area :solution, class: "log-input-field-large" ,id: "solution" %>
   </div>
+  <%= f.label :language, "開発言語", class: "label-center mat-30" %>
   <div class="log-input-field-lang">
-  <%= f.label :language, "開発言語", class: "label-center" %>
-  <%= f.collection_check_boxes :language_ids, Language.all, :id, :name, { class: "log-input-small", id: "language" } %>
+    <%= f.collection_check_boxes :language_ids, Language.all, :id, :name do |l| %>
+      <div class="log-input-field-lang__box">
+        <%= l.check_box %>
+        <%= l.label %>
+      </div>
+    <% end %>
   </div>
-  <div class="log-input-field-lang">
-    <%= f.label :release, "公開状態", class: "label-center" %>
+  <%= f.label :release, "公開状態", class: "label-center mat-30"%>
+  <div class="log-input-field-small">
     <%= f.radio_button :release, true, class: "log-input-radio", id: "release" %>
     <%= f.label :release, "公開", value: true %>
     <%= f.radio_button :release, false, class: "log-input-radio", id: "release" %>
