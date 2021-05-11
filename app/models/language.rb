@@ -9,10 +9,10 @@ class Language < ApplicationRecord
   end
 
   def self.rank
-    self.find(LogLanguage.group(:language_id).order('count(language_id) desc').limit(5).pluck(:language_id))
+    find(LogLanguage.group(:language_id).order('count(language_id) desc').limit(5).pluck(:language_id))
   end
 
   def rank_count
-    LogLanguage.where(language_id: self.id).count
+    LogLanguage.where(language_id: id).count
   end
 end

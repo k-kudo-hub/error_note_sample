@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
 class UsersController < ApplicationController
-  def index; end
-
   def show
     @user = User.find(params[:id])
     @logs = published_log.order(updated_at: :desc).page(params[:page]).per(10)
