@@ -131,23 +131,34 @@
   }
 }
 
-.log-table {
-  border: 1px solid silver;
-  border-collapse: collapse;
-  margin: 0 auto 30px;
-  .log-index-small-col {
-    width: 15%;
+.log-detail {
+  &__langs {
+    display: flex;
+    justify-content: flex-end;
+    margin: 10px 15px 15px 0;
+    p {
+      margin-right: 5px;
+    }
   }
-  td,th {
-    border: 1px solid silver;
-    line-height: 1.5;
-    padding: 5px;
+  &__content {
+    background-color: #f0f0f0;
+    margin: 10px auto 20px;
+    padding: 20px 40px;
+    width: 85%;
+    line-height: 1.4;
+    &-title{
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+    &-nil {
+      color: silver;
+    }
   }
-  .log-show-th {
-    width: 30%;
+  .errors {
+    background-color: #fff5f5;
   }
-  tr {
-    height: 50px;
+  .solutions {
+    background-color: #f6fff4;
   }
 }
 
@@ -161,6 +172,13 @@
   margin: 0 20px 20px 0;
   text-align: right;
 }
+
+.no-content-message {
+  color: silver;
+  margin-top: 40px;
+  text-align: center;
+}
+
 // ---------------- //
 
 // pagination style //

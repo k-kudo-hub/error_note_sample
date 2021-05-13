@@ -1,12 +1,20 @@
 <section class="app-body-inner">
   <h1><%= @user.name %>のノート</h1>
-  <%= render "logs/table", logs: @logs, stock: "false" %>
+  <% if @logs.present? %>
+    <%= render "logs/table", logs: @logs, stock: "false" %>
+  <% else %>
+    <p class="no-content-message">ノートはまだありません。</p>
+  <% end %>
 </section>
 
 <% if user_signed_in? && (current_user.id == @user.id) %>
   <section class="app-body-inner">
     <h1>最近のストック</h1>
-    <%= render "logs/table", logs: @stocks, stock: "true" %>
+    <% if @stocks.present? %>
+      <%= render "logs/table", logs: @stocks, stock: "true" %>
+    <% else %>
+      <p class="no-content-message">ストックしたノートはまだありません。</p>
+    <% end %>
   </section>
 <% end %>
 

@@ -1,24 +1,27 @@
 <section class="app-body-inner">
-  <h1><%= @log.title %></h1>
-  <div class="log-updated-at">
-    <p>最終更新日：<%= l @log.updated_at, format: :default %></p>
+  <div class="log-detail">
+    <h1><%= @log.title %></h1>
+    <div class="log-detail__langs">
+      <% @log.languages.each do |lang| %>
+        <p class="lang <%= lang.trim %>"><%= lang.name %></p>
+      <% end %>
+    </div>
+    <div class="log-updated-at">
+      <p>最終更新日：<%= l @log.updated_at, format: :default %></p>
+    </div>
+    <div class="log-detail__content errors">
+      <p class="log-detail__content-title">エラーの内容</p>
+      <%= @log.error %>
+    </div>
+    <div class="log-detail__content solutions">
+      <p class="log-detail__content-title">解決法</p>
+      <% if @log.solution.present? %>
+        <%= @log.solution %>
+      <% else %>
+        <p class="log-detail__content-nil">解決法はまだ登録されていません。</p>
+      <% end %>
+    </div>
   </div>
-  <table class="log-table" width="90%">
-    <tbody>
-      <tr>
-        <th class="log-show-th">エラー文</th>
-        <td><%= @log.error %></td>
-      </tr>
-      <tr>
-        <th class="log-show-th">解決法</th>
-        <td><%= @log.solution %></td>
-      </tr>
-      <tr>
-        <th class="log-show-th">開発言語</th>
-        <td><%= display_languages(@log.languages) %></td>
-      </tr>
-    </tbody>
-  </table>
 
   <div class="inner-bottom-btn-wrap">
     <% if user_signed_in? %>

@@ -43,7 +43,7 @@ form {
   &-inner {
     @include inner-base;
     margin: 0 auto 30px;
-    min-height: calc(100vh - 50px - 264px - 164px);
+    min-height: 200px;
   }
   .app-bottom-inner {
     @include inner-base;
