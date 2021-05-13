@@ -1,4 +1,8 @@
 <section class="app-body-inner">
   <h1>検索結果</h1>
-  <%= render "table", logs: @logs, stock: "true" %>
+  <% if @logs.count == 0 %>
+    <p class="no-content-message">キーワードと一致するノートはありませんでした。</p>
+  <% else %>
+    <%= render "table", logs: @logs, stock: "true" %>
+  <% end %>
 </section>
