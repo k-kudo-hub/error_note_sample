@@ -7,7 +7,7 @@ ruby '3.0.0'
 
 gem 'jbuilder', '~> 2.7'
 gem 'mysql2', '~> 0.5'
-gem 'puma', '~> 5.0'
+gem 'puma', '~> 5.3'
 gem 'rails', '6.1.3.2'
 gem 'sass-rails', '>= 6'
 gem 'turbolinks', '~> 5'
