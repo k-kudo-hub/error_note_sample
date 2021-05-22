@@ -26,7 +26,7 @@
     <%= render "table", logs: @logs, stock: "true" %>
   </section>
   <section class="nav-bar">
-    <div class="nav-bar__usage">
+    <div class="nav-bar__usage" id="nav_bar_usage">
       <iframe width="300"
               height="200"
               src="https://www.youtube-nocookie.com/embed/4dnT-kKIO6Y" 
@@ -36,20 +36,7 @@
               allowfullscreen>
       </iframe>
     </div>
-    <div class="nav-bar__lang-rank">
-      <h2>言語ランキング</h2>
-      <p class="lang-rank__date"><%= l Time.now, format: :default %> 現在</p>
-      <% @top_lang.each_with_index do |lang, index| %>
-        <div class="lang-rank__box">
-          <div class="lang-rank__box-left">
-            <p class="lang-rank__index"><%= index + 1 %></p>
-            <p class="lang <%= lang.trim %>"><%= lang.name %></p>
-          </div>
-          <div class="lang-rank__box-right">
-            <p class="lang-rank__count"><%= lang.rank_count %> Notes</p>
-          </div>
-        </div>
-      <% end %>
-    </div>
+   <div class="nav-bar__lang-rank" id="nav_bar_lang_rank">
+   </div>
   </section>
 </div>
