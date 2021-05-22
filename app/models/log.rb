@@ -19,4 +19,8 @@ class Log < ApplicationRecord
       Log.where('title LIKE(?)', "%#{keyword}%").where(release: true).includes(:user, :languages).order('updated_at DESC')
     end
   end
+
+  def self.rank
+    self.find(Stock.group(:log_id).order('count(log_id) desc').limit(5).pluck(:log_id))
+  end
 end
