@@ -53,24 +53,21 @@ export default {
         logs: [],
         counts: [],
       }
+      languages: [],
+      logs: [],
     }
   },
   created(){
     window.onload = this.setToday();
   },
   mounted(){
+    var self = this;
     axios
-      .get('/api/v1/logs/languages.json')
-      .then(response => (this.languages.languages = response.data))
+      .get('/api/v1/logs/lang_count.json')
+      .then(response => (self.languages = response.data))
     axios
-      .get('/api/v1/logs/count_stocks.json')
-      .then(response => (this.languages.counts = response.data))
-    axios
-      .get('/api/v1/logs/stocks.json')
-      .then(response => (this.logs.logs = response.data))
-    axios
-      .get('/api/v1/logs/count_stocks.json')
-      .then(response => (this.logs.counts = response.data))
+      .get('/api/v1/logs/stock_count.json')
+      .then(response => (self.logs = response.data))
   },
   methods:{
     toggleBtn: function(){
