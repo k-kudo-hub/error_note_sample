@@ -14,4 +14,15 @@ Rails.application.routes.draw do
       resources :stocks, only: %i[create destroy]
     end
   end
+
+  namespace :api, {format: 'json'} do
+    namespace :v1 do
+      resources :logs, only: [] do
+        collection do
+          get 'lang_count'
+          get 'stock_count'
+        end
+      end
+    end
+  end
 end
