@@ -14,7 +14,5 @@ document.addEventListener('turbolinks:load', () => {
       render: h => h(User)
     }).$mount()
     insertTarget.insertAdjacentElement('afterbegin', usr.$el)
-    console.log(usr)
   }
 })
-

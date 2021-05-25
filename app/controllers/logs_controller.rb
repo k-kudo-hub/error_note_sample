@@ -15,7 +15,6 @@ class LogsController < ApplicationController
 
   def create
     @log = Log.new(log_params)
-
     if @log.save
       redirect_to user_path(current_user)
     else
