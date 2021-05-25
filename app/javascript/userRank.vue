@@ -3,34 +3,28 @@
     <template v-if="this.toggle == true">
       <h2>開発言語ランキング<i v-on:click="toggleBtn" class="fas fa-random fa-lg"></i></h2>
       <p class="lang-rank__date">{{ date }} 現在</p>
-      <div class="lang-rank__container">
-        <div class="lang-rank__box-container">
-          <div class="lang-rank__box" v-for="(language, index) in languages.languages" :key="language.name">
-            <div class="lang-rank__box-left">
-              <p class="lang-rank__index">{{ index + 1 }}</p>
-              <a class="lang" v-bind:class="trimName(language.name)">{{ language.name }}</a>
-            </div>
-          </div>
+      <div class="lang-rank__box" v-for="(item, index) in languages" :key="item.id">
+        <div class="lang-rank__box-left">
+          <p class="lang-rank__index">{{ index + 1 }}</p>
+          <a class="lang" v-bind:class="trimName(item.name)">{{ item.name }}</a>
         </div>
-        <div class="lang-rank__count-container">
-          <p class="lang-rank__count" v-for="(count, index) in languages.counts" :key="index">{{count}} Notes</p>
+        <div class="lang-rank__box-right">
+          <p class="lang-rank__count">{{item.count}} Notes</p>
         </div>
       </div>
     </template>
     <template v-else>
       <h2>ストックランキング<i v-on:click="toggleBtn" class="fas fa-random fa-lg"></i></h2>
       <p class="lang-rank__date">{{ date }} 現在</p>
-      <div class="lang-rank__container">
-        <div class="lang-rank__box-container">
-          <div class="lang-rank__box" v-for="(log, index) in logs.logs" :key="log.title">
-            <div class="lang-rank__box-left">
-              <p class="lang-rank__index">{{ index + 1 }}</p>
-              <a :href="'/users/'+log.user_id+'/logs/'+log.id" class="rank__stock-title">{{ log.title }}</a>
-            </div>
+      <div class="lang-rank__box-container">
+        <div class="lang-rank__box" v-for="(item, index) in logs" :key="item.id">
+          <div class="lang-rank__box-left">
+            <p class="lang-rank__index">{{ index + 1 }}</p>
+            <a :href="'/users/'+item.user_id+'/logs/'+item.id" class="rank__stock-title">{{ item.title }}</a>
           </div>
-        </div>
-        <div class="lang-rank__count-container">
-          <p class="lang-rank__count" v-for="(count, index) in logs.counts" :key="index">{{count}} Stocks</p>
+          <div class="lang-rank__box-right">
+            <p class="lang-rank__count">{{item.count}} Stocks</p>
+          </div>
         </div>
       </div>
     </template>
@@ -45,14 +39,6 @@ export default {
     return {
       toggle: true,
       date: '',
-      languages: {
-        languages: [],
-        counts: [],
-      },
-      logs: {
-        logs: [],
-        counts: [],
-      }
       languages: [],
       logs: [],
     }
@@ -89,20 +75,6 @@ export default {
 </script>
 
 <style scoped>
-.lang-rank__box-container {
-  width: 70%;
-}
-.lang-rank__container {
-  display: flex;
-}
-.lang-rank__count-container {
-  text-align: right;
-  width: 30%;
-}
-.lang-rank__count {
-  height: 30px;
-  margin-bottom: 10px; 
-}
 .fas {
   color: gray;
   margin-left: 10px;
