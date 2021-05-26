@@ -20,8 +20,17 @@ Rails.application.routes.draw do
       resources :logs, only: [] do
         collection do
           get 'create'
-          get 'lang_count'
-          get 'stock_count'
+        end
+      end
+      resources :languages, only: [] do
+        collection do
+          get 'index'
+          get 'rank'
+        end
+      end
+      resources :stocks, only: [] do
+        collection do
+          get 'rank'
         end
       end
     end

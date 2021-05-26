@@ -12,4 +12,14 @@ class Api::V1::LanguagesController < ApplicationController
     render json: array
   end
 
+  def rank
+    langs = Language.rank
+    counts = LogLanguage.group(:language_id).order('count(language_id) desc').limit(5).count
+    array = []
+    langs.zip(counts) do |lang, count|
+      array.push(name: lang.name, count: count[1])
+    end
+    render json: array
+  end
+
 end
