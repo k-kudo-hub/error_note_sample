@@ -3,37 +3,37 @@
     <div class="log-modal__back" v-if="this.modal == true" v-on:click.self="toggleModal">
       <div class="log-modal__container">
         <h2>新規ノート作成</h2>
-        <form>
+        <form @submit.prevent>
+          <div class="inner-bottom-btn-wrap">
+            <input v-on:click="createDouble" type="submit" value="保存する" class="btn-default">
+          </div>
           <div class="log-input-field">
             <label for="title">タイトル</label>
-            <input type="text" name="title" class="log-input" id="title">
+            <input v-model="log.title" type="text" name="title" class="log-input" id="title">
           </div>
           <div class="log-input-field">
             <label for="error">エラーの内容</label>
-            <textarea type="text" name="error" class="log-input-field-large" id="error"></textarea>
+            <textarea v-model="log.error" type="text" name="error" class="log-input-field-large" id="error"></textarea>
           </div>
           <div class="log-input-field">
             <label for="solution">解決方法</label>
-            <textarea type="text" name="solution" class="log-input-field-large" id="solution"></textarea>
+            <textarea v-model="log.solution" type="text" name="solution" class="log-input-field-large" id="solution"></textarea>
           </div>
           <label for="language" class="label-center mat-30">開発言語</label>
           <div class="log-input-field-lang">
             <template v-for="(item, index) in languages">
               <div class="log-input-field-lang__box" :key="index">
-                <input type="checkbox" :value="item.id">
+                <input v-model="checkedLanguages" type="checkbox" :value="item.id">
                 <label :for="item.name">{{item.name}}</label>
               </div>
             </template>
           </div>
           <label for="release" class="label-center mat-30">公開状態</label>
           <div class="log-input-field-small">
-            <input type="radio" name="release" value="true" class="log-input-radio" id="release">
+            <input v-model="log.release" type="radio" name="release" value="true" class="log-input-radio" id="release">
             <label for="release">公開</label>
-            <input type="radio" name="release" value="false" class="log-input-radio" id="release">
+            <input v-model="log.release" type="radio" name="release" value="false" class="log-input-radio" id="release">
             <label for="release">非公開</label>
-          </div>
-          <div class="inner-bottom-btn-wrap">
-            <input type="submit" name="commit" value="保存する" class="btn-default" data-disable-with="保存する">
           </div>
         </form>
       </div>
@@ -48,6 +48,8 @@
 </template>
 <script>
 import axios from 'axios';
+const token = document.getElementsByName("csrf-token")[0].getAttribute("content");
+axios.defaults.headers.common["X-CSRF-Token"] = token;
 
 export default {
   data() {
@@ -55,6 +57,15 @@ export default {
       // modal: false,
       modal: true,
       languages: [],
+      log: {
+        title: '',
+        error: '',
+        solution: '',
+        release: true,
+      },
+      checkedLanguages: [],
+      res: '',
+      errors: [],
     }
   },
   mounted() {
@@ -67,7 +78,42 @@ export default {
     toggleModal: function(){
       this.modal == true ? this.modal = false : this.modal = true;
     },
-  },
+    beforCreate: function(){
+      if (!this.log.title) return;
+      if (!this.log.error) return;
+    },
+    createLog: async function(){
+      await axios
+        .post('/api/v1/logs/create.json', {log: this.log})
+        .then(response => {
+          this.res = response.data
+      });
+    },
+    createLogLanguage: async function(language){
+      var self = this;
+      await axios
+        .post('/api/v1/log_languages/create.json', {
+          log_language: {
+            language: language,
+            log: self.res,
+          }
+        })
+        .then(response => {
+          
+        })
+    },
+    createLogLanguages: async function(languages){
+      for(var language in languages) {
+        await this.createLogLanguage(languages[language])
+      }
+    },
+    createDouble: async function(){
+      var self = this;
+      await this.beforCreate();
+      await this.createLog();
+      await this.createLogLanguages(self.checkedLanguages);
+    }
+  }
 }
 </script>
 <style scoped>
@@ -88,7 +134,7 @@ export default {
   background-color: white;
   padding: 32px;
   max-width: 700px;
-  margin: 50px auto 30px;
+  margin: 20px auto 30px;
   z-index: 6;
 }
 .log-modal__container h2 {
