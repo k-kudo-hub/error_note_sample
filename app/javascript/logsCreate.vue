@@ -134,6 +134,11 @@ export default {
       await this.beforCreate();
       await this.createLog();
       await this.createLogLanguages(self.checkedLanguages);
+      await this.afterCreate();
+    },
+    afterCreate: async function(){
+      var self = this;
+      location.href="/users/"+self.log_info.user_id+"/logs/"+self.log_info.id;
     }
   }
 }
