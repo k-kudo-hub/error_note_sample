@@ -19,8 +19,23 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :logs, only: [] do
         collection do
-          get 'lang_count'
-          get 'stock_count'
+          post 'create'
+        end
+      end
+      resources :languages, only: [] do
+        collection do
+          get 'index'
+          get 'rank'
+        end
+      end
+      resources :stocks, only: [] do
+        collection do
+          get 'rank'
+        end
+      end
+      resources :log_languages, only: [] do
+        collection do
+          post 'create'
         end
       end
     end

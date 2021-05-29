@@ -49,10 +49,10 @@ export default {
   mounted(){
     var self = this;
     axios
-      .get('/api/v1/logs/lang_count.json')
+      .get('/api/v1/languages/rank.json')
       .then(response => (self.languages = response.data))
     axios
-      .get('/api/v1/logs/stock_count.json')
+      .get('/api/v1/stocks/rank.json')
       .then(response => (self.logs = response.data))
   },
   methods:{
