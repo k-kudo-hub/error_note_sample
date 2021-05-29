@@ -1,5 +1,5 @@
 <template>
-  <div id="log-modal">
+  <div id="log_modal">
     <div class="log-modal__back" v-if="this.modal == true" v-on:click.self="toggleModal">
       <div class="log-modal__container">
         <h2>新規ノート作成</h2>
