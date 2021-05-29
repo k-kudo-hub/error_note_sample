@@ -161,6 +161,8 @@ export default {
   background-color: white;
   padding: 32px;
   max-width: 700px;
+  max-height: 87%;
+  overflow: scroll;
   margin: 20px auto 30px;
   z-index: 6;
 }
