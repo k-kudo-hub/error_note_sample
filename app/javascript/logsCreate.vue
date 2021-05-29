@@ -91,7 +91,7 @@ export default {
         return true;
       }
       if (!this.log.title){
-       this.errors.push('タイトルを入力してください');
+        this.errors.push('タイトルを入力してください');
       }
       if (!this.log.error){
         this.errors.push('エラーの内容を入力してください');
