@@ -16,11 +16,6 @@ class Api::V1::LogLanguagesController < ApplicationController
 
   private
 
-  def before_save(params)
-    
-    
-  end
-
   def log_language_params
     params.require(:log_language).permit(:language, :log)
   end
