@@ -4,6 +4,11 @@
       <div class="log-modal__container">
         <h2>新規ノート作成</h2>
         <form @submit.prevent>
+          <div v-if="errors.length" class="error-message__container">
+            <ul>
+              <li v-for="error in errors" :key="error" class="error-message__text"><i class="fas fa-pen"></i>{{ error }}</li>
+            </ul>
+          </div>
           <div class="inner-bottom-btn-wrap">
             <input v-on:click="createDouble" type="submit" value="保存する" class="btn-default">
           </div>
@@ -78,16 +83,28 @@ export default {
     toggleModal: function(){
       this.modal == true ? this.modal = false : this.modal = true;
     },
-    beforCreate: function(){
-      if (!this.log.title) return;
-      if (!this.log.error) return;
+    beforCreate: function(e){
+      this.errors = [];
+      if (this.log.title && this.log.error) {
+        return true;
+      }
+      if (!this.log.title){
+       this.errors.push('タイトルを入力してください');
+      }
+      if (!this.log.error){
+        this.errors.push('エラーの内容を入力してください');
+      };
+      e.preventDefault();
     },
     createLog: async function(){
       await axios
         .post('/api/v1/logs/create.json', {log: this.log})
         .then(response => {
           this.res = response.data
-      });
+        })
+        .catch(err => {
+          console.log('error:', err)
+        })
     },
     createLogLanguage: async function(language){
       var self = this;
@@ -99,7 +116,10 @@ export default {
           }
         })
         .then(response => {
-          
+          console.log('status:', response.status)
+        })
+        .catch(err => {
+          console.log('error:', err)
         })
     },
     createLogLanguages: async function(languages){
