@@ -9,9 +9,6 @@
               <li v-for="error in errors" :key="error" class="error-message__text"><i class="fas fa-pen"></i>{{ error }}</li>
             </ul>
           </div>
-          <div class="inner-bottom-btn-wrap">
-            <input v-on:click="createDouble" type="submit" value="保存する" class="btn-default">
-          </div>
           <div class="log-input-field">
             <label for="title">タイトル</label>
             <input v-model="log.title" type="text" name="title" class="log-input" id="title">
@@ -40,6 +37,9 @@
             <input v-model="log.release" type="radio" name="release" value="false" class="log-input-radio" id="release">
             <label for="release">非公開</label>
           </div>
+          <div class="inner-bottom-btn-wrap">
+            <input v-on:click="createDouble" type="submit" value="保存する" class="btn-default">
+          </div>
         </form>
       </div>
       <div class="log-modal__opener">
@@ -59,8 +59,7 @@ axios.defaults.headers.common["X-CSRF-Token"] = token;
 export default {
   data() {
     return {
-      // modal: false,
-      modal: true,
+      modal: false,
       languages: [],
       log: {
         title: '',
