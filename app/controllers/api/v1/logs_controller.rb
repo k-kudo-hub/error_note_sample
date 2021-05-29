@@ -6,7 +6,8 @@ class Api::V1::LogsController < ApplicationController
   def create
     log = Log.new(log_params)
     if log.save
-      render json: log.id
+      log_info = {id: log.id, user_id: current_user.id}
+      render json: log_info
     else
       render json: log.errors, status: :unprocessable_entity
     end

@@ -68,7 +68,10 @@ export default {
         release: true,
       },
       checkedLanguages: [],
-      res: '',
+      log_info: {
+        id: 0,
+        user_id: 0,
+      },
       errors: [],
     }
   },
@@ -99,7 +102,7 @@ export default {
       await axios
         .post('/api/v1/logs/create.json', {log: this.log})
         .then(response => {
-          this.res = response.data
+          this.log_info = response.data
         })
         .catch(err => {
           console.log('error:', err)
@@ -111,7 +114,7 @@ export default {
         .post('/api/v1/log_languages/create.json', {
           log_language: {
             language: language,
-            log: self.res,
+            log: self.log_info.id
           }
         })
         .then(response => {
