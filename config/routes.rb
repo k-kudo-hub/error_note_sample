@@ -17,8 +17,16 @@ Rails.application.routes.draw do
 
   namespace :api, {format: 'json'} do
     namespace :v1 do
+      resources :users, only: [] do
+        collection do
+          get 'authentication'
+        end
+      end
       resources :logs, only: [] do
         collection do
+          get 'index'
+          get 'latest_stocks'
+          get 'most_stocked_logs'
           post 'create'
         end
       end
