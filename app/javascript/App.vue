@@ -1,9 +1,9 @@
 <template>
   <div id="app" class="app">
-    <Header :user="user"></Header>
+    <Header @search="searchSignal" :user="user"></Header>
     <div class="app-body" id="app_body">
-      <LogsCreate  v-if="user.auth == true"></LogsCreate>
-      <LogsIndex :user="user"></LogsIndex>
+      <LogsCreate v-if="user.auth == true"></LogsCreate>
+      <LogsIndex :catchKeyword="keyword" :user="user"></LogsIndex>
     </div>
     <Footer></Footer>
   </div>
@@ -28,7 +28,8 @@ export default {
         id: null,
         picture: null,
         auth: false,
-      }
+      },
+      keyword: "",
     }
   },
   mounted() {
@@ -36,6 +37,11 @@ export default {
     axios
       .get('/api/v1/users/authentication.json')
       .then(response => (self.user = response.data))
+  },
+  methods: {
+    searchSignal: function(keyword){
+      this.keyword = keyword;
+    }
   }
 }
 </script>
