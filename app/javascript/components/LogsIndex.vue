@@ -111,9 +111,17 @@ export default {
       totalPages: null,
       pageTitle: "新着ノート",
       currentLogs: this.getLatestLogs,
+      keyword: null,
     }
   },
-  props: ["user"],
+  props: {
+    user: {
+      id: null,
+      picture: null,
+      auth: false,
+    },
+    catchKeyword: "",
+  },
   mounted(){
     this.getLatestLogs();
   },
@@ -125,7 +133,7 @@ export default {
         this.pageTitle = "新着ノート";
       }
       axios
-        .get(`/api/v1/logs/index.json?page=${this.currentPage}?per=${this.itemPerPage}`)
+        .get(`/api/v1/logs/index.json?page=${this.currentPage}&per=${this.itemPerPage}`)
         .then(response => (
           this.logs = response.data.logs,
           this.totalPages = response.data.total_pages
@@ -152,15 +160,34 @@ export default {
         this.pageTitle = "最近ストックしたノート"
       }  
       axios
-        .get(`/api/v1/logs/latest_stocks.json?page=${this.currentPage}?per=${this.itemPerPage}`)
+        .get(`/api/v1/logs/latest_stocks.json?page=${this.currentPage}&per=${this.itemPerPage}`)
         .then(response => (
           this.logs = response.data.logs,
           this.totalPages = response.data.totalPages
         ))
     },
+    getSearchLogs: function(){
+      if (this.currentLogs != this.getSearchLogs){
+        this.currentPage = 1;
+        this.currentLogs = this.getSearchLogs;
+        this.pageTitle = "検索結果"
+      }
+      axios
+        .get(`/api/v1/logs/search.json?keyword=${this.keyword}&page=${this.currentPage}&per=${this.itemPerPage}&user_id=${this.user.id}`)
+        .then(response => (
+          this.logs = response.data.logs,
+          this.totalPages = response.data.total_page 
+        ))
+    },
     trimName: function(langName){
       var name = langName.toLowerCase().replace(/\s+/g, '').replace('#', 's').replace('.', 'd');
       return name;
+    }
+  },
+  watch: {
+    catchKeyword: function(){
+      this.keyword = this.$props.catchKeyword;
+      this.getSearchLogs();
     }
   }
 }
