@@ -28,6 +28,7 @@ Rails.application.routes.draw do
           get 'latest_stocks'
           get 'most_stocked_logs'
           post 'create'
+          get 'search'
         end
       end
       resources :languages, only: [] do

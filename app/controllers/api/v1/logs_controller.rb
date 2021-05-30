@@ -48,6 +48,18 @@ class Api::V1::LogsController < ApplicationController
     end
   end
 
+  def search
+    logs = Log.search(params[:keyword]).page(params[:page]).per(params[:per])
+    array = []
+    array_push(logs, array)
+    total_pages = logs.total_pages
+    response = {
+      logs: array,
+      total_pages: total_pages
+    }
+    render json: response
+  end
+
   private
 
   def log_params
