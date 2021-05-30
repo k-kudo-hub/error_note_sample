@@ -13,6 +13,7 @@ document.addEventListener('turbolinks:load', () => {
       alreadyInsert.removeChild(alreadyInsert.lastChild);
     }
   }
+  if(document.URL.match("/users/")) return false;
   if(insertTarget) {
     const usr = new Vue({
       vuetify: new Vuetify(),
