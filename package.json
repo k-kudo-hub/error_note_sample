@@ -18,7 +18,9 @@
     "vue": "^2.6.12",
     "vue-loader": "^15.9.6",
     "vue-template-compiler": "^2.6.12",
-    "vue-turbolinks": "^2.2.2"
+    "vue-turbolinks": "^2.2.2",
+    "vuejs-paginate": "^2.1.0",
+    "vuetify": "^2.5.1"
   },
   "version": "0.1.0",
   "devDependencies": {
