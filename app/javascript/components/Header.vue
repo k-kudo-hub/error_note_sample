@@ -8,15 +8,13 @@
       </div>
       <div class="header-right flex-3">
         <div v-if="this.user.auth == true">
-          <!-- 検索フォーム -->
-          <form class="search-form">
+          <form @submit.prevent @keypress.prevent.enter.exact="searchLogs" class="search-form">
             <span class="fa-stack">
-              <input placeholder="キーワードを入力" class="fa-lg fa-stack-2x">
+              <input v-model="keyword" placeholder="キーワードを入力" class="fa-lg fa-stack-2x">
               <i class="fas fa-search fa-lg fa-stack-1x"></i>
             </span>
             <input type="hidden" value="検索">
           </form>
-          <!-- 検索フォーム終わり -->
           <div class="header-btn-wrap">
             <a :href="'/users/'+ user.id +'/logs/new'" class="header-btn">
               <i class="fas fa-pen fa-lg"></i>
@@ -51,13 +49,18 @@ import axios from 'axios';
 export default {
   data(){
     return {
-
+      keyword: "",
     }
   },
   props: ["user"],
   mouted(){
 
   },
+  methods: {
+    searchLogs: function(){
+      this.$emit('search', this.keyword)
+    }
+  }
 
 }
 </script>
