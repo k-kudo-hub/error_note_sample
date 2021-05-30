@@ -1,17 +1,23 @@
 import Vue from 'vue'
-import User from '../userRank.vue'
+import App from '../App.vue'
+import Vuetify from 'vuetify'
+
+Vue.use(Vuetify);
 
 document.addEventListener('turbolinks:load', () => {
-  const insertTarget = document.getElementById('nav_bar_lang_rank')
-  const alreadyInsert = document.getElementById('rank_content')
+  // const exclusionPath = "users$"
+  const insertTarget = document.getElementById('body')
+  const alreadyInsert = document.getElementById('app')
   if(alreadyInsert) {
     while(alreadyInsert.lastChild){
       alreadyInsert.removeChild(alreadyInsert.lastChild);
     }
   }
+  if(document.URL.match("/users/")) return false;
   if(insertTarget) {
     const usr = new Vue({
-      render: h => h(User)
+      vuetify: new Vuetify(),
+      render: h => h(App)
     }).$mount()
     insertTarget.insertAdjacentElement('afterbegin', usr.$el)
   }

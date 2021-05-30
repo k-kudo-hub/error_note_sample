@@ -1,5 +1,8 @@
-<section class="app-body-inner">
-  <h1>エラーを記録する</h1>
-  <%= render "form", model: @log, url: user_logs_path, method: :post %>
-</section>
-
+<%= render "shared/header" %>
+<div class="app-body">
+  <section class="app-body-inner">
+    <h1>エラーを記録する</h1>
+    <%= render "form", model: @log, url: user_logs_path, method: :post %>
+  </section>
+</div>
+<%= render "shared/footer" %>

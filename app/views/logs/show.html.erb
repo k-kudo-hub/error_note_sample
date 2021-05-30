@@ -1,51 +1,54 @@
-<section class="app-body-inner">
-  <div class="log-detail">
-    <h1><%= @log.title %></h1>
-    <div class="log-detail__langs">
-      <% @log.languages.each do |lang| %>
-        <p class="lang <%= lang.trim %>"><%= lang.name %></p>
-      <% end %>
-    </div>
-    <div class="log-updated-at">
-      <p>最終更新日：<%= l @log.updated_at, format: :default %></p>
-    </div>
-    <div class="log-detail__content errors">
-      <p class="log-detail__content-title">エラーの内容</p>
-      <%= @log.error %>
-    </div>
-    <div class="log-detail__content solutions">
-      <p class="log-detail__content-title">解決法</p>
-      <% if @log.solution.present? %>
-        <%= @log.solution %>
-      <% else %>
-        <p class="log-detail__content-nil">解決法はまだ登録されていません。</p>
-      <% end %>
-    </div>
-  </div>
-
-  <div class="inner-bottom-btn-wrap">
-    <% if user_signed_in? %>
-      <% if current_user.id == @log.user.id %>
-        <%= link_to 'ログを編集する', edit_user_log_path(user_id: current_user.id, id: @log.id), class: "btn-default" %>
-        <%= link_to 'ログを削除する', user_log_path(user_id: current_user.id, id: @log.id), method: :delete, class: "btn-danger", data: {confirm: "削除しますか？"} %>
-      <% else %>
-        <% if current_user.already_stocked?(@log) %>
-          <%= button_to user_log_stock_path(current_user, @log), method: :delete, class:"btn-filled" do %>
-            <p>ストックを取り消す <span class="stock-count__number"><%= @log.stocks.count %></span></p>
-          <% end %>
+<%= render "shared/header" %>
+<div class="app-body">
+  <section class="app-body-inner">
+    <div class="log-detail">
+      <h1><%= @log.title %></h1>
+      <div class="log-detail__langs">
+        <% @log.languages.each do |lang| %>
+          <p class="lang <%= lang.trim %>"><%= lang.name %></p>
+        <% end %>
+      </div>
+      <div class="log-updated-at">
+        <p>最終更新日：<%= l @log.updated_at, format: :default %></p>
+      </div>
+      <div class="log-detail__content errors">
+        <p class="log-detail__content-title">エラーの内容</p>
+        <%= @log.error %>
+      </div>
+      <div class="log-detail__content solutions">
+        <p class="log-detail__content-title">解決法</p>
+        <% if @log.solution.present? %>
+          <%= @log.solution %>
         <% else %>
-          <%= button_to user_log_stocks_path(current_user, @log), class:"btn-default" do %>
-            <p>ストックする <span class="stock-count__number"><%= @log.stocks.count %></span></p>
+          <p class="log-detail__content-nil">解決法はまだ登録されていません。</p>
+        <% end %>
+      </div>
+    </div>
+    <div class="inner-bottom-btn-wrap">
+      <% if user_signed_in? %>
+        <% if current_user.id == @log.user.id %>
+          <%= link_to 'ログを編集する', edit_user_log_path(user_id: current_user.id, id: @log.id), class: "btn-default" %>
+          <%= link_to 'ログを削除する', user_log_path(user_id: current_user.id, id: @log.id), method: :delete, class: "btn-danger", data: {confirm: "削除しますか？"} %>
+        <% else %>
+          <% if current_user.already_stocked?(@log) %>
+            <%= button_to user_log_stock_path(current_user, @log), method: :delete, class:"btn-filled" do %>
+              <p>ストックを取り消す <span class="stock-count__number"><%= @log.stocks.count %></span></p>
+            <% end %>
+          <% else %>
+            <%= button_to user_log_stocks_path(current_user, @log), class:"btn-default" do %>
+              <p>ストックする <span class="stock-count__number"><%= @log.stocks.count %></span></p>
+            <% end %>
           <% end %>
         <% end %>
+      <% else %>
+        <%= button_to new_user_session_path, class:"btn-default" do %>
+          <p>ストックする <span class="stock-count__number"><%= @log.stocks.count %></span></p>
+        <% end %>
       <% end %>
-    <% else %>
-      <%= button_to new_user_session_path, class:"btn-default" do %>
-        <p>ストックする <span class="stock-count__number"><%= @log.stocks.count %></span></p>
-      <% end %>
-    <% end %>
+    </div>
+  </section>
+  <div class="app-bottom-inner">
+    <%= render "users/profile", user: @log.user, use_case: "log" %>
   </div>
-</section>
-<div class="app-bottom-inner">
-  <%= render "users/profile", user: @log.user, use_case: "log" %>
 </div>
+<%= render "shared/footer" %>

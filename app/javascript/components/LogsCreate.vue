@@ -38,7 +38,7 @@
             <label for="release">非公開</label>
           </div>
           <div class="inner-bottom-btn-wrap">
-            <input v-on:click="createDouble" type="submit" value="保存する" class="btn-default">
+            <input v-on:click="createNote" type="submit" value="保存する" class="btn-default">
           </div>
         </form>
       </div>
@@ -129,7 +129,7 @@ export default {
         await this.createLogLanguage(languages[language])
       }
     },
-    createDouble: async function(){
+    createNote: async function(){
       var self = this;
       await this.beforCreate();
       await this.createLog();
@@ -160,7 +160,7 @@ export default {
 .log-modal__container {
   background-color: white;
   padding: 32px;
-  max-width: 700px;
+  max-width: 800px;
   max-height: 87%;
   overflow: scroll;
   margin: 20px auto 30px;

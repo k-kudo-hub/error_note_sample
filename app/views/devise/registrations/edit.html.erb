@@ -1,26 +1,30 @@
-<section class="app-body-inner">
-  <h1>ユーザー情報編集</h1>
-  <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-    <%= render "devise/shared/error_messages", resource: resource %>
-    <div class="user-input-field">
-      <%= f.label "お名前" %>
-      <%= f.text_field :name, class: "user-input" %>
-    </div>
-    <div class="user-input-field">
-      <%= f.label "メールアドレス" %>
-      <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "user-input" %>
-    </div>
-    <div class="user-input-field">
-      <%= f.label "自己紹介" %>
-      <%= f.text_area :introduce, autofocus: true, autocomplete: "introduce", class: "user-input-large" %>
-    </div>
-    <div class="user-input-field"  style="margin-bottom:50px;">
-      <%= f.label "プロフィール画像" %>
-      <%= f.file_field :picture, autofocus: true, autocomplete: "picture", class: "user-input" %>
-    </div>
-    <div class="inner-bottom-btn-wrap">
-      <%= link_to "キャンセル", :back, class: "btn-default" %>
-      <%= f.submit "更新する", class: "btn-filled" %>
-    </div>
-  <% end %>
-</section>
+<%= render "shared/header" %>
+<div class="app-body">
+  <section class="app-body-inner">
+    <h1>ユーザー情報編集</h1>
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+      <%= render "devise/shared/error_messages", resource: resource %>
+      <div class="user-input-field">
+        <%= f.label "お名前" %>
+        <%= f.text_field :name, class: "user-input" %>
+      </div>
+      <div class="user-input-field">
+        <%= f.label "メールアドレス" %>
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "user-input" %>
+      </div>
+      <div class="user-input-field">
+        <%= f.label "自己紹介" %>
+        <%= f.text_area :introduce, autofocus: true, autocomplete: "introduce", class: "user-input-large" %>
+      </div>
+      <div class="user-input-field"  style="margin-bottom:50px;">
+        <%= f.label "プロフィール画像" %>
+        <%= f.file_field :picture, autofocus: true, autocomplete: "picture" %>
+      </div>
+      <div class="inner-bottom-btn-wrap">
+        <%= link_to "キャンセル", :back, class: "btn-default" %>
+        <%= f.submit "更新する", class: "btn-filled" %>
+      </div>
+    <% end %>
+  </section>
+</div>
+<%= render "shared/footer" %>

@@ -4,7 +4,7 @@ class Api::V1::StocksController < ApplicationController
   end
 
   def rank
-    logs = Log.rank
+    logs = Log.rank(5)
     counts = Stock.group(:log_id).order('count(log_id) desc').limit(5).count
     array = []
     logs.zip(counts) do |log, count|

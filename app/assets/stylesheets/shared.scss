@@ -28,7 +28,7 @@ form {
 
 @mixin inner-base {
   background-color: white;
-  max-width: 700px;
+  max-width: 730px;
   padding: 32px;
   h1 {
     text-align: center;
@@ -48,7 +48,7 @@ form {
   .app-bottom-inner {
     @include inner-base;
     margin: 30px auto;
-    height: 200px;
+    height: 250px;
   }
   .inner-bottom-btn-wrap {
     display: flex;
@@ -83,7 +83,7 @@ form {
     height: 200px;
   }
   &__lang-rank {
-    height: 280px;
+    height: 310px;
     padding: 20px;
     h2 {
       font-size: 1rem;
@@ -354,11 +354,12 @@ form {
 
 .fa-stack {
   input {
+    background-color: white;
     border: none;
-    width: 240px;
+    width: 250px;
     padding: 5px 5px 5px 32px;
     font-size: 1em;
-    height: 24px;
+    height: 36px;
     text-align: left;
     margin: 0;
   }
@@ -372,7 +373,7 @@ form {
 // footer style
 .footer-area {
   background-color: $site-footer-bg-color;
-  height: 200px;
+  height: 250px;
   padding: 32px 16px;
   position: relative;
   .footer-top {
@@ -466,16 +467,18 @@ form {
   text-align: center;
 }
 .user-input-field {
-  width: 74%;
+  width: 76%;
   text-align: right;
 }
 .user-input {
   height: 30px;
   width: 300px;
+  border: 1px solid gray;
   &-large {
     height: 80px;
     width: 300px;
     vertical-align: middle;
+    border: 1px solid gray;
   }
 }
 .silver-font {
@@ -495,6 +498,7 @@ form {
     background-color: $site-danger-bg-color;
     border: 5px solid $site-danger-border-color;
     border-radius: 20px;
+    padding: 15px 20px;
     margin: 0 auto;
     width: 80%;
   }
