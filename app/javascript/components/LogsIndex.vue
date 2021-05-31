@@ -23,7 +23,7 @@
       <v-list three-line>
         <article v-for="(item) in logs" :key="item.id" class="log-block" :items-per-page="itemPerPage">
           <div class="log-block__upper">
-            <h2><a :href="'/users/'+item.user_id+'/logs/'+item.id">{{item.title}}</a></h2>
+            <h2><a @click="showMoreInfomations(item.user_id, item.id)">{{item.title}}</a></h2>
           </div>
           <div class="log-block__lower">
             <div class="log-block__lower-languages">
@@ -182,6 +182,15 @@ export default {
     trimName: function(langName){
       var name = langName.toLowerCase().replace(/\s+/g, '').replace('#', 's').replace('.', 'd');
       return name;
+    },
+    showMoreInfomations: function(user_id, log_id){
+      this.$router.push({
+        name: 'log-show',
+        params: {
+          user_id: user_id,
+          log_id: log_id, 
+        }
+      })
     }
   },
   watch: {
