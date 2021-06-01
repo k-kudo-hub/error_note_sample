@@ -10,7 +10,7 @@
           <i class="fas fa-fire-alt"></i>
           <a class="nav-link" @click="this.getMostStockedLogs">話題のノート</a>
         </div>
-        <template v-if="this.user.auth == true">
+        <template v-if="this.currentUser.auth == true">
           <div class="navigation__link-wrap">
             <i class="fas fa-cubes"></i>
             <a class="nav-link" @click="this.getLatestStocks">最近ストックしたノート</a>
