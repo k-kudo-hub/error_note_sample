@@ -41,6 +41,7 @@ Rails.application.routes.draw do
       resources :stocks, only: [] do
         collection do
           get 'rank'
+          get 'check'
         end
       end
       resources :log_languages, only: [] do
