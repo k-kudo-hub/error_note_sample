@@ -115,7 +115,7 @@ export default {
     }
   },
   props: {
-    user: {
+    currentUser: {
       id: null,
       picture: null,
       auth: false,
@@ -173,7 +173,7 @@ export default {
         this.pageTitle = "検索結果"
       }
       axios
-        .get(`/api/v1/logs/search.json?keyword=${this.keyword}&page=${this.currentPage}&per=${this.itemPerPage}&user_id=${this.user.id}`)
+        .get(`/api/v1/logs/search.json?keyword=${this.keyword}&page=${this.currentPage}&per=${this.itemPerPage}&user_id=${this.currentUser.id}`)
         .then(response => (
           this.logs = response.data.logs,
           this.totalPages = response.data.total_page 

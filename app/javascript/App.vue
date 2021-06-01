@@ -1,9 +1,9 @@
 <template>
   <div id="app" class="app">
-    <Header @search="searchSignal" :user="user"></Header>
+    <Header @search="searchSignal" :currentUser="currentUser"></Header>
     <div class="app-body" id="app_body">
-      <LogsCreate v-if="user.auth == true"></LogsCreate>
-      <router-view :catchKeyword="keyword" :user="user"></router-view>
+      <LogsCreate v-if="currentUser.auth == true"></LogsCreate>
+      <router-view :catchKeyword="keyword" :currentUser="currentUser"></router-view>
     </div>
     <Footer></Footer>
   </div>
@@ -25,7 +25,7 @@ export default {
   },
   data(){
     return {
-      user: {
+      currentUser: {
         id: null,
         picture: null,
         auth: false,
@@ -37,7 +37,7 @@ export default {
     var self = this;
     axios
       .get('/api/v1/users/authentication.json')
-      .then(response => (self.user = response.data))
+      .then(response => (self.currentUser = response.data))
   },
   methods: {
     searchSignal: function(keyword){
