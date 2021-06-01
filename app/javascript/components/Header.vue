@@ -75,6 +75,10 @@ export default {
 
 }
 </script>
-<style scoped>
-
+<style lang="scss" scoped>
+.header-left {
+  h1:hover{
+    cursor: pointer;
+  }
+}
 </style>

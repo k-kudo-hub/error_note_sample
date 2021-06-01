@@ -201,7 +201,8 @@ export default {
   }
 }
 </script>
-<style scoped>
+<style lang="scss" scoped>
+.log-block__upper h2,
 .nav-link:hover {
   cursor: pointer;
 }
