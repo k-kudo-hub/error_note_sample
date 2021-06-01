@@ -1,11 +1,11 @@
-import Vue from 'vue'
-import App from '../App.vue'
-import Vuetify from 'vuetify'
+import Vue from 'vue';
+import App from '../App.vue';
+import Vuetify from 'vuetify';
+import router from './router';
 
 Vue.use(Vuetify);
 
 document.addEventListener('turbolinks:load', () => {
-  // const exclusionPath = "users$"
   const insertTarget = document.getElementById('body')
   const alreadyInsert = document.getElementById('app')
   if(alreadyInsert) {
@@ -16,6 +16,7 @@ document.addEventListener('turbolinks:load', () => {
   if(document.URL.match("/users/")) return false;
   if(insertTarget) {
     const usr = new Vue({
+      router,
       vuetify: new Vuetify(),
       render: h => h(App)
     }).$mount()

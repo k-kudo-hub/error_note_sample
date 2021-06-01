@@ -2,12 +2,12 @@
   <div class="header-area">
     <div class="header-container">
       <div class="header-left flex-3">
-        <h1><a href="/">Error Note</a></h1>
+        <h1 @click="goHome">Error Note</h1>
       </div>
       <div class="header-center flex-3">
       </div>
       <div class="header-right flex-3">
-        <div v-if="this.user.auth == true">
+        <div v-if="this.currentUser.auth == true">
           <form @submit.prevent @keypress.prevent.enter.exact="searchLogs" class="search-form">
             <span class="fa-stack">
               <input v-model="keyword" placeholder="キーワードを入力" class="fa-lg fa-stack-2x">
@@ -16,12 +16,12 @@
             <input type="hidden" value="検索">
           </form>
           <div class="header-btn-wrap">
-            <a :href="'/users/'+ user.id +'/logs/new'" class="header-btn">
+            <a :href="'/users/'+ currentUser.id +'/logs/new'" class="header-btn">
               <i class="fas fa-pen fa-lg"></i>
             </a>
-            <a :href="'/users/'+ user.id" class="header-btn">
-              <template v-if="this.user.picture">
-                <img :src="this.user.picture" height="30px" width="30">
+            <a :href="'/users/'+ currentUser.id" class="header-btn">
+              <template v-if="this.currentUser.picture">
+                <img :src="this.currentUser.picture" height="30px" width="30">
               </template>
               <template v-else>
                 <img src="../../assets/images/human.png" height="30px" width="30px">
@@ -52,18 +52,33 @@ export default {
       keyword: "",
     }
   },
-  props: ["user"],
+  props: {
+    currentUser: {
+      id: null,
+      picture: null,
+      auth: false,
+    },
+  },
   mouted(){
 
   },
   methods: {
     searchLogs: function(){
       this.$emit('search', this.keyword)
+    },
+    goHome: function(){
+      this.$router.push({
+        name: 'logs-index'
+      })
     }
   }
 
 }
 </script>
-<style scoped>
-
+<style lang="scss" scoped>
+.header-left {
+  h1:hover{
+    cursor: pointer;
+  }
+}
 </style>

@@ -10,7 +10,7 @@
           <i class="fas fa-fire-alt"></i>
           <a class="nav-link" @click="this.getMostStockedLogs">話題のノート</a>
         </div>
-        <template v-if="this.user.auth == true">
+        <template v-if="this.currentUser.auth == true">
           <div class="navigation__link-wrap">
             <i class="fas fa-cubes"></i>
             <a class="nav-link" @click="this.getLatestStocks">最近ストックしたノート</a>
@@ -23,7 +23,7 @@
       <v-list three-line>
         <article v-for="(item) in logs" :key="item.id" class="log-block" :items-per-page="itemPerPage">
           <div class="log-block__upper">
-            <h2><a :href="'/users/'+item.user_id+'/logs/'+item.id">{{item.title}}</a></h2>
+            <h2 @click="showMoreInfomations(item.user_id, item.id)">{{item.title}}</h2>
           </div>
           <div class="log-block__lower">
             <div class="log-block__lower-languages">
@@ -77,7 +77,7 @@
         </iframe>
       </div>
       <div class="nav-bar__lang-rank" id="nav_bar_lang_rank">
-        <userRank></userRank>
+        <UserRank></UserRank>
       </div>
     </section>
   </div>
@@ -86,11 +86,11 @@
 <script>
 import axios from 'axios';
 import Vuetify from 'vuetify';
-import userRank from 'components/UserRank.vue';
+import UserRank from 'components/UserRank.vue';
 
 export default {
   components: {
-    'userRank': userRank,
+    'UserRank': UserRank,
   },
   data(){
     return{
@@ -115,7 +115,7 @@ export default {
     }
   },
   props: {
-    user: {
+    currentUser: {
       id: null,
       picture: null,
       auth: false,
@@ -173,7 +173,7 @@ export default {
         this.pageTitle = "検索結果"
       }
       axios
-        .get(`/api/v1/logs/search.json?keyword=${this.keyword}&page=${this.currentPage}&per=${this.itemPerPage}&user_id=${this.user.id}`)
+        .get(`/api/v1/logs/search.json?keyword=${this.keyword}&page=${this.currentPage}&per=${this.itemPerPage}&user_id=${this.currentUser.id}`)
         .then(response => (
           this.logs = response.data.logs,
           this.totalPages = response.data.total_page 
@@ -182,6 +182,15 @@ export default {
     trimName: function(langName){
       var name = langName.toLowerCase().replace(/\s+/g, '').replace('#', 's').replace('.', 'd');
       return name;
+    },
+    showMoreInfomations: function(user_id, log_id){
+      this.$router.push({
+        name: 'log-show',
+        params: {
+          user_id: user_id,
+          log_id: log_id, 
+        }
+      })
     }
   },
   watch: {
@@ -192,7 +201,8 @@ export default {
   }
 }
 </script>
-<style scoped>
+<style lang="scss" scoped>
+.log-block__upper h2,
 .nav-link:hover {
   cursor: pointer;
 }

@@ -1,15 +1,16 @@
 <template>
   <div id="app" class="app">
-    <Header @search="searchSignal" :user="user"></Header>
+    <Header @search="searchSignal" :currentUser="currentUser"></Header>
     <div class="app-body" id="app_body">
-      <LogsCreate v-if="user.auth == true"></LogsCreate>
-      <LogsIndex :catchKeyword="keyword" :user="user"></LogsIndex>
+      <LogsCreate v-if="currentUser.auth == true"></LogsCreate>
+      <router-view :catchKeyword="keyword" :currentUser="currentUser"></router-view>
     </div>
     <Footer></Footer>
   </div>
 </template>
 <script>
 import axios from 'axios'
+import VueRouter from 'vue-router'
 import LogsIndex from 'components/LogsIndex.vue'
 import LogsCreate from 'components/LogsCreate.vue'
 import Header from 'components/Header.vue'
@@ -24,7 +25,7 @@ export default {
   },
   data(){
     return {
-      user: {
+      currentUser: {
         id: null,
         picture: null,
         auth: false,
@@ -36,7 +37,7 @@ export default {
     var self = this;
     axios
       .get('/api/v1/users/authentication.json')
-      .then(response => (self.user = response.data))
+      .then(response => (self.currentUser = response.data))
   },
   methods: {
     searchSignal: function(keyword){
@@ -44,6 +45,7 @@ export default {
     }
   }
 }
+
 </script>
 <style scoped>
 

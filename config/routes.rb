@@ -28,6 +28,7 @@ Rails.application.routes.draw do
           get 'latest_stocks'
           get 'most_stocked_logs'
           post 'create'
+          get 'show'
           get 'search'
         end
       end
@@ -40,6 +41,7 @@ Rails.application.routes.draw do
       resources :stocks, only: [] do
         collection do
           get 'rank'
+          get 'check'
         end
       end
       resources :log_languages, only: [] do

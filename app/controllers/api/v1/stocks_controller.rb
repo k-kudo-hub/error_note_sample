@@ -8,9 +8,21 @@ class Api::V1::StocksController < ApplicationController
     counts = Stock.group(:log_id).order('count(log_id) desc').limit(5).count
     array = []
     logs.zip(counts) do |log, count|
-      array.push(id: log.id, title: log.title, count: count[1], user_id: log.user_id)
+      array.push(id: log.id, title: log.title.truncate(9), count: count[1], user_id: log.user_id)
     end
     render json: array
+  end
+
+  def check
+    user = User.find(params[:user_id])
+    log = Log.find(params[:log_id])
+    stocked = user.already_stocked?(log)
+    count = log.stocks.count
+    response = {
+      stocked: stocked,
+      count: count
+    }
+    render json: response
   end
 
 end

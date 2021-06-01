@@ -48,6 +48,23 @@ class Api::V1::LogsController < ApplicationController
     end
   end
 
+  def show
+    log = Log.find(params[:id])
+    languages = []
+    log.languages.each do |lang|
+      languages.push(name: lang.name)
+    end
+    log.user.picture ? picture = log.user.picture.url : picture = nil 
+    user = {id: log.user_id, name: log.user.name, picture: picture, introduce: log.user.introduce }
+    log = {title: log.title, error: log.error, solution: log.solution, release: log.release, updated_at: l(log.updated_at, format: :default)}
+    response = {
+      log: log,
+      languages: languages,
+      user: user,
+    }
+    render json: response
+  end
+
   def search
     logs = Log.search(params[:keyword]).page(params[:page]).per(params[:per])
     array = []
