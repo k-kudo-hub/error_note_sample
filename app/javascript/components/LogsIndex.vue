@@ -23,7 +23,7 @@
       <v-list three-line>
         <article v-for="(item) in logs" :key="item.id" class="log-block" :items-per-page="itemPerPage">
           <div class="log-block__upper">
-            <h2><a @click="showMoreInfomations(item.user_id, item.id)">{{item.title}}</a></h2>
+            <h2 @click="showMoreInfomations(item.user_id, item.id)">{{item.title}}</h2>
           </div>
           <div class="log-block__lower">
             <div class="log-block__lower-languages">
