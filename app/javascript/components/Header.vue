@@ -2,7 +2,7 @@
   <div class="header-area">
     <div class="header-container">
       <div class="header-left flex-3">
-        <h1><a href="/">Error Note</a></h1>
+        <h1 @click="goHome">Error Note</h1>
       </div>
       <div class="header-center flex-3">
       </div>
@@ -65,6 +65,11 @@ export default {
   methods: {
     searchLogs: function(){
       this.$emit('search', this.keyword)
+    },
+    goHome: function(){
+      this.$router.push({
+        name: 'logs-index'
+      })
     }
   }
 
