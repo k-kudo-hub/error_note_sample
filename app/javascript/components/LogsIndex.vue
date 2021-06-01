@@ -77,7 +77,7 @@
         </iframe>
       </div>
       <div class="nav-bar__lang-rank" id="nav_bar_lang_rank">
-        <userRank></userRank>
+        <UserRank></UserRank>
       </div>
     </section>
   </div>
@@ -86,11 +86,11 @@
 <script>
 import axios from 'axios';
 import Vuetify from 'vuetify';
-import userRank from 'components/UserRank.vue';
+import UserRank from 'components/UserRank.vue';
 
 export default {
   components: {
-    'userRank': userRank,
+    'UserRank': UserRank,
   },
   data(){
     return{
