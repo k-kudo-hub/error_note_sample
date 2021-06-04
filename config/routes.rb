@@ -29,6 +29,7 @@ Rails.application.routes.draw do
           get 'most_stocked_logs'
           post 'create'
           get 'show'
+          put 'update'
           get 'search'
         end
       end
