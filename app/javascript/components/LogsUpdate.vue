@@ -51,6 +51,61 @@ import axios from 'axios';
 const token = document.getElementsByName("csrf-token")[0].getAttribute("content");
 axios.defaults.headers.common["X-CSRF-Token"] = token;
 
+export default {
+  data() {
+    return {
+      languages: [],
+      newLanguages: [],
+    }
+  },
+  props: {
+    errors: {type: Array},
+    modal: {type: Boolean},
+    log: {
+      id: {type: Number},
+      title: {type: String},
+      error: {type: String},
+      solution: {type: String},
+      release: {type: Number},
+    },
+    checkedLanguages: {
+      type: Array,
+    },
+  },
+  computed: {
+    localLog: {
+      get: function(){
+        return this.log
+      },
+      set: function(value) {
+        this.$emit('submit', value)
+      },
+    },
+  },
+  mounted() {
+    var self = this;
+    axios
+      .get('/api/v1/languages/index.json')
+      .then(response => (self.languages = response.data))
+    this.setCheckedLanguages();
+  },
+  methods: {
+    setCheckedLanguages: function(){
+      for(var lang in this.checkedLanguages){
+        this.newLanguages.push(this.checkedLanguages[lang])
+      }
+      this.$emit('change', this.newLanguages)
+    },
+    updateCheckedLanguages: function(languageId) {
+      if(this.newLanguages.includes(languageId)){
+        this.newLanguages = this.newLanguages.filter(n => n !== languageId);
+      } else {
+        this.newLanguages.push(languageId)
+      }
+      this.$emit('change', this.newLanguages)
+    },
+  },
+}
 </script>
 <style scoped>
 .inner-bottom-btn-wrap {
