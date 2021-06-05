@@ -52,17 +52,33 @@ class Api::V1::LogsController < ApplicationController
     log = Log.find(params[:id])
     languages = []
     log.languages.each do |lang|
-      languages.push(name: lang.name)
+      languages.push(id: lang.id, name: lang.name)
     end
     log.user.picture ? picture = log.user.picture.url : picture = nil 
     user = {id: log.user_id, name: log.user.name, picture: picture, introduce: log.user.introduce }
-    log = {title: log.title, error: log.error, solution: log.solution, release: log.release, updated_at: l(log.updated_at, format: :default)}
+    log = {id: log.id, title: log.title, error: log.error, solution: log.solution, release: log.release, updated_at: l(log.updated_at, format: :default)}
     response = {
       log: log,
       languages: languages,
       user: user,
     }
     render json: response
+  end
+
+  def update
+    log = Log.find(params[:log][:id])
+    if log.update(
+      title: params[:log][:title],
+      error: params[:log][:error],
+      solution: params[:log][:solution],
+      release: params[:log][:release],
+      language_ids: params[:languages],
+    )
+      log_info = {id: log.id, user_id: current_user.id}
+      render json: log_info
+    else
+      render json: log.errors, status: :unprocessable_entity
+    end
   end
 
   def search
