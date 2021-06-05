@@ -81,6 +81,16 @@ class Api::V1::LogsController < ApplicationController
     end
   end
 
+  def destroy
+    log = Log.find(params[:id])
+    user_id = log.user_id
+    if log.destroy
+      render json: user_id
+    else
+      render json: log.errors, status: :unprocessable_entity
+    end
+  end
+
   def search
     logs = Log.search(params[:keyword]).page(params[:page]).per(params[:per])
     array = []
