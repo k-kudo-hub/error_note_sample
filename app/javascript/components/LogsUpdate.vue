@@ -105,7 +105,7 @@ export default {
   },
 }
 </script>
-<style scoped>
+<style lang="scss" scoped>
 .inner-bottom-btn-wrap {
   margin-top: 20px;
   text-align: center;
