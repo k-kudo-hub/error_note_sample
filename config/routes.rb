@@ -47,7 +47,6 @@ Rails.application.routes.draw do
       end
       resources :log_languages, only: [] do
         collection do
-          post 'create'
         end
       end
     end

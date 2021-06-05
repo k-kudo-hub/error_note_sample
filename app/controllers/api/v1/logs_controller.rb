@@ -96,7 +96,7 @@ class Api::V1::LogsController < ApplicationController
   private
 
   def log_params
-    params.require(:log).permit(:title, :error, :solution, :release).merge(user_id: current_user.id)
+    params.require(:log).permit(:title, :error, :solution, :release, { language_ids: []}).merge(user_id: current_user.id)
   end
 
   def array_push(logs, array)
