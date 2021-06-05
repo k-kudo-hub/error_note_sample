@@ -10,6 +10,12 @@
       @submit="updateNote"
       @change="changeCheckedLanguages"
     />
+    <LogsDestroy
+      v-if="(currentUser.auth == true) && (currentUser.id == user.id) && (confirmModal == true)" 
+      :title="log.title"
+      @submit="destroyNote"
+      @cancel="toggleConfirmModal"
+    />
     <section class="app-body-inner">
       <div class="log-detail">
         <h1>{{ log.title }}</h1>
@@ -35,7 +41,7 @@
         <template v-if="currentUser.auth == true">
           <template v-if="currentUser.id == user.id">
             <a @click="toggleModal" class="btn-default">ログを編集する</a>
-            <a class="btn-danger">ログを削除する</a>
+            <a @click="toggleConfirmModal" class="btn-danger">ログを削除する</a>
           </template>
           <template v-else>
             <template v-if="alreadyStocked == true">
@@ -65,6 +71,7 @@
 import axios from 'axios';
 import UsersProfile from './UsersProfile';
 import LogsUpdate from './LogsUpdate';
+import LogsDestroy from './LogsDestroy';
 
 const token = document.getElementsByName("csrf-token")[0].getAttribute("content");
 axios.defaults.headers.common["X-CSRF-Token"] = token;
@@ -73,6 +80,7 @@ export default {
   components: {
     'UsersProfile': UsersProfile,
     'LogsUpdate': LogsUpdate,
+    'LogsDestroy': LogsDestroy,
   },
   data(){
     return {
@@ -100,6 +108,7 @@ export default {
       checkedLanguages: [],
       errors: [],
       modal: false,
+      confirmModal: false,
       stockedCount: 0,
       newCheckedLanguages: [],
       newLog: [],
@@ -142,6 +151,9 @@ export default {
     toggleModal: function(){
       this.modal == true ? this.modal = false : this.modal = true;
     },
+    toggleConfirmModal: function(){
+      this.confirmModal == true ? this.confirmModal = false : this.confirmModal = true;
+    },
     getLanguageIds: function(languages){
       for(var language in languages) {
         this.checkedLanguages.push(languages[language].id)
@@ -182,7 +194,18 @@ export default {
       await this.beforUpdate();
       await this.updateLog(args[0], this.newCheckedLanguages[0]);
       await this.afterUpdate();
-    }
+    },
+    destroyNote: function(){
+      axios
+        .delete(`/api/v1/logs/destroy.json?id=${this.log.id}`)
+        .then(response => {
+          console.log(response.data)
+          location.href=`/users/${response.data}`;
+        })
+        .catch(err => {
+          console.log('error:', err)
+        })
+    },
   }
 }
 </script>

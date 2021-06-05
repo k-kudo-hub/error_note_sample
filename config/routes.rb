@@ -31,6 +31,7 @@ Rails.application.routes.draw do
           get 'show'
           put 'update'
           get 'search'
+          delete 'destroy'
         end
       end
       resources :languages, only: [] do
