@@ -67,9 +67,11 @@ export default {
       this.$emit('search', this.keyword)
     },
     goHome: function(){
-      this.$router.push({
-        name: 'logs-index'
-      })
+      if(location.pathname != "/"){
+        this.$router.push({
+          name: 'logs-index'
+        })
+      }
     }
   }
 

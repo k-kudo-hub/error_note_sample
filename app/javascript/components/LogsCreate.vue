@@ -100,7 +100,15 @@ export default {
     },
     createLog: async function(){
       await axios
-        .post('/api/v1/logs/create.json', {log: this.log})
+        .post('/api/v1/logs/create.json', {
+          log: {
+            title: this.log.title,
+            error: this.log.error,
+            solution: this.log.solution,
+            release: this.log.release,
+            language_ids: this.checkedLanguages
+          }
+        })
         .then(response => {
           this.log_info = response.data
         })
@@ -108,32 +116,10 @@ export default {
           console.log('error:', err)
         })
     },
-    createLogLanguage: async function(language){
-      var self = this;
-      await axios
-        .post('/api/v1/log_languages/create.json', {
-          log_language: {
-            language: language,
-            log: self.log_info.id
-          }
-        })
-        .then(response => {
-          console.log('status:', response.status)
-        })
-        .catch(err => {
-          console.log('error:', err)
-        })
-    },
-    createLogLanguages: async function(languages){
-      for(var language in languages) {
-        await this.createLogLanguage(languages[language])
-      }
-    },
     createNote: async function(){
       var self = this;
       await this.beforCreate();
       await this.createLog();
-      await this.createLogLanguages(self.checkedLanguages);
       await this.afterCreate();
     },
     afterCreate: async function(){

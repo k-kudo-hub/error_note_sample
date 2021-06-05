@@ -1,5 +1,15 @@
 <template>
   <div id="log-details">
+    <LogsUpdate 
+      v-if="(currentUser.auth == true) && (currentUser.id == user.id) && (modal == true)" 
+      :log="log"
+      :checkedLanguages="checkedLanguages"
+      :modal="modal"
+      :errors="errors"
+      @toggle="toggleModal"
+      @submit="updateNote"
+      @change="changeCheckedLanguages"
+    />
     <section class="app-body-inner">
       <div class="log-detail">
         <h1>{{ log.title }}</h1>
@@ -24,7 +34,7 @@
       <div class="inner-bottom-btn-wrap">
         <template v-if="currentUser.auth == true">
           <template v-if="currentUser.id == user.id">
-            <a class="btn-default">ログを編集する</a>
+            <a @click="toggleModal" class="btn-default">ログを編集する</a>
             <a class="btn-danger">ログを削除する</a>
           </template>
           <template v-else>
@@ -54,10 +64,15 @@
 <script>
 import axios from 'axios';
 import UsersProfile from './UsersProfile';
+import LogsUpdate from './LogsUpdate';
+
+const token = document.getElementsByName("csrf-token")[0].getAttribute("content");
+axios.defaults.headers.common["X-CSRF-Token"] = token;
 
 export default {
   components: {
     'UsersProfile': UsersProfile,
+    'LogsUpdate': LogsUpdate,
   },
   data(){
     return {
@@ -76,10 +91,18 @@ export default {
         introduce: "",
       },
       languages: [
-        {name: ""},
+        {
+         id: 0, 
+         name: ""
+        },
       ],
-      stockedCount: 0,
       alreadyStocked: false,
+      checkedLanguages: [],
+      errors: [],
+      modal: false,
+      stockedCount: 0,
+      newCheckedLanguages: [],
+      newLog: [],
     }
   },
   props: {
@@ -100,7 +123,8 @@ export default {
         .then(response => (
           this.log = response.data.log,
           this.user = response.data.user,
-          this.languages = response.data.languages
+          this.languages = response.data.languages,
+          this.getLanguageIds(response.data.languages)
         ))
     },
     trimName: function(langName){
@@ -114,6 +138,50 @@ export default {
           this.alreadyStocked = response.data.stocked,
           this.stockedCount = response.data.count
         ))
+    },
+    toggleModal: function(){
+      this.modal == true ? this.modal = false : this.modal = true;
+    },
+    getLanguageIds: function(languages){
+      for(var language in languages) {
+        this.checkedLanguages.push(languages[language].id)
+      }
+    },
+    changeCheckedLanguages(...args){
+      this.newCheckedLanguages = args
+    },
+    beforUpdate: function(e){
+      this.errors = [];
+      if (this.log.title && this.log.error) {
+        return true;
+      }
+      if (!this.log.title){
+        this.errors.push('タイトルを入力してください');
+      }
+      if (!this.log.error){
+        this.errors.push('エラーの内容を入力してください');
+      };
+      e.preventDefault();
+    },
+    updateLog: async function(log, languages){
+      await axios
+        .put(`/api/v1/logs/update.json?id=${this.log.id}`, {log: log, languages: languages})
+        .then(response => {
+          console.log(response.data)
+          this.log_info = response.data
+        })
+        .catch(err => {
+          console.log('error:', err)
+        })
+    },
+    afterUpdate: function(){
+      var self = this;
+      location.href="/users/"+self.log_info.user_id+"/logs/"+self.log_info.id;
+    },
+    updateNote: async function(...args){
+      await this.beforUpdate();
+      await this.updateLog(args[0], this.newCheckedLanguages[0]);
+      await this.afterUpdate();
     }
   }
 }

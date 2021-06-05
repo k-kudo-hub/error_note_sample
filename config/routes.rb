@@ -29,6 +29,7 @@ Rails.application.routes.draw do
           get 'most_stocked_logs'
           post 'create'
           get 'show'
+          put 'update'
           get 'search'
         end
       end
@@ -46,7 +47,6 @@ Rails.application.routes.draw do
       end
       resources :log_languages, only: [] do
         collection do
-          post 'create'
         end
       end
     end
