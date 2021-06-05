@@ -1,5 +1,15 @@
 <template>
   <div id="log-details">
+    <LogsUpdate 
+      v-if="(currentUser.auth == true) && (currentUser.id == user.id) && (modal == true)" 
+      :log="log"
+      :checkedLanguages="checkedLanguages"
+      :modal="modal"
+      :errors="errors"
+      @toggle="toggleModal"
+      @submit="updateNote"
+      @change="changeCheckedLanguages"
+    />
     <section class="app-body-inner">
       <div class="log-detail">
         <h1>{{ log.title }}</h1>
