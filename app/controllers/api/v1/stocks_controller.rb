@@ -3,6 +3,17 @@ class Api::V1::StocksController < ApplicationController
     render json: { error: '404 not found' }, status: 404
   end
 
+  def create
+    stock = current_user.stocks.create(log_id: params[:log_id])
+    render json: stock, status: :created
+  end
+  
+  def destroy
+    stock = Stock.find_by(log_id: params[:log_id], user_id: current_user.id)
+    stock.destroy
+    head :no_content
+  end
+
   def rank
     logs = Log.rank(5)
     counts = Stock.group(:log_id).order('count(log_id) desc').limit(5).count
@@ -14,14 +25,21 @@ class Api::V1::StocksController < ApplicationController
   end
 
   def check
-    user = User.find(params[:user_id])
     log = Log.find(params[:log_id])
-    stocked = user.already_stocked?(log)
     count = log.stocks.count
-    response = {
-      stocked: stocked,
-      count: count
-    }
+    if params[:user_id] == "null"
+      response = {
+        stocked: false,
+        count: count
+      }
+    else
+      user = User.find(params[:user_id])
+      stocked = user.already_stocked?(log)
+      response = {
+        stocked: stocked,
+        count: count
+      }
+    end
     render json: response
   end
 
