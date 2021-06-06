@@ -45,12 +45,12 @@
           </template>
           <template v-else>
             <template v-if="alreadyStocked == true">
-              <button class="btn-filled"> <!-- ここにストックアクションを追加 -->
+              <button class="btn-filled" @click="destroyStock">
                 <p>ストックを取り消す <span class="stock-count__number">{{ stockedCount }}</span></p>
               </button>
             </template>
             <template v-else>
-              <button class="btn-default"> <!-- ここにストックアクションを追加 -->
+              <button class="btn-default" @click="createStock">
                 <p>ストックする <span class="stock-count__number">{{ stockedCount }}</span></p>
               </button>
             </template>
@@ -205,6 +205,24 @@ export default {
         .catch(err => {
           console.log('error:', err)
         })
+    },
+    createStock: function(){
+      axios
+        .post(`/api/v1/stocks/create.json?log_id=${this.log.id}`)
+        .then(response => {
+          console.log(response.data)
+        })
+      this.alreadyStocked = true;
+      this.stockedCount += 1;
+    },
+    destroyStock: function(){
+      axios
+        .delete(`/api/v1/stocks/destroy.json?log_id=${this.log.id}`)
+        .then(response => {
+          console.log(response.data)
+        })
+      this.alreadyStocked = false;
+      this.stockedCount -= 1;
     },
   }
 }
