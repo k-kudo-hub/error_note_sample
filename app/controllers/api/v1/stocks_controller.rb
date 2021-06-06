@@ -25,14 +25,21 @@ class Api::V1::StocksController < ApplicationController
   end
 
   def check
-    user = User.find(params[:user_id])
     log = Log.find(params[:log_id])
-    stocked = user.already_stocked?(log)
     count = log.stocks.count
-    response = {
-      stocked: stocked,
-      count: count
-    }
+    if params[:user_id] == "null"
+      response = {
+        stocked: false,
+        count: count
+      }
+    else
+      user = User.find(params[:user_id])
+      stocked = user.already_stocked?(log)
+      response = {
+        stocked: stocked,
+        count: count
+      }
+    end
     render json: response
   end
 
