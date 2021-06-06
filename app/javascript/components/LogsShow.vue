@@ -57,7 +57,7 @@
           </template>
         </template>
         <template v-else>
-          <button class="btn-default"> <!-- ここにストックアクションを追加 -->
+          <button class="btn-default" @click="createStock">
             <p>ストックする <span class="stock-count__number">{{ stockedCount }}</span></p>
           </button>
         </template>
@@ -207,13 +207,17 @@ export default {
         })
     },
     createStock: function(){
-      axios
-        .post(`/api/v1/stocks/create.json?log_id=${this.log.id}`)
-        .then(response => {
-          console.log(response.data)
-        })
-      this.alreadyStocked = true;
-      this.stockedCount += 1;
+      if(this.currentUser.auth == true){
+        axios
+          .post(`/api/v1/stocks/create.json?log_id=${this.log.id}`)
+          .then(response => {
+            console.log(response.data)
+          })
+        this.alreadyStocked = true;
+        this.stockedCount += 1;
+      } else {
+        location.href='/users/sign_in';
+      }
     },
     destroyStock: function(){
       axios
