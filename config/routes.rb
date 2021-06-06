@@ -42,6 +42,8 @@ Rails.application.routes.draw do
       end
       resources :stocks, only: [] do
         collection do
+          post 'create'
+          delete 'destroy'
           get 'rank'
           get 'check'
         end
