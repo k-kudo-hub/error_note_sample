@@ -22,8 +22,8 @@
         </template>
         <template v-else>
           <template v-if="(currentUser.auth == true) && (currentUser.id == user.id)">
-            <a class="btn-filled">プロフィール編集</a>
-            <a class="btn-default">ログアウト</a>
+            <a href="/users/edit" class="btn-filled">プロフィール編集</a>
+            <a href="/users/sign_out" data-method="delete" class="btn-default">ログアウト</a>
           </template>
           <template v-else-if="(currentUser.auth == true) && (currentUser.id != user.id)">
             <a class="btn-filled">フォローする</a>
