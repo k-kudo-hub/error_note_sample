@@ -16,8 +16,8 @@
             <input type="hidden" value="検索">
           </form>
           <div class="header-btn-wrap">
-            <a :href="'/users/'+ currentUser.id +'/logs/new'" class="header-btn">
-              <i class="fas fa-pen fa-lg"></i>
+            <a class="header-btn">
+              <i @click="$emit('newLog')" class="fas fa-pen fa-lg"></i>
             </a>
             <a @click="showCurrentUserInformation" class="header-btn">
               <template v-if="this.currentUser.picture">
