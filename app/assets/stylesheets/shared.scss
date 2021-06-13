@@ -350,6 +350,10 @@ form {
     border-radius: 20px;
     background-color: white;
   }
+  &:hover {
+    cursor: pointer;
+    opacity: 0.6;
+  }
 }
 
 .fa-stack {
