@@ -40,7 +40,7 @@
               </template>
               <div class="log-block__text-container">
                 <template v-if="item.release == true">
-                  <p class="mgr-5"><a :href="'/users/'+item.user_id">{{item.user_name}}</a></p>
+                  <p class="mr-5"><a @click="showMoreUserInfomations(item.user_id)">{{item.user_name}}</a></p>
                   <p>が{{item.updated_at}}に公開</p>
                 </template>
                 <template v-else>  
@@ -185,10 +185,18 @@ export default {
     },
     showMoreInfomations: function(user_id, log_id){
       this.$router.push({
-        name: 'log-show',
+        name: 'logs-show',
         params: {
           user_id: user_id,
           log_id: log_id, 
+        }
+      })
+    },
+    showMoreUserInfomations: function(user_id){
+      this.$router.push({
+        name: 'users-show',
+        params: {
+          user_id: user_id
         }
       })
     }
