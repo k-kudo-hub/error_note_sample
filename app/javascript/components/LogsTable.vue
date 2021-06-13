@@ -1,7 +1,7 @@
 <template>
   <section class="app-body-inner">
     <h1>{{pageTitle}}</h1>
-    <v-list three-line>
+    <v-list three-line v-if="this.logs.length > 0">
       <article v-for="(item) in logs" :key="item.id" class="log-block" :items-per-page="itemPerPage">
         <div class="log-block__upper">
           <h2 @click="$emit('showMoreInfo', item.user_id, item.id)">{{item.title}}</h2>
@@ -43,7 +43,7 @@
         />
       </template>
     </v-list>
-    <p class="no-content-message" v-if="this.logs.length == 0">{{pageTitle}}はありません。</p>
+    <p class="no-content-message" v-else>{{pageTitle}}はありません。</p>
   </section>
 </template>
 
