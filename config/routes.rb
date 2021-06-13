@@ -19,6 +19,8 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :users, only: [] do
         collection do
+          get 'show'
+          get 'user_log_index'
           get 'authentication'
         end
       end
@@ -42,6 +44,7 @@ Rails.application.routes.draw do
       end
       resources :stocks, only: [] do
         collection do
+          get 'index'
           post 'create'
           delete 'destroy'
           get 'rank'
