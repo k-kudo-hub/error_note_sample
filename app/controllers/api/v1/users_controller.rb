@@ -16,4 +16,56 @@ class Api::V1::UsersController < ApplicationController
     end
     render json: user
   end
+
+  def show
+    user = User.find(params[:user_id])
+    picture = user.picture? ? user.picture.url : nil
+    user = { id: user.id, name: user.name, picture: picture, introduce: user.introduce }
+    render json: user
+  end
+
+  def user_log_index
+    @user = User.find(params[:user_id])
+    logs = published_log.order(updated_at: :desc).page(params[:page]).per(10)
+    array = []
+    array_push(logs, array)
+    total_pages = logs.total_pages
+    response = {
+      logs: array,
+      total_pages: total_pages
+    }
+    render json: response
+  end
+
+  private
+
+  def published_log
+    if user_signed_in? && (@user.id == current_user.id)
+      @user.logs.all.includes(:user, :languages)
+    else
+      @user.logs.where(release: true).includes(:user, :languages)
+    end
+  end
+
+  def array_push(logs, array)
+    logs.each do |log|
+      languages = []
+      log.languages.limit(3).each do |language|
+        languages.push(language.name)
+      end
+      picture = log.user.picture? ? log.user.picture.url : nil
+      array.push(
+        id: log.id,
+        title: log.title,
+        languages: languages,
+        updated_at:l(log.updated_at, format: :default),
+        release: log.release,
+        user_id: log.user.id,
+        user_name: log.user.name,
+        user_picture: picture,
+      )
+    end
+    return array
+  end
+
 end

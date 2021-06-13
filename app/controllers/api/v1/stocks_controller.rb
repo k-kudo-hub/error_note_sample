@@ -3,6 +3,18 @@ class Api::V1::StocksController < ApplicationController
     render json: { error: '404 not found' }, status: 404
   end
 
+  def index
+    stocks = current_user.my_stocks.page(params[:page]).per(10)
+    array = []
+    array_push(stocks, array)
+    total_pages = stocks.total_pages
+    response = {
+      stocks: array,
+      total_pages: total_pages
+    }
+    render json: response
+  end
+
   def create
     stock = current_user.stocks.create(log_id: params[:log_id])
     render json: stock, status: :created
@@ -41,6 +53,29 @@ class Api::V1::StocksController < ApplicationController
       }
     end
     render json: response
+  end
+
+  private
+
+  def array_push(logs, array)
+    logs.each do |log|
+      languages = []
+      log.languages.limit(3).each do |language|
+        languages.push(language.name)
+      end
+      picture = log.user.picture? ? log.user.picture.url : nil
+      array.push(
+        id: log.id,
+        title: log.title,
+        languages: languages,
+        updated_at:l(log.updated_at, format: :default),
+        release: log.release,
+        user_id: log.user.id,
+        user_name: log.user.name,
+        user_picture: picture,
+      )
+    end
+    return array
   end
 
 end
