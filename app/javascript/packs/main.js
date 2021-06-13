@@ -21,6 +21,7 @@ document.addEventListener('turbolinks:load', () => {
   if(document.URL.match("/users/password/edit")) return false;
   if(document.URL.match("/users/cancel")) return false;
   if(document.URL.match("/users/edit")) return false;
+  if(document.URL.match("/logs/new")) return false;
   if(insertTarget) {
     const usr = new Vue({
       router,
