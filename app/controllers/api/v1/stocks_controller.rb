@@ -16,13 +16,13 @@ class Api::V1::StocksController < ApplicationController
   end
 
   def create
-    stock = current_user.stocks.create(log_id: params[:log_id])
+    stock = current_user.stocks.create!(log_id: params[:log_id])
     render json: stock, status: :created
   end
   
   def destroy
     stock = Stock.find_by(log_id: params[:log_id], user_id: current_user.id)
-    stock.destroy
+    stock.destroy!
     head :no_content
   end
 
@@ -39,13 +39,13 @@ class Api::V1::StocksController < ApplicationController
   def check
     log = Log.find(params[:log_id])
     count = log.stocks.count
-    if params[:user_id] == "null"
+    if !user_signed_in?
       response = {
         stocked: false,
         count: count
       }
     else
-      user = User.find(params[:user_id])
+      user = User.find(current_user.id)
       stocked = user.already_stocked?(log)
       response = {
         stocked: stocked,

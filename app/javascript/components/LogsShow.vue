@@ -140,9 +140,9 @@ export default {
       var name = langName.toLowerCase().replace(/\s+/g, '').replace('#', 's').replace('.', 'd');
       return name;
     },
-    getStockData: async function(current_user_id, log_id){
+    getStockData: async function(){
       await axios
-        .get(`/api/v1/stocks/check.json?user_id=${this.currentUser.id}&log_id=${this.$route.params['log_id']}`)
+        .get(`/api/v1/stocks/check.json?log_id=${this.$route.params['log_id']}`)
         .then(response => (
           this.alreadyStocked = response.data.stocked,
           this.stockedCount = response.data.count
