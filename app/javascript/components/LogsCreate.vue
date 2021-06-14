@@ -75,6 +75,17 @@ export default {
       errors: [],
     }
   },
+  props: {
+    logSignal: false,
+  },
+  watch: {
+    logSignal: function(){
+      if(this.logSignal == true){
+        this.toggleModal();
+        this.$emit("closeLogSignal");
+      }
+    } 
+  },
   mounted() {
     var self = this;
     axios

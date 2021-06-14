@@ -1,8 +1,16 @@
 <template>
   <div id="app" class="app">
-    <Header @search="searchSignal" :currentUser="currentUser"></Header>
+    <Header
+     @search="searchSignal"
+     @newLog="newLogSignal"
+     :currentUser="currentUser"
+    />
     <div class="app-body" id="app_body">
-      <LogsCreate v-if="currentUser.auth == true"></LogsCreate>
+      <LogsCreate 
+        v-if="currentUser.auth == true"
+        :logSignal="logSignal"
+        @closeLogSignal="closeLog"
+      />
       <router-view :catchKeyword="keyword" :currentUser="currentUser"></router-view>
     </div>
     <Footer></Footer>
@@ -31,9 +39,10 @@ export default {
         auth: false,
       },
       keyword: "",
+      logSignal: false,
     }
   },
-  mounted() {
+  created() {
     var self = this;
     axios
       .get('/api/v1/users/authentication.json')
@@ -42,6 +51,12 @@ export default {
   methods: {
     searchSignal: function(keyword){
       this.keyword = keyword;
+    },
+    newLogSignal: function(){
+      this.logSignal = true;
+    },
+    closeLog: function(){
+      this.logSignal = false;
     }
   }
 }

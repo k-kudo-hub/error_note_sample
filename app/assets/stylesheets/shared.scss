@@ -22,7 +22,7 @@ form {
   margin: 32px;
 }
 
-.mgr-5 {
+.mr-5 {
   margin-right: 5px;
 }
 
@@ -349,6 +349,10 @@ form {
   img {
     border-radius: 20px;
     background-color: white;
+  }
+  &:hover {
+    cursor: pointer;
+    opacity: 0.6;
   }
 }
 
