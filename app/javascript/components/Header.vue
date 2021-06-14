@@ -16,10 +16,10 @@
             <input type="hidden" value="検索">
           </form>
           <div class="header-btn-wrap">
-            <a :href="'/users/'+ currentUser.id +'/logs/new'" class="header-btn">
-              <i class="fas fa-pen fa-lg"></i>
+            <a class="header-btn">
+              <i @click="$emit('newLog')" class="fas fa-pen fa-lg"></i>
             </a>
-            <a :href="'/users/'+ currentUser.id" class="header-btn">
+            <a @click="showCurrentUserInformation" class="header-btn">
               <template v-if="this.currentUser.picture">
                 <img :src="this.currentUser.picture" height="30px" width="30">
               </template>
@@ -72,6 +72,14 @@ export default {
           name: 'logs-index'
         })
       }
+    },
+    showCurrentUserInformation: function(){
+      this.$router.push({
+        name: 'users-show',
+        params: {
+          user_id: this.currentUser.id, 
+        }
+      })
     }
   }
 

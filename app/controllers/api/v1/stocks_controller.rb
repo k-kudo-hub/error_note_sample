@@ -3,14 +3,26 @@ class Api::V1::StocksController < ApplicationController
     render json: { error: '404 not found' }, status: 404
   end
 
+  def index
+    stocks = current_user.my_stocks.page(params[:page]).per(10)
+    array = []
+    array_push(stocks, array)
+    total_pages = stocks.total_pages
+    response = {
+      stocks: array,
+      total_pages: total_pages
+    }
+    render json: response
+  end
+
   def create
-    stock = current_user.stocks.create(log_id: params[:log_id])
+    stock = current_user.stocks.create!(log_id: params[:log_id])
     render json: stock, status: :created
   end
   
   def destroy
     stock = Stock.find_by(log_id: params[:log_id], user_id: current_user.id)
-    stock.destroy
+    stock.destroy!
     head :no_content
   end
 
@@ -27,13 +39,13 @@ class Api::V1::StocksController < ApplicationController
   def check
     log = Log.find(params[:log_id])
     count = log.stocks.count
-    if params[:user_id] == "null"
+    if !user_signed_in?
       response = {
         stocked: false,
         count: count
       }
     else
-      user = User.find(params[:user_id])
+      user = User.find(current_user.id)
       stocked = user.already_stocked?(log)
       response = {
         stocked: stocked,
@@ -41,6 +53,29 @@ class Api::V1::StocksController < ApplicationController
       }
     end
     render json: response
+  end
+
+  private
+
+  def array_push(logs, array)
+    logs.each do |log|
+      languages = []
+      log.languages.limit(3).each do |language|
+        languages.push(language.name)
+      end
+      picture = log.user.picture? ? log.user.picture.url : nil
+      array.push(
+        id: log.id,
+        title: log.title,
+        languages: languages,
+        updated_at:l(log.updated_at, format: :default),
+        release: log.release,
+        user_id: log.user.id,
+        user_name: log.user.name,
+        user_picture: picture,
+      )
+    end
+    return array
   end
 
 end
