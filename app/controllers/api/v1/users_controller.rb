@@ -1,15 +1,15 @@
+# frozen_string_literal: true
+
 class Api::V1::UsersController < ApplicationController
-  rescue_from ActiveRecord::RecordNotFound do |exception|
-    render json: { error: '404 not found' }, status: 404
+  rescue_from ActiveRecord::RecordNotFound do |_exception|
+    render json: { error: '404 not found' }, status: :not_found
   end
 
   def authentication
     if user_signed_in?
-      if current_user.picture?
-        picture = current_user.picture.url
-      else
-        picture = nil
-      end
+      picture = if current_user.picture?
+                  current_user.picture.url
+                end
       user = { auth: true, id: current_user.id, picture: picture }
     else
       user = { auth: false, id: nil, picture: nil }
@@ -39,33 +39,32 @@ class Api::V1::UsersController < ApplicationController
 
   private
 
-  def published_log
-    if user_signed_in? && (@user.id == current_user.id)
-      @user.logs.all.includes(:user, :languages)
-    else
-      @user.logs.where(release: true).includes(:user, :languages)
-    end
-  end
-
-  def array_push(logs, array)
-    logs.each do |log|
-      languages = []
-      log.languages.limit(3).each do |language|
-        languages.push(language.name)
+    def published_log
+      if user_signed_in? && (@user.id == current_user.id)
+        @user.logs.all.includes(:user, :languages)
+      else
+        @user.logs.where(release: true).includes(:user, :languages)
       end
-      picture = log.user.picture? ? log.user.picture.url : nil
-      array.push(
-        id: log.id,
-        title: log.title,
-        languages: languages,
-        updated_at:l(log.updated_at, format: :default),
-        release: log.release,
-        user_id: log.user.id,
-        user_name: log.user.name,
-        user_picture: picture,
-      )
     end
-    return array
-  end
 
+    def array_push(logs, array)
+      logs.each do |log|
+        languages = []
+        log.languages.limit(3).each do |language|
+          languages.push(language.name)
+        end
+        picture = log.user.picture? ? log.user.picture.url : nil
+        array.push(
+          id: log.id,
+          title: log.title,
+          languages: languages,
+          updated_at: l(log.updated_at, format: :default),
+          release: log.release,
+          user_id: log.user.id,
+          user_name: log.user.name,
+          user_picture: picture
+        )
+      end
+      array
+    end
 end

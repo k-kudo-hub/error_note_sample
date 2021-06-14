@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 class Api::V1::StocksController < ApplicationController
-  rescue_from ActiveRecord::RecordNotFound do |exception|
-    render json: { error: '404 not found' }, status: 404
+  rescue_from ActiveRecord::RecordNotFound do |_exception|
+    render json: { error: '404 not found' }, status: :not_found
   end
 
   def index
@@ -19,7 +21,7 @@ class Api::V1::StocksController < ApplicationController
     stock = current_user.stocks.create!(log_id: params[:log_id])
     render json: stock, status: :created
   end
-  
+
   def destroy
     stock = Stock.find_by(log_id: params[:log_id], user_id: current_user.id)
     stock.destroy!
@@ -57,25 +59,24 @@ class Api::V1::StocksController < ApplicationController
 
   private
 
-  def array_push(logs, array)
-    logs.each do |log|
-      languages = []
-      log.languages.limit(3).each do |language|
-        languages.push(language.name)
+    def array_push(logs, array)
+      logs.each do |log|
+        languages = []
+        log.languages.limit(3).each do |language|
+          languages.push(language.name)
+        end
+        picture = log.user.picture? ? log.user.picture.url : nil
+        array.push(
+          id: log.id,
+          title: log.title,
+          languages: languages,
+          updated_at: l(log.updated_at, format: :default),
+          release: log.release,
+          user_id: log.user.id,
+          user_name: log.user.name,
+          user_picture: picture
+        )
       end
-      picture = log.user.picture? ? log.user.picture.url : nil
-      array.push(
-        id: log.id,
-        title: log.title,
-        languages: languages,
-        updated_at:l(log.updated_at, format: :default),
-        release: log.release,
-        user_id: log.user.id,
-        user_name: log.user.name,
-        user_picture: picture,
-      )
+      array
     end
-    return array
-  end
-
 end

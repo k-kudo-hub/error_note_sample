@@ -15,7 +15,7 @@ Rails.application.routes.draw do
     end
   end
 
-  namespace :api, {format: 'json'} do
+  namespace :api, { format: 'json' } do
     namespace :v1 do
       resources :users, only: [] do
         collection do
