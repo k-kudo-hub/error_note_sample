@@ -9,8 +9,8 @@
       :currentLogs="getUserLogs"
       :pageTitle="user.name + 'のノート'"
       @paginate="paginateLog"
-      @showMoreInfo="showMoreInfomations"
-      @showMoreUserInfo="showMoreUserInfomations"
+      @showMoreInfo="showMoreInformations"
+      @showMoreUserInfo="showMoreUserInformations"
     />
     <UsersTable
       v-if="currentUser.auth && (currentUser.id == user.id)"
@@ -22,8 +22,8 @@
       :currentLogs="getUserStocks"
       pageTitle='ストック一覧'
       @paginate="paginateStock"
-      @showMoreInfo="showMoreInfomations"
-      @showMoreUserInfo="showMoreUserInfomations"
+      @showMoreInfo="showMoreInformations"
+      @showMoreUserInfo="showMoreUserInformations"
      />
     <UsersProfile :user="user" :currentUser="currentUser"></UsersProfile>
   </div>
@@ -104,7 +104,7 @@ export default {
       this.stocksCurrentPage = args[0]
       this.getUserStocks();
     },
-    showMoreInfomations: function(...args){
+    showMoreInformations: function(...args){
       this.$router.push({
         name: 'logs-show',
         params: {
@@ -113,7 +113,7 @@ export default {
         }
       })
     },
-    showMoreUserInfomations: function(...args){
+    showMoreUserInformations: function(...args){
       location.href=`/users/${args}`
     },
   }

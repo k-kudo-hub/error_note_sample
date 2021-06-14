@@ -18,7 +18,7 @@
       <div class="profile-btn__container">
         <template v-if="use_case == 'log'">
           <a v-if="(currentUser.auth == true) && (currentUser.id != user.id)" class="btn-filled">フォローする</a>
-          <a @click="showMoreUserInformation" class="btn-default">プロフィールへ</a>
+          <a @click="showMoreUserInformations" class="btn-default">プロフィールへ</a>
         </template>
         <template v-else>
           <template v-if="(currentUser.auth == true) && (currentUser.id == user.id)">
@@ -56,7 +56,7 @@ export default {
     use_case: "",
   },
   methods: {
-    showMoreUserInformation: function(){
+    showMoreUserInformations: function(){
       // location.href=`/users/${this.user.id}`
       this.$router.push({
         name: 'users-show',
