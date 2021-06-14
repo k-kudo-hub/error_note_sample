@@ -17,7 +17,7 @@ class Api::V1::LogsController < ApplicationController
     render json: response
   end
 
-  def latest_stocks
+  def latest_stocks_index
     logs = current_user.my_stocks.page(params[:page]).per(10)
     array = []
     array_push(logs, array)
@@ -29,7 +29,7 @@ class Api::V1::LogsController < ApplicationController
     render json: response
   end
 
-  def most_stocked_logs
+  def most_stocked_index
     logs = Log.rank(10)
     array = []
     array_push(logs, array)

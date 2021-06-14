@@ -147,7 +147,7 @@ export default {
         this.pageTitle = "話題のノート";
       }
       axios
-        .get(`/api/v1/logs/most_stocked_logs.json`)
+        .get(`/api/v1/logs/most_stocked_index.json`)
         .then(response => (
           this.logs = response.data.logs,
           this.totalPages = response.data.totalPages
@@ -160,7 +160,7 @@ export default {
         this.pageTitle = "最近ストックしたノート"
       }  
       axios
-        .get(`/api/v1/logs/latest_stocks.json?page=${this.currentPage}&per=${this.itemPerPage}`)
+        .get(`/api/v1/logs/latest_stocks_index.json?page=${this.currentPage}&per=${this.itemPerPage}`)
         .then(response => (
           this.logs = response.data.logs,
           this.totalPages = response.data.totalPages

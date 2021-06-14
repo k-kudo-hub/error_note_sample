@@ -27,8 +27,8 @@ Rails.application.routes.draw do
       resources :logs, only: [] do
         collection do
           get 'index'
-          get 'latest_stocks'
-          get 'most_stocked_logs'
+          get 'latest_stocks_index'
+          get 'most_stocked_index'
           post 'create'
           get 'show'
           put 'update'
