@@ -13,15 +13,13 @@ document.addEventListener('turbolinks:load', () => {
       alreadyInsert.removeChild(alreadyInsert.lastChild);
     }
   }
-  if(document.URL.match("/users/sign_in")) return false;
-  if(document.URL.match("/users/sign_up")) return false;
-  if(document.URL.match("/users/sign_out")) return false;
-  if(document.URL.match("/users/password")) return false;
-  if(document.URL.match("/users/password/new")) return false;
-  if(document.URL.match("/users/password/edit")) return false;
-  if(document.URL.match("/users/cancel")) return false;
-  if(document.URL.match("/users/edit")) return false;
-  if(document.URL.match("/logs/new")) return false;
+  if( document.URL.match("/cancel")
+   || document.URL.match("/users/edit")
+   || document.URL.match("/logs/new")
+   || document.URL.match("^.*users$")
+   || document.URL.match("^(?=.*password).*$") 
+   || document.URL.match("^(?=.*sign_).*$")
+  ) return false;
   if(insertTarget) {
     const usr = new Vue({
       router,
