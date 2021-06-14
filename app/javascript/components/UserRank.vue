@@ -20,7 +20,7 @@
         <div class="lang-rank__box" v-for="(item, index) in logs" :key="item.id">
           <div class="lang-rank__box-left">
             <p class="lang-rank__index">{{ index + 1 }}</p>
-            <a :href="'/users/'+item.user_id+'/logs/'+item.id" class="rank__stock-title">{{ item.title }}</a>
+            <a @click="showMoreInformations(item.user_id, item.id)" class="rank__stock-title">{{ item.title }}</a>
           </div>
           <div class="lang-rank__box-right">
             <p class="lang-rank__count">{{item.count}} Stocks</p>
@@ -69,7 +69,16 @@ export default {
     trimName: function(langName){
       var name = langName.toLowerCase().replace(/\s+/g, '').replace('#', 's').replace('.', 'd');
       return name;
-    }
+    },
+    showMoreInformations: function(user_id, log_id){
+      this.$router.push({
+        name: 'logs-show',
+        params: {
+          user_id: user_id,
+          log_id: log_id, 
+        }
+      })
+    },
   },
 }
 </script>
@@ -92,5 +101,6 @@ export default {
 }
 .rank__stock-title:hover {
   color: black;
+  cursor: pointer;
 }
 </style>
