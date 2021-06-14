@@ -1,5 +1,5 @@
 <template>
-  <section class="app-body-inner">
+  <section class="app-body-inner" :class="this.addClass">
     <h1>{{pageTitle}}</h1>
     <v-list three-line v-if="this.logs.length > 0">
       <article v-for="(item) in logs" :key="item.id" class="log-block" :items-per-page="itemPerPage">
@@ -57,12 +57,6 @@ export default {
     }
   },
   props: {
-    user: {
-      id: 0,
-      name: "",
-      introduce: "",
-      picture: null,
-    },
     logs: {
 
     },
@@ -70,6 +64,7 @@ export default {
     totalPages: 0,
     pageTitle: "",
     currentLogs: null,
+    addClass: "",
   },
   computed: {
     localCurrentPage: {
