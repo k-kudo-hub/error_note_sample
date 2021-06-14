@@ -1,7 +1,6 @@
 <template>
   <div class="user-show">
-    <UsersTable
-      :user="user"
+    <LogsTable
       :logs="logs"
       :currentUser="currentUser"
       :currentPage="logsCurrentPage"
@@ -12,9 +11,8 @@
       @showMoreInfo="showMoreInformations"
       @showMoreUserInfo="showMoreUserInformations"
     />
-    <UsersTable
+    <LogsTable
       v-if="currentUser.auth && (currentUser.id == user.id)"
-      :user="user"
       :logs="stocks"
       :currentUser="currentUser"
       :currentPage="stocksCurrentPage"
@@ -32,12 +30,12 @@
 <script>
 import axios from 'axios';
 import UsersProfile from '../components/UsersProfile';
-import UsersTable from '../components/LogsTable';
+import LogsTable from '../components/LogsTable';
 
 export default {
   components: {
     'UsersProfile': UsersProfile,
-    'UsersTable': UsersTable,
+    'LogsTable': LogsTable,
   },
   data(){
     return {
