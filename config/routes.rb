@@ -11,7 +11,6 @@ Rails.application.routes.draw do
       collection do
         get 'search'
       end
-      resources :stocks, only: %i[create destroy]
     end
   end
 
@@ -49,10 +48,6 @@ Rails.application.routes.draw do
           delete 'destroy'
           get 'rank'
           get 'check'
-        end
-      end
-      resources :log_languages, only: [] do
-        collection do
         end
       end
     end
