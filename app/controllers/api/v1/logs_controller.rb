@@ -10,10 +10,7 @@ class Api::V1::LogsController < ApplicationController
     array = []
     array_push(logs, array)
     total_pages = logs.total_pages
-    response = {
-      logs: array,
-      total_pages: total_pages
-    }
+    response = { logs: array, total_pages: total_pages }
     render json: response
   end
 
@@ -22,10 +19,7 @@ class Api::V1::LogsController < ApplicationController
     array = []
     array_push(logs, array)
     total_pages = logs.total_pages
-    response = {
-      logs: array,
-      total_pages: total_pages
-    }
+    response = { logs: array, total_pages: total_pages }
     render json: response
   end
 
@@ -33,10 +27,7 @@ class Api::V1::LogsController < ApplicationController
     logs = Log.rank(10)
     array = []
     array_push(logs, array)
-    response = {
-      logs: array,
-      total_pages: 1
-    }
+    response = { logs: array, total_pages: 1 }
     render json: response
   end
 
@@ -60,11 +51,7 @@ class Api::V1::LogsController < ApplicationController
     user = { id: log.user_id, name: log.user.name, picture: picture, introduce: log.user.introduce }
     log = { id: log.id, title: log.title, error: log.error, solution: log.solution, release: log.release,
             updated_at: l(log.updated_at, format: :default) }
-    response = {
-      log: log,
-      languages: languages,
-      user: user
-    }
+    response = { log: log, languages: languages, user: user }
     render json: response
   end
 

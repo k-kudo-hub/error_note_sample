@@ -10,10 +10,7 @@ class Api::V1::StocksController < ApplicationController
     array = []
     array_push(stocks, array)
     total_pages = stocks.total_pages
-    response = {
-      stocks: array,
-      total_pages: total_pages
-    }
+    response = { stocks: array, total_pages: total_pages }
     render json: response
   end
 
@@ -41,18 +38,12 @@ class Api::V1::StocksController < ApplicationController
   def check
     log = Log.find(params[:log_id])
     count = log.stocks.count
-    if !user_signed_in?
-      response = {
-        stocked: false,
-        count: count
-      }
-    else
+    if user_signed_in?
       user = User.find(current_user.id)
       stocked = user.already_stocked?(log)
-      response = {
-        stocked: stocked,
-        count: count
-      }
+      response = { stocked: stocked, count: count }
+    else
+      response = { stocked: false, count: count }
     end
     render json: response
   end

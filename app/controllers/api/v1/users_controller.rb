@@ -7,9 +7,7 @@ class Api::V1::UsersController < ApplicationController
 
   def authentication
     if user_signed_in?
-      picture = if current_user.picture?
-                  current_user.picture.url
-                end
+      picture = current_user.picture? ? current_user.picture.url : nil
       user = { auth: true, id: current_user.id, picture: picture }
     else
       user = { auth: false, id: nil, picture: nil }
@@ -30,10 +28,7 @@ class Api::V1::UsersController < ApplicationController
     array = []
     array_push(logs, array)
     total_pages = logs.total_pages
-    response = {
-      logs: array,
-      total_pages: total_pages
-    }
+    response = { logs: array, total_pages: total_pages }
     render json: response
   end
 
