@@ -21,6 +21,6 @@ class Log < ApplicationRecord
   end
 
   def self.rank(limit)
-    self.find(Stock.group(:log_id).order('count(log_id) desc').limit(limit).pluck(:id))
+    find(Stock.group(:log_id).order('count(log_id) desc').limit(limit).pluck(:id))
   end
 end

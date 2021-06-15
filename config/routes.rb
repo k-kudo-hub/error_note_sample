@@ -11,11 +11,10 @@ Rails.application.routes.draw do
       collection do
         get 'search'
       end
-      resources :stocks, only: %i[create destroy]
     end
   end
 
-  namespace :api, {format: 'json'} do
+  namespace :api, { format: 'json' } do
     namespace :v1 do
       resources :users, only: [] do
         collection do
@@ -27,8 +26,8 @@ Rails.application.routes.draw do
       resources :logs, only: [] do
         collection do
           get 'index'
-          get 'latest_stocks'
-          get 'most_stocked_logs'
+          get 'latest_stocks_index'
+          get 'most_stocked_index'
           post 'create'
           get 'show'
           put 'update'
@@ -49,10 +48,6 @@ Rails.application.routes.draw do
           delete 'destroy'
           get 'rank'
           get 'check'
-        end
-      end
-      resources :log_languages, only: [] do
-        collection do
         end
       end
     end

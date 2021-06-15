@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 class Api::V1::LogsController < ApplicationController
-  rescue_from ActiveRecord::RecordNotFound do |exception|
-    render json: { error: '404 not found' }, status: 404
+  rescue_from ActiveRecord::RecordNotFound do |_exception|
+    render json: { error: '404 not found' }, status: :not_found
   end
 
   def index
@@ -8,40 +10,31 @@ class Api::V1::LogsController < ApplicationController
     array = []
     array_push(logs, array)
     total_pages = logs.total_pages
-    response = {
-      logs: array,
-      total_pages: total_pages
-    }
+    response = { logs: array, total_pages: total_pages }
     render json: response
   end
 
-  def latest_stocks
+  def latest_stocks_index
     logs = current_user.my_stocks.page(params[:page]).per(10)
     array = []
     array_push(logs, array)
     total_pages = logs.total_pages
-    response = {
-      logs: array,
-      total_pages: total_pages
-    }
+    response = { logs: array, total_pages: total_pages }
     render json: response
   end
 
-  def most_stocked_logs
+  def most_stocked_index
     logs = Log.rank(10)
     array = []
     array_push(logs, array)
-    response = {
-      logs: array,
-      total_pages: 1
-    }
+    response = { logs: array, total_pages: 1 }
     render json: response
-  end 
+  end
 
   def create
     log = Log.new(log_params)
     if log.save
-      log_info = {id: log.id, user_id: current_user.id}
+      log_info = { id: log.id, user_id: current_user.id }
       render json: log_info
     else
       render json: log.errors, status: :unprocessable_entity
@@ -54,14 +47,11 @@ class Api::V1::LogsController < ApplicationController
     log.languages.each do |lang|
       languages.push(id: lang.id, name: lang.name)
     end
-    log.user.picture ? picture = log.user.picture.url : picture = nil 
-    user = {id: log.user_id, name: log.user.name, picture: picture, introduce: log.user.introduce }
-    log = {id: log.id, title: log.title, error: log.error, solution: log.solution, release: log.release, updated_at: l(log.updated_at, format: :default)}
-    response = {
-      log: log,
-      languages: languages,
-      user: user,
-    }
+    picture = log.user.picture ? log.user.picture.url : nil
+    user = { id: log.user_id, name: log.user.name, picture: picture, introduce: log.user.introduce }
+    log = { id: log.id, title: log.title, error: log.error, solution: log.solution, release: log.release,
+            updated_at: l(log.updated_at, format: :default) }
+    response = { log: log, languages: languages, user: user }
     render json: response
   end
 
@@ -72,9 +62,9 @@ class Api::V1::LogsController < ApplicationController
       error: params[:log][:error],
       solution: params[:log][:solution],
       release: params[:log][:release],
-      language_ids: params[:languages],
+      language_ids: params[:languages]
     )
-      log_info = {id: log.id, user_id: current_user.id}
+      log_info = { id: log.id, user_id: current_user.id }
       render json: log_info
     else
       render json: log.errors, status: :unprocessable_entity
@@ -105,29 +95,28 @@ class Api::V1::LogsController < ApplicationController
 
   private
 
-  def log_params
-    params.require(:log).permit(:title, :error, :solution, :release, { language_ids: []}).merge(user_id: current_user.id)
-  end
-
-  def array_push(logs, array)
-    logs.each do |log|
-      languages = []
-      log.languages.limit(3).each do |language|
-        languages.push(language.name)
-      end
-      picture = log.user.picture? ? log.user.picture.url : nil
-      array.push(
-        id: log.id,
-        title: log.title,
-        languages: languages,
-        updated_at:l(log.updated_at, format: :default),
-        release: log.release,
-        user_id: log.user.id,
-        user_name: log.user.name,
-        user_picture: picture,
-      )
+    def log_params
+      params.require(:log).permit(:title, :error, :solution, :release, { language_ids: [] }).merge(user_id: current_user.id)
     end
-    return array
-  end
 
+    def array_push(logs, array)
+      logs.each do |log|
+        languages = []
+        log.languages.limit(3).each do |language|
+          languages.push(language.name)
+        end
+        picture = log.user.picture? ? log.user.picture.url : nil
+        array.push(
+          id: log.id,
+          title: log.title,
+          languages: languages,
+          updated_at: l(log.updated_at, format: :default),
+          release: log.release,
+          user_id: log.user.id,
+          user_name: log.user.name,
+          user_picture: picture
+        )
+      end
+      array
+    end
 end

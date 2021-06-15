@@ -19,7 +19,7 @@
             <a class="header-btn">
               <i @click="$emit('newLog')" class="fas fa-pen fa-lg"></i>
             </a>
-            <a @click="showCurrentUserInformation" class="header-btn">
+            <a @click="showCurrentUserInformations" class="header-btn">
               <template v-if="this.currentUser.picture">
                 <img :src="this.currentUser.picture" height="30px" width="30">
               </template>
@@ -73,7 +73,7 @@ export default {
         })
       }
     },
-    showCurrentUserInformation: function(){
+    showCurrentUserInformations: function(){
       this.$router.push({
         name: 'users-show',
         params: {

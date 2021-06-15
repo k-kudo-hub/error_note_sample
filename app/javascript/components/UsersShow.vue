@@ -1,7 +1,6 @@
 <template>
   <div class="user-show">
-    <UsersTable
-      :user="user"
+    <LogsTable
       :logs="logs"
       :currentUser="currentUser"
       :currentPage="logsCurrentPage"
@@ -9,12 +8,11 @@
       :currentLogs="getUserLogs"
       :pageTitle="user.name + 'のノート'"
       @paginate="paginateLog"
-      @showMoreInfo="showMoreInfomations"
-      @showMoreUserInfo="showMoreUserInfomations"
+      @showMoreInfo="showMoreInformations"
+      @showMoreUserInfo="showMoreUserInformations"
     />
-    <UsersTable
+    <LogsTable
       v-if="currentUser.auth && (currentUser.id == user.id)"
-      :user="user"
       :logs="stocks"
       :currentUser="currentUser"
       :currentPage="stocksCurrentPage"
@@ -22,22 +20,22 @@
       :currentLogs="getUserStocks"
       pageTitle='ストック一覧'
       @paginate="paginateStock"
-      @showMoreInfo="showMoreInfomations"
-      @showMoreUserInfo="showMoreUserInfomations"
+      @showMoreInfo="showMoreInformations"
+      @showMoreUserInfo="showMoreUserInformations"
      />
-    <UsersProfile :user="user" :currentUser="currentUser"></UsersProfile>
+    <UsersProfile :user="user" :currentUser="currentUser" />
   </div>
 </template>
 
 <script>
 import axios from 'axios';
 import UsersProfile from '../components/UsersProfile';
-import UsersTable from '../components/LogsTable';
+import LogsTable from '../components/LogsTable';
 
 export default {
   components: {
     'UsersProfile': UsersProfile,
-    'UsersTable': UsersTable,
+    'LogsTable': LogsTable,
   },
   data(){
     return {
@@ -104,7 +102,7 @@ export default {
       this.stocksCurrentPage = args[0]
       this.getUserStocks();
     },
-    showMoreInfomations: function(...args){
+    showMoreInformations: function(...args){
       this.$router.push({
         name: 'logs-show',
         params: {
@@ -113,7 +111,7 @@ export default {
         }
       })
     },
-    showMoreUserInfomations: function(...args){
+    showMoreUserInformations: function(...args){
       location.href=`/users/${args}`
     },
   }

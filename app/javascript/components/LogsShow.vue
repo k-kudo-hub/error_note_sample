@@ -63,7 +63,7 @@
         </template>
       </div>
     </section>
-    <UsersProfile :user="user" :currentUser="currentUser" use_case="log"></UsersProfile>
+    <UsersProfile :user="user" :currentUser="currentUser" use_case="log" />
   </div>
 </template>
 
