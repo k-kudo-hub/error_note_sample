@@ -23,7 +23,7 @@
       @showMoreInfo="showMoreInformations"
       @showMoreUserInfo="showMoreUserInformations"
      />
-    <UsersProfile :user="user" :currentUser="currentUser"></UsersProfile>
+    <UsersProfile :user="user" :currentUser="currentUser" />
   </div>
 </template>
 

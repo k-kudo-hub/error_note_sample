@@ -13,7 +13,7 @@
       />
       <router-view :catchKeyword="keyword" :currentUser="currentUser"></router-view>
     </div>
-    <Footer></Footer>
+    <Footer/>
   </div>
 </template>
 <script>
