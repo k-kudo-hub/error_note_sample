@@ -53,7 +53,6 @@ export default {
   },
   methods: {
     showMoreUserInformations: function(){
-      // location.href=`/users/${this.user.id}`
       this.$router.push({
         name: 'users-show',
         params: {
