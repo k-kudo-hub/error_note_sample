@@ -17,16 +17,12 @@
     <div class="bottom-profile__lower">
       <div class="profile-btn__container">
         <template v-if="use_case == 'log'">
-          <a v-if="(currentUser.auth == true) && (currentUser.id != user.id)" class="btn-filled">フォローする</a>
           <a @click="showMoreUserInformations" class="btn-default">プロフィールへ</a>
         </template>
         <template v-else>
           <template v-if="(currentUser.auth == true) && (currentUser.id == user.id)">
             <a href="/users/edit" class="btn-filled">プロフィール編集</a>
             <a href="/users/sign_out" data-method="delete" class="btn-default">ログアウト</a>
-          </template>
-          <template v-else-if="(currentUser.auth == true) && (currentUser.id != user.id)">
-            <a class="btn-filled">フォローする</a>
           </template>
         </template>
       </div>
