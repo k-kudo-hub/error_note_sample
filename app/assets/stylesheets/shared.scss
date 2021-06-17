@@ -26,6 +26,10 @@ form {
   margin-right: 5px;
 }
 
+.scroll-lock {
+  overflow: hidden;
+}
+
 @mixin inner-base {
   background-color: white;
   max-width: 730px;
