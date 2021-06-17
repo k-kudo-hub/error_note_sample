@@ -149,10 +149,24 @@ export default {
         ))
     },
     toggleModal: function(){
-      this.modal == true ? this.modal = false : this.modal = true;
+      const targetSelector = document.getElementsByTagName('html')[0];
+      if(this.modal){
+        this.modal = false;
+        targetSelector.classList.remove("scroll-lock");
+      } else {
+        this.modal = true;
+        targetSelector.classList.add("scroll-lock");
+      }
     },
     toggleConfirmModal: function(){
-      this.confirmModal == true ? this.confirmModal = false : this.confirmModal = true;
+      const targetSelector = document.getElementsByTagName('html')[0];
+      if(this.confirmModal){
+        this.confirmModal = false;
+        targetSelector.classList.remove("scroll-lock");
+      } else {
+        this.confirmModal = true;
+        targetSelector.classList.add("scroll-lock");
+      }
     },
     getLanguageIds: function(languages){
       for(var language in languages) {
