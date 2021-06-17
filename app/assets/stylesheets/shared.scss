@@ -453,11 +453,12 @@ form {
   background-color: $site-danger-bg-color;
   border: 5px solid $site-danger-border-color;
   border-radius: 20px;
+  padding: 10px;
   margin: 0 auto;
   width: 80%;
   h2 {
     font-size: 1rem;
-    padding: 10px;
+    margin-bottom: 5px;
   }
   li {
     list-style: none;
