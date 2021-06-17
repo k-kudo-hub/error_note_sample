@@ -11,7 +11,10 @@
         :logSignal="logSignal"
         @closeLogSignal="closeLog"
       />
-      <router-view :catchKeyword="keyword" :currentUser="currentUser"></router-view>
+      <router-view
+        :catchKeyword="keyword"
+        :currentUser="currentUser"
+      />
     </div>
     <Footer/>
   </div>
