@@ -64,7 +64,14 @@ export default {
   },
   methods: {
     searchLogs: function(){
-      this.$emit('search', this.keyword)
+      if(location.pathname != "/"){
+        this.goHome()
+        setTimeout(()=>{
+          this.$emit('search', this.keyword)
+        }, 250)
+      } else {
+        this.$emit('search', this.keyword)
+      }
     },
     goHome: function(){
       if(location.pathname != "/"){
