@@ -90,6 +90,12 @@ export default {
   mounted(){
     this.getLatestLogs();
   },
+  watch: {
+    catchKeyword: function(){
+      this.keyword = this.$props.catchKeyword;
+      this.getSearchLogs();
+    }
+  },
   methods: {
     getLatestLogs: function(){
       if (this.currentLogs != this.getLatestLogs){
@@ -123,7 +129,7 @@ export default {
         this.currentPage = 1;
         this.currentLogs = this.getLatestStocks;
         this.pageTitle = "最近ストックしたノート"
-      }  
+      }
       axios
         .get(`/api/v1/logs/latest_stocks_index.json?page=${this.currentPage}&per=${this.itemPerPage}`)
         .then(response => (
@@ -170,12 +176,6 @@ export default {
       this.currentLogs();
     },
   },
-  watch: {
-    catchKeyword: function(){
-      this.keyword = this.$props.catchKeyword;
-      this.getSearchLogs();
-    }
-  }
 }
 </script>
 <style lang="scss" scoped>
