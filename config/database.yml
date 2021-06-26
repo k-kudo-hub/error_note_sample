@@ -17,5 +17,6 @@ test:
 production:
   <<: *default
   database: error_note
+  host: <%= ENV['ERROR_NOTE_DATABASE_HOST'] %>
   username: <%= ENV['ERROR_NOTE_DATABASE_USERNAME'] %>
   password: <%= ENV['ERROR_NOTE_DATABASE_PASSWORD'] %>
