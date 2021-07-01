@@ -21,6 +21,7 @@ group :development, :test do
   gem 'capistrano-rbenv'
   gem 'capistrano-bundler'
   gem 'capistrano-rails'
+  gem 'capistrano3-unicorn'
 end
 
 group :development do
@@ -40,10 +41,7 @@ group :test do
   gem 'webdrivers'
 end
 
-group :development, :test do
-  gem 'unicorn'
-end
-
+gem 'unicorn'
 gem 'carrierwave'
 gem 'devise'
 gem 'devise-i18n'
