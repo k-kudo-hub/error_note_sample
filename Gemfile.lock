@@ -113,6 +113,10 @@ GEM
       warden (~> 1.2.3)
     devise-i18n (1.9.4)
       devise (>= 4.7.1)
+    dotenv (2.7.6)
+    dotenv-rails (2.7.6)
+      dotenv (= 2.7.6)
+      railties (>= 3.2)
     erubi (1.10.0)
     ffi (1.15.0)
     globalid (0.4.2)
@@ -323,6 +327,7 @@ DEPENDENCIES
   carrierwave
   devise
   devise-i18n
+  dotenv-rails
   jbuilder (~> 2.7)
   kaminari
   listen (~> 3.3)

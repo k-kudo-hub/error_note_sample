@@ -41,12 +41,13 @@ group :test do
   gem 'webdrivers'
 end
 
-gem 'unicorn'
 gem 'carrierwave'
 gem 'devise'
 gem 'devise-i18n'
+gem 'dotenv-rails'
 gem 'kaminari'
 gem 'rails-i18n'
 gem 'rmagick'
+gem 'unicorn'
 
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
