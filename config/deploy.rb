@@ -1,9 +1,10 @@
 lock "~> 3.16.0"
 
 set :application, "error_note_sample"
-set :repo_url, "git@github.com:k-kudo-hub/error_note_sample.git"
+set :repo_url, "https://github.com/k-kudo-hub/error_note_sample.git"
 
-append :linked_dirs, "log", "tmp/pids", "tmp/cache", "tmp/sockets", "vendor/bundle", "public/system", "public/uploads"
+set :linked_dirs, fetch(:linked_dirs, []).push('node_modules', 'log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'vendor/bundle', 'public/system', 'public/uploads')
+set :linked_files, fetch(:linked_files, []).push("config/master.key")
 
 set :rbenv_type, :user
 set :rbenv_ruby, '2.7.2'
