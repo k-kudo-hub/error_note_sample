@@ -6,7 +6,7 @@ set :repo_url, "git@github.com:k-kudo-hub/error_note_sample.git"
 append :linked_dirs, "log", "tmp/pids", "tmp/cache", "tmp/sockets", "vendor/bundle", "public/system", "public/uploads"
 
 set :rbenv_type, :user
-set :rbenv_ruby, '3.0.0'
+set :rbenv_ruby, '2.7.2'
 
 set :keep_releases, 5
 
