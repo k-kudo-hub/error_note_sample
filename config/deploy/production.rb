@@ -4,4 +4,4 @@ set :ssh_options,{
   keys: %w(/Users/kazuto/.ssh/ErrorNote/ErrorNoteKeyPair.pem),
   forward_agent: true,
   port: 22
-} 
+}
