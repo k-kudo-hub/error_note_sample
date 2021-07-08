@@ -27,35 +27,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.inner-bottom-btn-wrap {
-  margin-top: 20px;
-  text-align: center;
-}
-.log-modal {
-  &__back {
-    background-color: rgba(0,0,0, 0.4);
-    width: 100%;
-    height: 100%;
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 5;
-  }
-  &__container-destroy {
-    background-color: white;
-    padding: 32px;
-    max-width: 600px;
-    max-height: 60%;
-    margin: 70px auto 30px;
-    z-index: 6;
-    h2 {
-      text-align: center;
-    }
-  }
-  &__sub-title {
-    color: gray;
-    margin-top: 50px;
-    text-align: center;
-  }
-}
+
 </style>
