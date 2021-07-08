@@ -40,8 +40,8 @@
       <div class="inner-bottom-btn-wrap">
         <template v-if="currentUser.auth == true">
           <template v-if="currentUser.id == user.id">
-            <a @click="toggleModal" class="btn-default">ログを編集する</a>
-            <a @click="toggleConfirmModal" class="btn-danger">ログを削除する</a>
+            <a @click="toggleModal" class="btn-default">編集する</a>
+            <a @click="toggleConfirmModal" class="btn-danger">削除する</a>
           </template>
           <template v-else>
             <template v-if="alreadyStocked == true">

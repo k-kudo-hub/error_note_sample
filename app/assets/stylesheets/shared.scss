@@ -121,6 +121,10 @@ form {
   }
 }
 
+.mobile__search-bar {
+  display: none;
+}
+
 .navigation__link-wrap {
   margin-bottom: 15px;
   * {
@@ -524,3 +528,191 @@ form {
 }
 
 // end error message style
+
+@media screen and (max-width: 390px){
+  
+.app-body {
+  max-width: 390px;
+  padding: 30px 0 20px;
+  .app-bottom-inner {
+    max-width: 370px;
+    padding: 24px;
+    height: 200px;
+  }
+  .inner-bottom-btn-wrap {
+    width: 95%;
+  }
+}
+
+.app-body-inner,
+.inner-narrow {
+  max-width: 370px;
+  padding: 32px 5px;
+  h1 {
+    font-size: 1.6rem;
+  }
+  .v-list {
+    width: 100%; 
+  }
+}
+
+.bottom-profile {
+  &__upper {
+    height: 75%;
+  }
+  &__lower {
+    height: 25%;
+  }
+}
+
+.btn-default,
+.btn-danger,
+.btn-filled {
+  padding: 1vh 2.5vw;
+}
+
+#error_explanation {
+  width: 100%;
+}
+
+.error-message {
+  &__container {
+    padding: 15px 10px;
+    width: 100%;
+  }
+}
+
+.top-flex {
+  display: block;
+  max-width: 390px;
+}
+
+.header-container {
+  max-width: 100%;
+  .header-left {
+    width: 50%;
+  }
+}
+
+.header-center > * {
+  width: 25%;
+  display: none;
+}
+
+.header-right {
+  .search-form,
+  form {
+    display: none;
+  }
+}
+
+.nav-bar {
+  width: 370px;
+  margin: 0 10px 15px;
+  &__usage {
+    height: 250px;
+  }
+  &__navigation {
+    height: 80px;
+    padding: 0 20px;
+    margin-bottom: 15px !important;
+  }
+}
+
+.navigation__link-wrap {
+  margin-bottom: 10px;
+}
+
+iframe {
+  height: 250px;
+  width: 370px;
+}
+
+.lang-rank__box {
+  .lang {
+    padding: 0.3vh 2.5vw;
+  }
+}
+
+.footer-area {
+  height: 400px;
+  .footer-top {
+    display: block;
+    max-width: 100%;
+    .footer-left,
+    .footer-right {
+      width: 100%;
+    }
+  }
+  .footer-right {
+    margin-top: 30px;
+    margin: 30px auto 10px;
+    justify-content: flex-end;
+    &-start,
+    &-end {
+      width: 43%;
+    }
+  }
+}
+
+.mobile {
+  &__search-bar {
+    display: block;
+    .search-form {
+      margin: 0 16px 24px !important;
+    }
+    input {
+      width: 360px;
+    }
+  }
+}
+
+.profile-img {
+  &__container {
+    height: 60%;
+    img {
+      width: 75px;
+      height: 75px;
+    }
+  }
+}
+
+.profile-introduce {
+  &__name {
+    h2 {
+      font-size: 1.2rem
+    }
+  }
+  &__word {
+    font-size: 0.8rem;
+    overflow: hidden;
+  }
+}
+
+.profile-btn {
+  &__container {
+    width: 90%;
+    .btn-default,
+    .btn-filled,
+    .btn-danger {
+      margin: 5px auto;
+    }
+  }
+}
+
+.user-input {
+  width: 100%;
+  &-large {
+    width: 100%;
+  }
+  &-field {
+    width: 100%;
+    text-align: left;
+  }
+  &-picture {
+    margin-top: 10px;
+  }
+}
+
+
+}
