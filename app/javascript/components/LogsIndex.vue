@@ -1,5 +1,14 @@
 <template>
   <div class="top-flex">
+    <section class="mobile__search-bar" v-if="this.currentUser.auth">
+      <form @submit.prevent @keypress.prevent.enter.exact="getSearchLogs" class="search-form">
+        <span class="fa-stack">
+          <input v-model="keyword" placeholder="キーワードを入力" class="fa-lg fa-stack-2x">
+          <i class="fas fa-search fa-lg fa-stack-1x"></i>
+        </span>
+        <input type="hidden" value="検索">
+      </form>
+    </section>
     <section class="nav-bar">
       <div class="nav-bar__navigation">
         <div class="navigation__link-wrap">
@@ -10,7 +19,7 @@
           <i class="fas fa-fire-alt"></i>
           <a class="nav-link" @click="this.getMostStockedLogs">話題のノート</a>
         </div>
-        <template v-if="this.currentUser.auth == true">
+        <template v-if="this.currentUser.auth">
           <div class="navigation__link-wrap">
             <i class="fas fa-cubes"></i>
             <a class="nav-link" @click="this.getLatestStocks">最近ストックしたノート</a>
