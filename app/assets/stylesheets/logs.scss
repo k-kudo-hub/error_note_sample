@@ -268,4 +268,57 @@
 .scala{background-color: rgb(230, 1, 1);}
 .swift{background-color: rgb(248, 95, 6);}
 .typescript{background-color: rgb(1, 100, 212);}
-.visualbasicdnet{background-color: gray;}
+.visualbasicdnet{background-color: gray;}@media screen and (max-width: 390px){
+
+.log-detail {
+  h1 {
+    overflow: hidden;
+  }
+  &__langs {
+    margin: 5px 15px 10px 0;
+    .lang {
+      padding: 0.3vh 2.5vw;
+    }
+  }
+  &__content {
+    padding: 15px;
+    width: 95%;
+  }
+}
+
+form {
+  margin: 32px 16px !important;
+}
+
+.log-modal {
+  &__container {
+    max-width: 370px;
+    padding: 25px 15px;
+  }
+}
+
+.log-updated-at {
+  font-size: 0.8rem;
+}
+
+.log-input {
+  width: 300px;
+  &-field {
+    display: block;
+    text-align: left;
+    &-large {
+      height: 200px;
+      width: 300px;
+    }
+    &-lang {
+      margin: 0;
+      width: 100%;
+    }
+    &-small {
+      text-align: center;
+      width: 100%;
+    }
+  }
+}
+
+}
