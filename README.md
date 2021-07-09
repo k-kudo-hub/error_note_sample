@@ -1,6 +1,9 @@
-# ERROR NOTE - recording errors and solutions
+# Error Note - recording errors and solutions
 
 ## What's Error Note?
+
+![ErrorNote's logo](public/logo-large.png "logo")
+
 Error Note was born for developers. A simple tool for recording daily errors and looking back at them later.
 
 (In fact, Error Note was developed for my own use)
