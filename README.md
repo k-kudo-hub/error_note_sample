@@ -64,7 +64,7 @@ The more notes you have, the harder it can be to find.We plan to add a search fu
 Current notebooks cannot be decorated or paste the link. This is a serious problem.
 We'll evolve for your better experience.
 
-and more ...
+...and more
 
 ## Contribution
 We would appreciate it if you could contribute.We are always waiting for your participation.
