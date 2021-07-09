@@ -59,7 +59,8 @@ The more notes you have, the harder it can be to find.We plan to add a search fu
 
 #### Markdown Notebook
 Current notebooks cannot be decorated or paste the link. This is a serious problem.
-We will evolve for your better experience.
+We'll evolve for your better experience.
+
 and more ...
 
 ## Contribution
