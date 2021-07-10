@@ -7,7 +7,7 @@
       <div class="header-center flex-3">
       </div>
       <div class="header-right flex-3">
-        <div v-if="this.currentUser.auth == true">
+        <div v-if="this.currentUser.auth">
           <form @submit.prevent @keypress.prevent.enter.exact="searchLogs" class="search-form">
             <span class="fa-stack">
               <input v-model="keyword" placeholder="キーワードを入力" class="fa-lg fa-stack-2x">

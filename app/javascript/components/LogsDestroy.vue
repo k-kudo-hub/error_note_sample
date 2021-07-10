@@ -5,8 +5,12 @@
         <h2>このノートを削除しますか？</h2>
         <p class="log-modal__sub-title">「{{ title }}」</p>
         <div class="inner-bottom-btn-wrap">
-          <input @click="$emit('cancel')" type="submit" value="キャンセル" class="btn-default">
-          <input @click="$emit('submit')" type="submit" value="削除する" class="btn-danger">
+          <button @click="$emit('cancel')" type="submit" class="btn-default">
+            <i class="fas fa-long-arrow-alt-left"></i> キャンセル
+          </button>
+          <button @click="$emit('submit')" type="submit" class="btn-danger">
+            <i class="fas fa-trash-alt"></i> 削除する
+          </button>
         </div>
       </div>
     </div>

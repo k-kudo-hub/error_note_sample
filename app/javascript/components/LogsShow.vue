@@ -1,7 +1,7 @@
 <template>
   <div id="log-details">
     <LogsUpdate 
-      v-if="(currentUser.auth == true) && (currentUser.id == user.id) && (modal == true)" 
+      v-if="currentUser.auth && (currentUser.id == user.id) && modal" 
       :log="log"
       :checkedLanguages="checkedLanguages"
       :modal="modal"
@@ -11,7 +11,7 @@
       @change="changeCheckedLanguages"
     />
     <LogsDestroy
-      v-if="(currentUser.auth == true) && (currentUser.id == user.id) && (confirmModal == true)" 
+      v-if="currentUser.auth && (currentUser.id == user.id) && confirmModal" 
       :title="log.title"
       @submit="destroyNote"
       @cancel="toggleConfirmModal"
@@ -29,22 +29,22 @@
         </div>
         <div class="log-detail__content errors">
           <p class="log-detail__content-title">エラーの内容</p>
-          {{ log.error }}
+          <p class="log-detail__content-error">{{ log.error }}</p>
         </div>
         <div class="log-detail__content solutions">
           <p class="log-detail__content-title">解決法</p>
-            <p v-if="log.solution">{{log.solution}}</p>
+            <p v-if="log.solution" class="log-detail__content-solution">{{log.solution}}</p>
             <p v-else class="log-detail__content-nil">解決法はまだ登録されていません。</p>
         </div>
       </div>
       <div class="inner-bottom-btn-wrap">
-        <template v-if="currentUser.auth == true">
+        <template v-if="currentUser.auth">
           <template v-if="currentUser.id == user.id">
-            <a @click="toggleModal" class="btn-default">編集する</a>
-            <a @click="toggleConfirmModal" class="btn-danger">削除する</a>
+            <a @click="toggleModal" class="btn-default"><i class="fas fa-edit"></i> 編集する</a>
+            <a @click="toggleConfirmModal" class="btn-danger"><i class="fas fa-trash-alt"></i> 削除する</a>
           </template>
           <template v-else>
-            <template v-if="alreadyStocked == true">
+            <template v-if="alreadyStocked">
               <button class="btn-filled" @click="destroyStock">
                 <p>ストックを取り消す <span class="stock-count__number">{{ stockedCount }}</span></p>
               </button>
@@ -221,7 +221,7 @@ export default {
         })
     },
     createStock: function(){
-      if(this.currentUser.auth == true){
+      if(this.currentUser.auth){
         axios
           .post(`/api/v1/stocks/create.json?log_id=${this.log.id}`)
           .then(response => {

@@ -1,6 +1,6 @@
 <template>
   <div id="log_modal">
-    <div class="log-modal__back" v-if="this.modal == true" v-on:click.self="toggleModal">
+    <div class="log-modal__back" v-if="this.modal" v-on:click.self="toggleModal">
       <div class="log-modal__container">
         <h2>新規ノート作成</h2>
         <form @submit.prevent>
@@ -38,7 +38,9 @@
             <label for="release">非公開</label>
           </div>
           <div class="inner-bottom-btn-wrap">
-            <input v-on:click="createNote" type="submit" value="保存する" class="btn-default">
+            <button v-on:click="createNote" type="submit" class="btn-default">
+              <i class="fas fa-upload"></i> 保存する
+            </button>
           </div>
         </form>
       </div>
@@ -80,7 +82,7 @@ export default {
   },
   watch: {
     logSignal: function(){
-      if(this.logSignal == true){
+      if(this.logSignal){
         this.toggleModal();
         this.$emit("closeLogSignal");
       }
