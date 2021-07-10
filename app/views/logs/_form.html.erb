@@ -29,7 +29,9 @@
     <%= f.label :release, "非公開", value: false %>
   </div>
   <div class="inner-bottom-btn-wrap">
-    <%= f.submit "保存する", class: "btn-default" %>
+    <%= f.button type:"submit", class: "btn-default" do %>
+      <i class="fas fa-upload"></i> 保存する
+    <% end %>
   </div>
 <% end %>
 

@@ -21,8 +21,12 @@
         <%= f.file_field :picture, autofocus: true, autocomplete: "picture", class: "user-input-picture" %>
       </div>
       <div class="inner-bottom-btn-wrap">
-        <%= link_to "キャンセル", :back, class: "btn-default" %>
-        <%= f.submit "更新する", class: "btn-filled" %>
+        <%= link_to :back, class: "btn-default" do %>
+          <i class="fas fa-long-arrow-alt-left"></i> キャンセル
+        <% end %>
+        <%= f.button type:"submit", class: "btn-filled" do %>
+          <i class="fas fa-upload"></i> 更新する
+        <% end %>
       </div>
     <% end %>
   </section>

@@ -38,8 +38,12 @@
             <label for="release">非公開</label>
           </div>
           <div class="inner-bottom-btn-wrap">
-            <input @click="$emit('toggle')" type="submit" value="キャンセル" class="btn-default">
-            <input @click="$emit('submit', log)" type="submit" value="更新する" class="btn-filled">
+            <button @click="$emit('toggle')" type="submit" class="btn-default">
+              <i class="fas fa-long-arrow-alt-left"></i> キャンセル
+            </button>
+            <button @click="$emit('submit', log)" type="submit" class="btn-filled">
+              <i class="fas fa-upload"></i> 更新する
+            </button>
           </div>
         </form>
       </div>
