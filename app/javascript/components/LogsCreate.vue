@@ -1,6 +1,6 @@
 <template>
   <div id="log_modal">
-    <div class="log-modal__back" v-if="this.modal == true" v-on:click.self="toggleModal">
+    <div class="log-modal__back" v-if="this.modal" v-on:click.self="toggleModal">
       <div class="log-modal__container">
         <h2>新規ノート作成</h2>
         <form @submit.prevent>
@@ -82,7 +82,7 @@ export default {
   },
   watch: {
     logSignal: function(){
-      if(this.logSignal == true){
+      if(this.logSignal){
         this.toggleModal();
         this.$emit("closeLogSignal");
       }

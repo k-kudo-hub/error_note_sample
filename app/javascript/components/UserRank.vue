@@ -1,6 +1,6 @@
 <template>
   <div id="rank_content">
-    <template v-if="this.toggle == true">
+    <template v-if="this.toggle">
       <h2>開発言語ランキング<i v-on:click="toggleBtn" class="fas fa-random fa-lg"></i></h2>
       <p class="lang-rank__date">{{ date }} 現在</p>
       <div class="lang-rank__box" v-for="(item, index) in languages" :key="item.id">
@@ -57,7 +57,7 @@ export default {
   },
   methods:{
     toggleBtn: function(){
-      this.toggle == true ? this.toggle = false : this.toggle = true;
+      this.toggle ? this.toggle = false : this.toggle = true;
     },
     setToday: function(){
       var today = new Date();

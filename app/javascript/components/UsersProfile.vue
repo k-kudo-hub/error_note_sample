@@ -20,7 +20,7 @@
           <a @click="showMoreUserInformations" class="btn-default"><i class="fas fa-external-link-alt"></i> プロフィールへ</a>
         </template>
         <template v-else>
-          <template v-if="(currentUser.auth == true) && (currentUser.id == user.id)">
+          <template v-if="currentUser.auth && (currentUser.id == user.id)">
             <a href="/users/edit" class="btn-filled"><i class="fas fa-edit"></i> 編集する</a>
             <a href="/users/sign_out" data-method="delete" class="btn-default"><i class="fas fa-sign-out-alt"></i> ログアウト</a>
           </template>

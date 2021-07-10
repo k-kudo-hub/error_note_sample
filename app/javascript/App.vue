@@ -7,7 +7,7 @@
     />
     <div class="app-body" id="app_body">
       <LogsCreate 
-        v-if="currentUser.auth == true"
+        v-if="currentUser.auth"
         :logSignal="logSignal"
         @closeLogSignal="closeLog"
       />

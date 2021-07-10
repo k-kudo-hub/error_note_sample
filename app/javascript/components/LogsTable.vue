@@ -20,7 +20,7 @@
               <img src="../../assets/images/human.png" height="25px" width="25px">
             </template>
             <div class="log-block__text-container">
-              <template v-if="item.release == true">
+              <template v-if="item.release">
                 <p class="mr-5"><a @click="$emit('showMoreUserInfo', item.user_id)">{{item.user_name}}</a></p>
                 <p>が{{item.updated_at}}に公開</p>
               </template>
