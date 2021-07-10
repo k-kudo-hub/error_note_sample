@@ -40,8 +40,6 @@
       <div class="inner-bottom-btn-wrap">
         <template v-if="currentUser.auth">
           <template v-if="currentUser.id == user.id">
-            <a @click="toggleModal" class="btn-default">編集する</a>
-            <a @click="toggleConfirmModal" class="btn-danger">削除する</a>
             <a @click="toggleModal" class="btn-default"><i class="fas fa-edit"></i> 編集する</a>
             <a @click="toggleConfirmModal" class="btn-danger"><i class="fas fa-trash-alt"></i> 削除する</a>
           </template>
