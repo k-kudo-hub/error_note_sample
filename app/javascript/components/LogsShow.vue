@@ -29,11 +29,11 @@
         </div>
         <div class="log-detail__content errors">
           <p class="log-detail__content-title">エラーの内容</p>
-          {{ log.error }}
+          <p class="log-detail__content-error">{{ log.error }}</p>
         </div>
         <div class="log-detail__content solutions">
           <p class="log-detail__content-title">解決法</p>
-            <p v-if="log.solution">{{log.solution}}</p>
+            <p v-if="log.solution" class="log-detail__content-solution">{{log.solution}}</p>
             <p v-else class="log-detail__content-nil">解決法はまだ登録されていません。</p>
         </div>
       </div>
