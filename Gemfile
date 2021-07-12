@@ -40,6 +40,7 @@ group :development do
   gem 'rubocop-rspec'
   gem 'spring'
   gem 'web-console', '>= 4.1.0'
+  gem 'letter_opener_web'
 end
 
 group :test do
