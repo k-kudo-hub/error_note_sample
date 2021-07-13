@@ -16,6 +16,7 @@ document.addEventListener('turbolinks:load', () => {
   if( document.URL.match("/cancel")
    || document.URL.match("/users/edit")
    || document.URL.match("/logs/new")
+   || document.URL.match("/users/confirmation")
    || document.URL.match("^.*users$")
    || document.URL.match("^.*logs$")
    || document.URL.match("^(?=.*password).*$") 

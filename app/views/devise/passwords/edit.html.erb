@@ -1,0 +1,25 @@
+<%= render "shared/header" %>
+<div class="app-body">
+  <div class="app-body-inner">
+    <h1>パスワード変更手続き</h1>
+    <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
+      <%= render "devise/shared/error_messages", resource: resource %>
+      <%= f.hidden_field :reset_password_token %>
+      <div class="user-input-field">
+        <%= f.label :password, "新しいパスワード" %><br />
+        <%= f.password_field :password, autofocus: true, autocomplete: "new-password", class: "user-input" %>
+      </div>
+      <div class="user-input-field">
+        <%= f.label :password_confirmation, "新しいパスワード（確認）" %><br />
+        <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "user-input" %>
+      </div>
+      <div class="inner-bottom-btn-wrap">
+        <%= f.submit "パスワードを更新する", class: "btn-default" %>
+      </div>
+    <% end %>
+    <div class="devise-links">
+      <%= render "devise/shared/links" %>
+    </div>
+  </div>
+</div>
+<%= render "shared/footer" %>
