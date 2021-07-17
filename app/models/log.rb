@@ -12,7 +12,7 @@ class Log < ApplicationRecord
     validates :error
   end
 
-  validates :release, inclusion: {in: [true, false]}
+  validates :release, inclusion: { in: [true, false] }
 
   def self.search(keyword)
     if keyword.empty?
