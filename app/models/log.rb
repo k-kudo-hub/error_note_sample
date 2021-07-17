@@ -12,6 +12,8 @@ class Log < ApplicationRecord
     validates :error
   end
 
+  validates :release, inclusion: { in: [true, false] }
+
   def self.search(keyword)
     if keyword.empty?
       Log.where(release: true).includes(:user, :languages).order('updated_at DESC')

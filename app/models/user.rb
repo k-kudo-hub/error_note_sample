@@ -10,6 +10,8 @@ class User < ApplicationRecord
 
   with_options presence: { message: 'が入力されていません。' } do
     validates :name
+    validates :password, :password_confirmation,
+              format: { with: /\A(?=.*?[a-z])(?=.*?\d)[a-z\d]{6,100}+\z/i, message: 'は6文字以上の半角英数字混合で登録できます。' }
   end
 
   def already_stocked?(log)

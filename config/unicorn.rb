@@ -1,4 +1,6 @@
-app_path = File.expand_path('../../../', __FILE__)
+# frozen_string_literal: true
+
+app_path = File.expand_path('../..', __dir__)
 worker_processes 1
 working_directory "#{app_path}/current"
 pid "#{app_path}/shared/tmp/pids/unicorn.pid"
