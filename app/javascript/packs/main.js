@@ -20,6 +20,7 @@ document.addEventListener('turbolinks:load', () => {
    || document.URL.match("^.*users$")
    || document.URL.match("^.*logs$")
    || document.URL.match("^.*terms$")
+   || document.URL.match("^.*privacy$")
    || document.URL.match("^(?=.*password).*$") 
    || document.URL.match("^(?=.*sign_).*$")
   ) return false;

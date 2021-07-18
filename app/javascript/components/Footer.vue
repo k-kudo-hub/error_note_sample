@@ -17,6 +17,7 @@
         <div class="footer-right-start">
           <p>Error Note</p>
           <a href="/terms">利用規約</a>
+          <a href="/privacy">プライバシー</a>
           <a href="#">お問い合わせ</a>
         </div>
         <div class="footer-right-end">

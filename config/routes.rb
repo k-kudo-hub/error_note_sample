@@ -5,7 +5,6 @@ Rails.application.routes.draw do
     registrations: 'users/registrations'
   }
   root 'logs#index'
-
   resources :users, only: %i[show] do
     resources :logs do
       collection do
@@ -14,6 +13,7 @@ Rails.application.routes.draw do
     end
   end
   get 'terms', to: 'terms#index'
+  get 'privacy', to: 'privacies#index'
 
   namespace :api, { format: 'json' } do
     namespace :v1 do
