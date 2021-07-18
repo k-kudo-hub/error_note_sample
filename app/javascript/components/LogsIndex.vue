@@ -40,16 +40,16 @@
       @showMoreUserInfo="showMoreUserInformations"
     />
     <section class="nav-bar">
-      <div class="nav-bar__usage" id="nav_bar_usage">
+      <!-- <div class="nav-bar__usage" id="nav_bar_usage">
         <iframe width="300"
                 height="200"
-                src="https://www.youtube-nocookie.com/embed/4dnT-kKIO6Y" 
+                src="" 
                 title="YouTube video player" 
                 frameborder="0" 
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
                 allowfullscreen>
         </iframe>
-      </div>
+      </div> -->
       <div class="nav-bar__lang-rank" id="nav_bar_lang_rank">
         <UserRank/>
       </div>

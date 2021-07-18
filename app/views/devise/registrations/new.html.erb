@@ -32,6 +32,14 @@
         <%= f.submit "登録する", class: "btn-default" %>
       </div>
     <% end %>
+    <div class="user-input__notice">
+      <h3>ご登録からログインまでの流れ</h3>
+      <ul>
+        <li>1. 登録が完了すると、運営からメールアドレス確認用のメールをお送りいたします。</li>
+        <li>2. メール内の確認用リンクをクリックします。</li>
+        <li>3. ご登録いただいたメールアドレス・パスワードでログインの上、ご利用ください。</li>
+      </ul>
+    </div>
     <div class="devise-links">
       <%= render "devise/shared/links" %>
     </div>
