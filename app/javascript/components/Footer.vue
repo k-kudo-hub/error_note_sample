@@ -16,12 +16,13 @@
       <div class="footer-right">
         <div class="footer-right-start">
           <p>Error Note</p>
-          <a href="#">利用規約</a>
+          <a href="/terms" target="_blank" rel="noopener noreferrer">利用規約</a>
+          <a href="/privacy" target="_blank" rel="noopener noreferrer">プライバシー</a>
           <a href="#">お問い合わせ</a>
         </div>
         <div class="footer-right-end">
           <p>Joint Dev inc.</p>
-          <a :href="githubURL" target="_blank">Github<i class="fas fa-external-link-alt ml-5"></i></a>
+          <a :href="githubURL" target="_blank" rel="noopener noreferrer">Github<i class="fas fa-external-link-alt ml-5"></i></a>
         </div>
       </div>
     </div>

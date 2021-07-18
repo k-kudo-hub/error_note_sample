@@ -8,9 +8,8 @@ class User < ApplicationRecord
   has_many :stocks, dependent: :destroy
   has_many :stocked_logs, through: :stocks, source: :log
 
-  with_options presence: { message: 'が入力されていません。' } do
-    validates :name
-  end
+  validates :name, presence: { message: 'が入力されていません。' }
+  validates :accepted, presence: { message: 'いただけない場合、アカウントを作成できません。' }, on: :create
 
   def already_stocked?(log)
     stocks.exists?(log_id: log.id)
