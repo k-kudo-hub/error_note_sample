@@ -13,6 +13,7 @@ Rails.application.routes.draw do
       end
     end
   end
+  get 'terms', to: 'terms#index'
 
   namespace :api, { format: 'json' } do
     namespace :v1 do

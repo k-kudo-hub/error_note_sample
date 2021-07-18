@@ -16,7 +16,7 @@
       <div class="footer-right">
         <div class="footer-right-start">
           <p>Error Note</p>
-          <a href="#">利用規約</a>
+          <a href="/terms">利用規約</a>
           <a href="#">お問い合わせ</a>
         </div>
         <div class="footer-right-end">
