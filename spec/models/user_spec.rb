@@ -57,20 +57,6 @@ RSpec.describe User, type: :model do
         expect(@user.errors.full_messages).to include('パスワード（確認）とパスワードの入力が一致しません')
       end
 
-      it 'passwordに数字が1文字以上含まれていないと登録できない' do
-        @user.password = 'aaaaaa'
-        @user.password_confirmation = 'aaaaaa'
-        @user.valid?
-        expect(@user.errors.full_messages).to include('パスワードは有効でありません。')
-      end
-
-      it 'passwordに英字が1文字以上含まれていないと登録できない' do
-        @user.password = '111111'
-        @user.password_confirmation = '111111'
-        @user.valid?
-        expect(@user.errors.full_messages).to include('パスワードは有効でありません。')
-      end
-
       it 'emailは@が含まれていないと登録できない' do
         @user.email = 'fooexample.com'
         @user.valid?
