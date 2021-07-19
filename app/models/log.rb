@@ -35,7 +35,7 @@ class Log < ApplicationRecord
   end
 
   def extract_lang_name
-    languages = []
+    languages = Array.new
     self.languages.each do |lang|
       languages.push(lang.name)
     end
@@ -43,7 +43,7 @@ class Log < ApplicationRecord
   end
 
   def extract_lang_data
-    languages = []
+    languages = Array.new
     self.languages.each do |lang|
       languages.push(id: lang.id, name: lang.name)
     end
