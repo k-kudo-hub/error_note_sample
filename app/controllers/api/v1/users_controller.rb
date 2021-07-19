@@ -25,8 +25,8 @@ class Api::V1::UsersController < ApplicationController
   def user_log_index
     @user = User.find(params[:user_id])
     logs = published_log.order(updated_at: :desc).page(params[:page]).per(10)
-    array = []
     array_push(logs, array)
+    array = Array.new
     total_pages = logs.total_pages
     response = { logs: array, total_pages: total_pages }
     render json: response

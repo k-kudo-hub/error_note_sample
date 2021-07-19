@@ -7,8 +7,8 @@ class Api::V1::StocksController < ApplicationController
 
   def index
     stocks = current_user.my_stocks.page(params[:page]).per(10)
-    array = []
     array_push(stocks, array)
+    array = Array.new
     total_pages = stocks.total_pages
     response = { stocks: array, total_pages: total_pages }
     render json: response
