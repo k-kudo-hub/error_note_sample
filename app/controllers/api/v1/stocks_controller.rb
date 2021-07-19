@@ -26,11 +26,10 @@ class Api::V1::StocksController < ApplicationController
   end
 
   def rank
-    logs = Log.rank(5)
-    counts = Stock.rank(5).count
-    array = []
-    logs.zip(counts) do |log, count|
-      array.push(id: log.id, title: log.title.truncate(9), count: count[1], user_id: log.user_id)
+    object = Log.stock_rank_with_counts
+    array = Array.new
+    object.each do |obj|
+      array.push(id: obj.id, title: obj.title, count: obj.count, user_id: obj.user_id)
     end
     render json: array
   end
@@ -39,8 +38,7 @@ class Api::V1::StocksController < ApplicationController
     log = Log.find(params[:log_id])
     count = log.stocks.count
     if user_signed_in?
-      user = User.find(current_user.id)
-      stocked = user.already_stocked?(log)
+      stocked = current_user.already_stocked?(log)
       response = { stocked: stocked, count: count }
     else
       response = { stocked: false, count: count }
