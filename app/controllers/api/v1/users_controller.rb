@@ -7,7 +7,7 @@ class Api::V1::UsersController < ApplicationController
 
   def authentication
     if user_signed_in?
-      picture = current_user.picture? ? current_user.picture.url : nil
+      picture = current_user.picture_url
       user = { auth: true, id: current_user.id, picture: picture }
     else
       user = { auth: false, id: nil, picture: nil }
@@ -17,7 +17,7 @@ class Api::V1::UsersController < ApplicationController
 
   def show
     user = User.find(params[:user_id])
-    picture = user.picture? ? user.picture.url : nil
+    picture = user.picture_url
     user = { id: user.id, name: user.name, picture: picture, introduce: user.introduce }
     render json: user
   end
