@@ -7,8 +7,8 @@ class Api::V1::StocksController < ApplicationController
 
   def index
     stocks = current_user.my_stocks.page(params[:page]).per(10)
-    array_push(stocks, array)
     array = Array.new
+    shape_object(stocks, array)
     total_pages = stocks.total_pages
     response = { stocks: array, total_pages: total_pages }
     render json: response
@@ -48,7 +48,7 @@ class Api::V1::StocksController < ApplicationController
 
   private
 
-    def array_push(logs, array)
+    def shape_object(logs, array)
       logs.each do |log|
         array.push(
           id: log.id,

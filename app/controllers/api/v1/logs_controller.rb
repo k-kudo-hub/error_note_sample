@@ -8,6 +8,7 @@ class Api::V1::LogsController < ApplicationController
   def index
     logs = Log.published_all.page(params[:page]).per(10)
     array = Array.new
+    shape_object(logs, array)
     total_pages = logs.total_pages
     response = { logs: array, total_pages: total_pages }
     render json: response
@@ -15,8 +16,8 @@ class Api::V1::LogsController < ApplicationController
 
   def latest_stocks_index
     logs = current_user.my_stocks.page(params[:page]).per(10)
-    array_push(logs, array)
     array = Array.new
+    shape_object(logs, array)
     total_pages = logs.total_pages
     response = { logs: array, total_pages: total_pages }
     render json: response
@@ -24,8 +25,8 @@ class Api::V1::LogsController < ApplicationController
 
   def most_stocked_index
     logs = Log.rank(10)
-    array_push(logs, array)
     array = Array.new
+    shape_object(logs, array)
     response = { logs: array, total_pages: 1 }
     render json: response
   end
@@ -89,8 +90,8 @@ class Api::V1::LogsController < ApplicationController
 
   def search
     logs = Log.search(params[:keyword]).page(params[:page]).per(params[:per])
-    array_push(logs, array)
     array = Array.new
+    shape_object(logs, array)
     total_pages = logs.total_pages
     response = {
       logs: array,
@@ -105,7 +106,7 @@ class Api::V1::LogsController < ApplicationController
       params.require(:log).permit(:title, :error, :solution, :release, { language_ids: [] }).merge(user_id: current_user.id)
     end
 
-    def array_push(logs, array)
+    def shape_object(logs, array)
       logs.each do |log|
         array.push(
           id: log.id,

@@ -25,8 +25,8 @@ class Api::V1::UsersController < ApplicationController
   def user_log_index
     @user = User.find(params[:user_id])
     logs = published_log.order(updated_at: :desc).page(params[:page]).per(10)
-    array_push(logs, array)
     array = Array.new
+    shape_object(logs, array)
     total_pages = logs.total_pages
     response = { logs: array, total_pages: total_pages }
     render json: response
@@ -42,7 +42,7 @@ class Api::V1::UsersController < ApplicationController
       end
     end
 
-    def array_push(logs, array)
+    def shape_object(logs, array)
       logs.each do |log|
         array.push(
           id: log.id,
