@@ -6,7 +6,7 @@ class Api::V1::LanguagesController < ApplicationController
   end
 
   def index
-    languages = Language.all.order(id: :asc).pluck(:id, :name)
+    languages = Language.all_id_and_name
     array = Array.new
     languages.each do |language|
       array.push(id: language[0], name: language[1])
@@ -15,11 +15,10 @@ class Api::V1::LanguagesController < ApplicationController
   end
 
   def rank
-    langs = Language.rank
-    counts = LogLanguage.group(:language_id).order('count(language_id) desc').limit(5).count
-    langs.zip(counts) do |lang, count|
-      array.push(name: lang.name, count: count[1])
+    object = Language.rank_with_counts
     array = Array.new
+    object.each do |obj|
+      array.push(name: obj[0], count: obj[1])
     end
     render json: array
   end

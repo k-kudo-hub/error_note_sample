@@ -52,20 +52,15 @@ class Api::V1::StocksController < ApplicationController
 
     def array_push(logs, array)
       logs.each do |log|
-        languages = []
-        log.languages.limit(3).each do |language|
-          languages.push(language.name)
-        end
-        picture = log.user.picture? ? log.user.picture.url : nil
         array.push(
           id: log.id,
           title: log.title,
-          languages: languages,
+          languages: log.extract_lang_name,
           updated_at: l(log.updated_at, format: :default),
           release: log.release,
           user_id: log.user.id,
           user_name: log.user.name,
-          user_picture: picture
+          user_picture: log.user.picture_url
         )
       end
       array

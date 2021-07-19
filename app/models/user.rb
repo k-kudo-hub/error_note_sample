@@ -22,4 +22,8 @@ class User < ApplicationRecord
   def my_stocks
     Log.where(id: stock_ids).order(created_at: :desc)
   end
+
+  def picture_url
+    self.picture? ? self.picture.url : nil
+  end
 end

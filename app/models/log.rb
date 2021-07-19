@@ -14,15 +14,40 @@ class Log < ApplicationRecord
 
   validates :release, inclusion: { in: [true, false] }
 
+  def self.published_all
+    where(release: true).includes(:user, :languages).order(updated_at: :desc)
+  end
+
   def self.search(keyword)
     if keyword.empty?
-      Log.where(release: true).includes(:user, :languages).order('updated_at DESC')
+      Log.where(release: true).includes(:user, :languages).order(updated_at: :desc)
     else
-      Log.where('title LIKE(?)', "%#{keyword}%").where(release: true).includes(:user, :languages).order('updated_at DESC')
+      Log.where('title LIKE(?)', "%#{keyword}%").where(release: true).includes(:user, :languages).order(updated_at: :desc)
     end
   end
 
   def self.rank(limit)
-    find(Stock.group(:log_id).order('count(log_id) desc').limit(limit).pluck(:id))
+    find(Stock.group(:log_id).order("count(log_id) desc").limit(limit).pluck(:id))
   end
+
+  def self.stock_rank_with_counts 
+    joins(:stocks).group("log_id").order("count(log_id) DESC").select("logs.id, logs.title, logs.user_id, count(log_id) AS count").limit(5)
+  end
+
+  def extract_lang_name
+    languages = []
+    self.languages.each do |lang|
+      languages.push(lang.name)
+    end
+    languages
+  end
+
+  def extract_lang_data
+    languages = []
+    self.languages.each do |lang|
+      languages.push(id: lang.id, name: lang.name)
+    end
+    languages
+  end
+
 end

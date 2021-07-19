@@ -9,8 +9,4 @@ class Stock < ApplicationRecord
   def self_stock_validation
     errors.add(:user_id, '：自分で作成したノートはストックできません') if log.user_id == user.id
   end
-
-  def self.rank(limit)
-    group(:log_id).order('count(log_id) desc').limit(limit)
-  end
 end

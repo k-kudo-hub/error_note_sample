@@ -6,8 +6,7 @@ class Api::V1::LogsController < ApplicationController
   end
 
   def index
-    logs = Log.where(release: true).includes(:user, :languages).order('updated_at DESC').page(params[:page]).per(10)
-    array_push(logs, array)
+    logs = Log.published_all.page(params[:page]).per(10)
     array = Array.new
     total_pages = logs.total_pages
     response = { logs: array, total_pages: total_pages }
@@ -43,14 +42,21 @@ class Api::V1::LogsController < ApplicationController
 
   def show
     log = Log.find(params[:id])
-    languages = []
-    log.languages.each do |lang|
-      languages.push(id: lang.id, name: lang.name)
-    end
-    picture = log.user.picture ? log.user.picture.url : nil
-    user = { id: log.user_id, name: log.user.name, picture: picture, introduce: log.user.introduce }
-    log = { id: log.id, title: log.title, error: log.error, solution: log.solution, release: log.release,
-            updated_at: l(log.updated_at, format: :default) }
+    languages = log.extract_lang_data
+    user = { 
+             id: log.user_id,
+             name: log.user.name, 
+             picture: log.user.picture_url, 
+             introduce: log.user.introduce
+            }
+    log = {
+            id: log.id,
+            title: log.title, 
+            error: log.error, 
+            solution: log.solution, 
+            release: log.release,
+            updated_at: l(log.updated_at, format: :default) 
+          }
     response = { log: log, languages: languages, user: user }
     render json: response
   end
@@ -101,20 +107,15 @@ class Api::V1::LogsController < ApplicationController
 
     def array_push(logs, array)
       logs.each do |log|
-        languages = []
-        log.languages.limit(3).each do |language|
-          languages.push(language.name)
-        end
-        picture = log.user.picture? ? log.user.picture.url : nil
         array.push(
           id: log.id,
           title: log.title,
-          languages: languages,
+          languages: log.extract_lang_name,
           updated_at: l(log.updated_at, format: :default),
           release: log.release,
           user_id: log.user.id,
           user_name: log.user.name,
-          user_picture: picture
+          user_picture: log.user.picture_url
         )
       end
       array
