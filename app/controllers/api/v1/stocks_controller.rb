@@ -27,11 +27,7 @@ class Api::V1::StocksController < ApplicationController
 
   def rank
     object = Log.stock_rank_with_counts
-    array = Array.new
-    object.each do |obj|
-      array.push(id: obj.id, title: obj.title, count: obj.count, user_id: obj.user_id)
-    end
-    render json: array
+    render json: object
   end
 
   def check
