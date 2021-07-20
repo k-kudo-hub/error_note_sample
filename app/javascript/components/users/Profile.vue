@@ -3,7 +3,7 @@
     <div class="bottom-profile__upper">
       <div class="profile-img__container">
         <img v-if="user.picture != null" :src="user.picture">
-        <img v-else src="../../assets/images/human.png">
+        <img v-else src="../../../assets/images/human.png">
       </div>
       <div class="profile-introduce__container">
         <div class="profile-introduce__name">

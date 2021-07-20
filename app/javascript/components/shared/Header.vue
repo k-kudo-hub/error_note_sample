@@ -24,7 +24,7 @@
                 <img :src="this.currentUser.picture" height="30px" width="30">
               </template>
               <template v-else>
-                <img src="../../assets/images/human.png" height="30px" width="30px">
+                <img src="../../../assets/images/human.png" height="30px" width="30px">
               </template>
             </a>
           </div>

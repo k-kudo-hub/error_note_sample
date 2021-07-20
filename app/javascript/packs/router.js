@@ -1,8 +1,8 @@
 import Vue from 'vue';
 import Router from 'vue-router';
-import LogsIndex from '../components/LogsIndex.vue';
-import LogsShow from '../components/LogsShow.vue';
-import UsersShow from '../components/UsersShow.vue';
+import LogsIndex from '../components/logs/Index.vue';
+import LogsShow from '../components/logs/Show.vue';
+import UsersShow from '../components/users/Show.vue';
 
 Vue.use(Router);
 

@@ -22,10 +22,10 @@
 <script>
 import axios from 'axios'
 import VueRouter from 'vue-router'
-import LogsIndex from 'components/LogsIndex.vue'
-import LogsCreate from 'components/LogsCreate.vue'
-import Header from 'components/Header.vue'
-import Footer from 'components/Footer.vue'
+import LogsIndex from 'components/logs/Index.vue'
+import LogsCreate from 'components/logs/Create.vue'
+import Header from 'components/shared/Header.vue'
+import Footer from 'components/shared/Footer.vue'
 
 export default {
   components: {

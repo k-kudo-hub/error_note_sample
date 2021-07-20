@@ -60,8 +60,8 @@
 <script>
 import axios from 'axios';
 import Vuetify from 'vuetify';
-import UserRank from 'components/UserRank.vue';
-import LogsTable from 'components/LogsTable.vue';
+import UserRank from 'components/users/Rank.vue';
+import LogsTable from 'components/logs/Table.vue';
 
 export default {
   components: {
