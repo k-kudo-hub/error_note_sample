@@ -35,11 +35,9 @@ class Log < ApplicationRecord
   end
 
   def extract_lang_name
-    languages = []
-    self.languages.each do |lang|
-      languages.push(lang.name)
+    self.languages.map do |lang|
+      lang.name
     end
-    languages
   end
 
   def extract_lang_data
