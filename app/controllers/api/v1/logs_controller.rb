@@ -6,7 +6,7 @@ class Api::V1::LogsController < ApplicationController
   end
 
   def index
-    logs = Log.published_all.page(params[:page]).per(10)
+    logs = Log.published_all.page(params[:page]).per(params[:per])
     array = []
     shape_object(logs, array)
     total_pages = logs.total_pages
@@ -15,7 +15,7 @@ class Api::V1::LogsController < ApplicationController
   end
 
   def latest_stocks_index
-    logs = current_user.my_stocks.page(params[:page]).per(10)
+    logs = current_user.my_stocks.page(params[:page]).per(params[:per])
     array = []
     shape_object(logs, array)
     total_pages = logs.total_pages
@@ -24,7 +24,7 @@ class Api::V1::LogsController < ApplicationController
   end
 
   def most_stocked_index
-    logs = Log.stock_rank(10)
+    logs = Log.stock_rank(params[:per])
     array = []
     shape_object(logs, array)
     response = { logs: array, total_pages: 1 }
