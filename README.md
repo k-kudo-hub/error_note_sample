@@ -1,4 +1,6 @@
 # Error Note - recording errors and solutions
+<img src="https://img.shields.io/github/commit-activity/y/k-kudo-hub/error_note_sample"> <img src="https://img.shields.io/github/last-commit/k-kudo-hub/error_note_sample">
+
 
 ## What's Error Note?
 
