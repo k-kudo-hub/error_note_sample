@@ -24,7 +24,7 @@ class Api::V1::LogsController < ApplicationController
   end
 
   def most_stocked_index
-    logs = Log.rank(10)
+    logs = Log.stock_rank(10)
     array = []
     shape_object(logs, array)
     response = { logs: array, total_pages: 1 }

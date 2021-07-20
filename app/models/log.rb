@@ -26,16 +26,16 @@ class Log < ApplicationRecord
     end
   end
 
-  def self.rank(limit)
+  def self.stock_rank(limit = 10)
     joins(:stocks).group('log_id').order('count(log_id) DESC').limit(limit)
   end
 
-  def self.stock_rank_with_counts
-    joins(:stocks).group('log_id').order('count(log_id) DESC').select('logs.id, logs.title, logs.user_id, count(log_id) AS count').limit(5)
+  def self.stock_rank_with_counts(limit = 5)
+    joins(:stocks).group('log_id').order('count(log_id) DESC').select('logs.id, logs.title, logs.user_id, count(log_id) AS count').limit(limit)
   end
 
   def extract_lang_name
-    self.languages.map do |lang|
+    self.languages.limit(3).map do |lang|
       lang.name
     end
   end

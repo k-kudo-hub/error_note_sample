@@ -26,7 +26,7 @@ class Api::V1::StocksController < ApplicationController
   end
 
   def rank
-    object = Log.stock_rank_with_counts
+    object = Log.stock_rank_with_counts(5)
     render json: object
   end
 
