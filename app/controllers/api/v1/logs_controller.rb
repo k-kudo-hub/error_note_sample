@@ -6,27 +6,27 @@ class Api::V1::LogsController < ApplicationController
   end
 
   def index
-    logs = Log.where(release: true).includes(:user, :languages).order('updated_at DESC').page(params[:page]).per(10)
+    logs = Log.published_all.page(params[:page]).per(params[:per])
     array = []
-    array_push(logs, array)
+    shape_object(logs, array)
     total_pages = logs.total_pages
     response = { logs: array, total_pages: total_pages }
     render json: response
   end
 
   def latest_stocks_index
-    logs = current_user.my_stocks.page(params[:page]).per(10)
+    logs = current_user.my_stocks.page(params[:page]).per(params[:per])
     array = []
-    array_push(logs, array)
+    shape_object(logs, array)
     total_pages = logs.total_pages
     response = { logs: array, total_pages: total_pages }
     render json: response
   end
 
   def most_stocked_index
-    logs = Log.rank(10)
+    logs = Log.stock_rank(params[:per])
     array = []
-    array_push(logs, array)
+    shape_object(logs, array)
     response = { logs: array, total_pages: 1 }
     render json: response
   end
@@ -43,14 +43,21 @@ class Api::V1::LogsController < ApplicationController
 
   def show
     log = Log.find(params[:id])
-    languages = []
-    log.languages.each do |lang|
-      languages.push(id: lang.id, name: lang.name)
-    end
-    picture = log.user.picture ? log.user.picture.url : nil
-    user = { id: log.user_id, name: log.user.name, picture: picture, introduce: log.user.introduce }
-    log = { id: log.id, title: log.title, error: log.error, solution: log.solution, release: log.release,
-            updated_at: l(log.updated_at, format: :default) }
+    languages = log.extract_lang_data
+    user = {
+      id: log.user_id,
+      name: log.user.name,
+      picture: log.user.picture_url,
+      introduce: log.user.introduce
+    }
+    log = {
+      id: log.id,
+      title: log.title,
+      error: log.error,
+      solution: log.solution,
+      release: log.release,
+      updated_at: l(log.updated_at, format: :default)
+    }
     response = { log: log, languages: languages, user: user }
     render json: response
   end
@@ -84,7 +91,7 @@ class Api::V1::LogsController < ApplicationController
   def search
     logs = Log.search(params[:keyword]).page(params[:page]).per(params[:per])
     array = []
-    array_push(logs, array)
+    shape_object(logs, array)
     total_pages = logs.total_pages
     response = {
       logs: array,
@@ -99,22 +106,17 @@ class Api::V1::LogsController < ApplicationController
       params.require(:log).permit(:title, :error, :solution, :release, { language_ids: [] }).merge(user_id: current_user.id)
     end
 
-    def array_push(logs, array)
+    def shape_object(logs, array)
       logs.each do |log|
-        languages = []
-        log.languages.limit(3).each do |language|
-          languages.push(language.name)
-        end
-        picture = log.user.picture? ? log.user.picture.url : nil
         array.push(
           id: log.id,
           title: log.title,
-          languages: languages,
+          languages: log.extract_lang_name,
           updated_at: l(log.updated_at, format: :default),
           release: log.release,
           user_id: log.user.id,
           user_name: log.user.name,
-          user_picture: picture
+          user_picture: log.user.picture_url
         )
       end
       array

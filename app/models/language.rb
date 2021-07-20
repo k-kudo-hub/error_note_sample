@@ -8,11 +8,11 @@ class Language < ApplicationRecord
     name.downcase.delete(' ').tr('#', 's').tr('+', 'p').tr('.', 'd')
   end
 
-  def self.rank
-    find(LogLanguage.group(:language_id).order('count(language_id) desc').limit(5).pluck(:language_id))
+  def self.rank_with_counts
+    joins(:log_languages).group('name').order('count(language_id) desc').limit(5).count
   end
 
-  def rank_count
-    LogLanguage.where(language_id: id).count
+  def self.all_id_and_name
+    all.order(id: :asc).pluck(:id, :name)
   end
 end

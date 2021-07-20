@@ -29,8 +29,8 @@
 
 <script>
 import axios from 'axios';
-import UsersProfile from '../components/UsersProfile';
-import LogsTable from '../components/LogsTable';
+import UsersProfile from 'components/users/Profile';
+import LogsTable from 'components/logs/Table';
 
 export default {
   components: {

@@ -69,9 +69,9 @@
 
 <script>
 import axios from 'axios';
-import UsersProfile from './UsersProfile';
-import LogsUpdate from './LogsUpdate';
-import LogsDestroy from './LogsDestroy';
+import UsersProfile from 'components/users/Profile';
+import LogsUpdate from 'components/logs/Update';
+import LogsDestroy from 'components/logs/Destroy';
 
 const token = document.getElementsByName("csrf-token")[0].getAttribute("content");
 axios.defaults.headers.common["X-CSRF-Token"] = token;

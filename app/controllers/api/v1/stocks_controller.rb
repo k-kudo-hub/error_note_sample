@@ -8,7 +8,7 @@ class Api::V1::StocksController < ApplicationController
   def index
     stocks = current_user.my_stocks.page(params[:page]).per(10)
     array = []
-    array_push(stocks, array)
+    shape_object(stocks, array)
     total_pages = stocks.total_pages
     response = { stocks: array, total_pages: total_pages }
     render json: response
@@ -26,21 +26,15 @@ class Api::V1::StocksController < ApplicationController
   end
 
   def rank
-    logs = Log.rank(5)
-    counts = Stock.rank(5).count
-    array = []
-    logs.zip(counts) do |log, count|
-      array.push(id: log.id, title: log.title.truncate(9), count: count[1], user_id: log.user_id)
-    end
-    render json: array
+    object = Log.stock_rank_with_counts(5)
+    render json: object
   end
 
   def check
     log = Log.find(params[:log_id])
     count = log.stocks.count
     if user_signed_in?
-      user = User.find(current_user.id)
-      stocked = user.already_stocked?(log)
+      stocked = current_user.already_stocked?(log)
       response = { stocked: stocked, count: count }
     else
       response = { stocked: false, count: count }
@@ -50,22 +44,17 @@ class Api::V1::StocksController < ApplicationController
 
   private
 
-    def array_push(logs, array)
+    def shape_object(logs, array)
       logs.each do |log|
-        languages = []
-        log.languages.limit(3).each do |language|
-          languages.push(language.name)
-        end
-        picture = log.user.picture? ? log.user.picture.url : nil
         array.push(
           id: log.id,
           title: log.title,
-          languages: languages,
+          languages: log.extract_lang_name,
           updated_at: l(log.updated_at, format: :default),
           release: log.release,
           user_id: log.user.id,
           user_name: log.user.name,
-          user_picture: picture
+          user_picture: log.user.picture_url
         )
       end
       array

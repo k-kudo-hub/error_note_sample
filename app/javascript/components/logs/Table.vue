@@ -17,7 +17,7 @@
               <img :src="item.user_picture" height="25px" width="25px">
             </template>
             <template v-else>
-              <img src="../../assets/images/human.png" height="25px" width="25px">
+              <img src="../../../assets/images/human.png" height="25px" width="25px">
             </template>
             <div class="log-block__text-container">
               <template v-if="item.release">

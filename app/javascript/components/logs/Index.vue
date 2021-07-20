@@ -60,8 +60,8 @@
 <script>
 import axios from 'axios';
 import Vuetify from 'vuetify';
-import UserRank from 'components/UserRank.vue';
-import LogsTable from 'components/LogsTable.vue';
+import UserRank from 'components/users/Rank.vue';
+import LogsTable from 'components/logs/Table.vue';
 
 export default {
   components: {
@@ -127,7 +127,7 @@ export default {
         this.pageTitle = "話題のノート";
       }
       axios
-        .get(`/api/v1/logs/most_stocked_index.json`)
+        .get(`/api/v1/logs/most_stocked_index.json?per=${this.itemPerPage}`)
         .then(response => (
           this.logs = response.data.logs,
           this.totalPages = response.data.totalPages
