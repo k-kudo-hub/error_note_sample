@@ -24,6 +24,6 @@ class User < ApplicationRecord
   end
 
   def picture_url
-    self.picture? ? self.picture.url : nil
+    picture? ? picture.url : nil
   end
 end

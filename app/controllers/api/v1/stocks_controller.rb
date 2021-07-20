@@ -7,7 +7,7 @@ class Api::V1::StocksController < ApplicationController
 
   def index
     stocks = current_user.my_stocks.page(params[:page]).per(10)
-    array = Array.new
+    array = []
     shape_object(stocks, array)
     total_pages = stocks.total_pages
     response = { stocks: array, total_pages: total_pages }

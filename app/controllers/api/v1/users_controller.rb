@@ -25,7 +25,7 @@ class Api::V1::UsersController < ApplicationController
   def user_log_index
     @user = User.find(params[:user_id])
     logs = published_log.order(updated_at: :desc).page(params[:page]).per(10)
-    array = Array.new
+    array = []
     shape_object(logs, array)
     total_pages = logs.total_pages
     response = { logs: array, total_pages: total_pages }

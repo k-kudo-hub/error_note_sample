@@ -7,7 +7,7 @@ class Api::V1::LogsController < ApplicationController
 
   def index
     logs = Log.published_all.page(params[:page]).per(10)
-    array = Array.new
+    array = []
     shape_object(logs, array)
     total_pages = logs.total_pages
     response = { logs: array, total_pages: total_pages }
@@ -16,7 +16,7 @@ class Api::V1::LogsController < ApplicationController
 
   def latest_stocks_index
     logs = current_user.my_stocks.page(params[:page]).per(10)
-    array = Array.new
+    array = []
     shape_object(logs, array)
     total_pages = logs.total_pages
     response = { logs: array, total_pages: total_pages }
@@ -25,7 +25,7 @@ class Api::V1::LogsController < ApplicationController
 
   def most_stocked_index
     logs = Log.rank(10)
-    array = Array.new
+    array = []
     shape_object(logs, array)
     response = { logs: array, total_pages: 1 }
     render json: response
@@ -44,20 +44,20 @@ class Api::V1::LogsController < ApplicationController
   def show
     log = Log.find(params[:id])
     languages = log.extract_lang_data
-    user = { 
-             id: log.user_id,
-             name: log.user.name, 
-             picture: log.user.picture_url, 
-             introduce: log.user.introduce
-            }
+    user = {
+      id: log.user_id,
+      name: log.user.name,
+      picture: log.user.picture_url,
+      introduce: log.user.introduce
+    }
     log = {
-            id: log.id,
-            title: log.title, 
-            error: log.error, 
-            solution: log.solution, 
-            release: log.release,
-            updated_at: l(log.updated_at, format: :default) 
-          }
+      id: log.id,
+      title: log.title,
+      error: log.error,
+      solution: log.solution,
+      release: log.release,
+      updated_at: l(log.updated_at, format: :default)
+    }
     response = { log: log, languages: languages, user: user }
     render json: response
   end
@@ -90,7 +90,7 @@ class Api::V1::LogsController < ApplicationController
 
   def search
     logs = Log.search(params[:keyword]).page(params[:page]).per(params[:per])
-    array = Array.new
+    array = []
     shape_object(logs, array)
     total_pages = logs.total_pages
     response = {

@@ -7,7 +7,7 @@ class Api::V1::LanguagesController < ApplicationController
 
   def index
     languages = Language.all_id_and_name
-    array = Array.new
+    array = []
     languages.each do |language|
       array.push(id: language[0], name: language[1])
     end
@@ -16,7 +16,7 @@ class Api::V1::LanguagesController < ApplicationController
 
   def rank
     object = Language.rank_with_counts
-    array = Array.new
+    array = []
     object.each do |obj|
       array.push(name: obj[0], count: obj[1])
     end
