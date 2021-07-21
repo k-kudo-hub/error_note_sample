@@ -7,7 +7,7 @@ set :repo_url, 'git@github.com:k-kudo-hub/error_note_sample.git'
 set :branch, ENV['BRANCH'] || 'master'
 
 set :linked_dirs,
-    fetch(:linked_dirs, []).push('node_modules', 'log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'vendor/bundle', 'public/system', 'public/uploads')
+    fetch(:linked_dirs, []).push('node_modules', 'log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'public/system', 'public/uploads')
 set :linked_files, fetch(:linked_files, []).push('config/master.key', '.env')
 
 set :rbenv_type, :user
