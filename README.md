@@ -23,7 +23,7 @@ This may also contribute to people who are not good at document management.
 ### Registration
 Before you start using your notebook, please tell us a little about you.
 
-1. Go to [Error Note's]() website.
+1. Go to [Error Note's](http://www.error-note.com/) website.
 1. Click the registration button at the top right of the page.
 1. All you need is your name, email address, and password.
 1. If you want to make your profile gorgeous, you can add images and self-introductions.
