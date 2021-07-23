@@ -13,7 +13,6 @@ unless Rails.env.development? || Rails.env.test?
       aws_secret_access_key: ENV['AWS_SECRET_ACCESS_KEY'],
       region: 'ap-northeast-1'
     }
-
   end
 end
 # ファイル名に日本語を許可する
