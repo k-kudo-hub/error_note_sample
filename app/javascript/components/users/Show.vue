@@ -77,6 +77,9 @@ export default {
         .then(response => (
           this.user = response.data
         ))
+        .catch(error => {
+          this.onError();
+        })
     },
     getUserLogs: function(){
       axios
@@ -114,6 +117,9 @@ export default {
     showMoreUserInformations: function(...args){
       location.href=`/users/${args}`
     },
+    onError: function(){
+      location.href='/not_found';
+    }
   }
 }
 </script>

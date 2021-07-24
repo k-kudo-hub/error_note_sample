@@ -132,8 +132,8 @@ export default {
         .then(response => {
           this.log_info = response.data
         })
-        .catch(err => {
-          console.log('error:', err)
+        .catch(error => {
+          console.log('error:', error)
         })
     },
     createNote: async function(){

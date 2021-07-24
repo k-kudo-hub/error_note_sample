@@ -135,6 +135,9 @@ export default {
           this.languages = response.data.languages,
           this.getLanguageIds(response.data.languages)
         ))
+        .catch(error => {
+          this.onError();
+        })
     },
     trimName: function(langName){
       var name = langName.toLowerCase().replace(/\s+/g, '').replace('#', 's').replace('.', 'd');
@@ -196,8 +199,8 @@ export default {
           console.log(response.data)
           this.log_info = response.data
         })
-        .catch(err => {
-          console.log('error:', err)
+        .catch(error => {
+          console.log('error:', error)
         })
     },
     afterUpdate: function(){
@@ -216,8 +219,8 @@ export default {
           console.log(response.data)
           location.href=`/users/${response.data}`;
         })
-        .catch(err => {
-          console.log('error:', err)
+        .catch(error => {
+          console.log('error:', error)
         })
     },
     createStock: function(){
@@ -242,6 +245,9 @@ export default {
       this.alreadyStocked = false;
       this.stockedCount -= 1;
     },
+    onError: function(){
+      location.href='/not_found';
+    }
   }
 }
 </script>
