@@ -4,64 +4,247 @@
   <title>The page you were looking for doesn't exist (404)</title>
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <style>
-  .rails-default-error-page {
-    background-color: #EFEFEF;
-    color: #2E2F30;
+  /*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */html{line-height:1.15;-webkit-text-size-adjust:100%}body{margin:0}main{display:block}h1{font-size:2em;margin:.67em 0}hr{box-sizing:content-box;height:0;overflow:visible}pre{font-family:monospace,monospace;font-size:1em}a{background-color:transparent}abbr[title]{border-bottom:none;text-decoration:underline;text-decoration:underline dotted}b,strong{font-weight:bolder}code,kbd,samp{font-family:monospace,monospace;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}img{border-style:none}button,input,optgroup,select,textarea{font-family:inherit;font-size:100%;line-height:1.15;margin:0}button,input{overflow:visible}button,select{text-transform:none}[type=button],[type=reset],[type=submit],button{-webkit-appearance:button}[type=button]::-moz-focus-inner,[type=reset]::-moz-focus-inner,[type=submit]::-moz-focus-inner,button::-moz-focus-inner{border-style:none;padding:0}[type=button]:-moz-focusring,[type=reset]:-moz-focusring,[type=submit]:-moz-focusring,button:-moz-focusring{outline:1px dotted ButtonText}fieldset{padding:.35em .75em .625em}legend{box-sizing:border-box;color:inherit;display:table;max-width:100%;padding:0;white-space:normal}progress{vertical-align:baseline}textarea{overflow:auto}[type=checkbox],[type=radio]{box-sizing:border-box;padding:0}[type=number]::-webkit-inner-spin-button,[type=number]::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}[type=search]::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}details{display:block}summary{display:list-item}template{display:none}[hidden]{display:none}
+  html {
+    font-family: "Helvetica Neue",
+                 Arial,
+                 "Hiragino Kaku Gothic ProN",
+                 "Hiragino Sans",
+                 "Meiryo",
+                 sans-serif;
+  }
+  .app-body {
+    background-color: rgb(240, 240, 240);
+    min-height: calc(100vh - 50px - 250px - 80px);
+    padding: 30px 0 50px;
+  }
+  .app-body-inner {
+    background-color: white;
+    width: calc(730px - 64px);
+    padding: 32px;
+    margin: 0 auto 30px;
+    min-height: 200px;
+  }
+  .app-body-inner h1 {
     text-align: center;
-    font-family: arial, sans-serif;
+    margin: 20px auto;
+    word-break: break-all;
+  }
+  .header-area {
+    background-color: #80c683;
+  }
+  .header-container {
+    background: #80c683;
+    display: flex;
+    height: 50px;
+    text-align: center;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  .header-left {
+    display: flex;
+    height: 100%;
+    position: relative;
+    width: 35%;
+  }
+  .header-left h1 {
+    left: 17%;
+    font-size: 1.4rem;
+    position: absolute;
+    top: 20%;
     margin: 0;
   }
-
-  .rails-default-error-page div.dialog {
-    width: 95%;
-    max-width: 33em;
-    margin: 4em auto 0;
+  .header-left a {
+    color: black;
+    text-decoration: none;
   }
-
-  .rails-default-error-page div.dialog > div {
-    border: 1px solid #CCC;
-    border-right-color: #999;
-    border-left-color: #999;
-    border-bottom-color: #BBB;
-    border-top: #B00100 solid 4px;
-    border-top-left-radius: 9px;
-    border-top-right-radius: 9px;
-    background-color: white;
-    padding: 7px 12% 0;
-    box-shadow: 0 3px 8px rgba(50, 50, 50, 0.17);
+  .header-center {
+    width: 15%;
   }
-
-  .rails-default-error-page h1 {
-    font-size: 100%;
-    color: #730E15;
-    line-height: 1.5em;
+  .header-right {
+    display: flex;
+    position: relative;
+    width: 50%;
   }
-
-  .rails-default-error-page div.dialog > p {
-    margin: 0 0 1em;
-    padding: 1em;
-    background-color: #F7F7F7;
-    border: 1px solid #CCC;
-    border-right-color: #999;
-    border-left-color: #999;
-    border-bottom-color: #999;
-    border-bottom-left-radius: 4px;
-    border-bottom-right-radius: 4px;
-    border-top-color: #DADADA;
-    color: #666;
-    box-shadow: 0 3px 8px rgba(50, 50, 50, 0.17);
+  .footer-area {
+    background-color: rgb(82, 82, 82);
+    height: 186px;
+    padding: 32px 16px;
+    position: relative;
+  }
+  .footer-top {
+    display: flex;
+    height: 80%;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  .footer-top a,
+  .footer-top p {
+    color: white;
+    text-decoration: none;
+  }
+  .footer-bottom {
+    display: flex;
+    justify-content: center;
+    height: 20%;
+    max-width: 700px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  .footer-bottom p {
+    margin: 0;
+  }
+  .footer-copy {
+    border-top: 1px solid rgb(159, 159, 159);
+    bottom: 30px;
+    color: rgb(159, 159, 159) !important;
+    height: fit-content;
+    font-size: 0.8rem;
+    padding: 10px 0;
+    width: 70%;
+  }
+  .footer-left  {
+    width: 60%;
+    margin-left: 5%;
+  }
+  .footer-left p {
+    margin: 10px 0;
+  }
+  .footer-sns-area {
+    display: flex;
+  }
+  .footer-sns-area img {
+    margin-right: 20px;
+  }
+  .footer-site-name {
+    font-size: 2rem;
+    font-weight: bold;
+    margin: 0 0 20px;
+  }
+  .footer-right {
+    width: 40%;
+    display: flex;
+  }
+  .footer-right-start,
+  .footer-right-end {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+  }
+  .footer-right-start p:first-child,
+  .footer-right-end p:first-child {
+    margin: 0;
+    font-weight: bold;
+  }
+  .footer-right-start a,
+  .footer-right-end a {
+    color: rgb(159, 159, 159);
+    margin-top: 1em;
+  }
+  .footer-right-start a:hover,
+  .footer-right-end a:hover {
+    color: rgb(255, 255, 255);
+  }   
+  .log-detail__langs {
+    display: flex;
+    justify-content: flex-end;
+    margin: 10px 15px 15px 0;
+  }
+  .log-detail__langs p {
+    margin-right: 5px;
+  }
+  .log-detail__content {
+    background-color: #f0f0f0;
+    line-height: 1.4;
+    margin: 10px auto 20px;
+    padding: 20px 40px;
+    width: 85%;
+    table-layout: fixed;
+  }
+  .log-detail__content-error,
+  .log-detail__content-solution {
+    overflow-wrap: break-word;
+    white-space: pre-wrap;
+  }
+  .log-detail__content-title{
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  .errors {
+    background-color: #fff5f5;
+  }
+  .solutions {
+    background-color: #f6fff4;
+  }
+  .log-updated-at {
+    color: silver;
+    margin: 0 20px 20px 0;
+    text-align: right;
   }
   </style>
 </head>
 
-<body class="rails-default-error-page">
-  <!-- This file lives in public/404.html -->
-  <div class="dialog">
-    <div>
-      <h1>The page you were looking for doesn't exist.</h1>
-      <p>You may have mistyped the address or the page may have moved.</p>
+<body>
+  <div class="header-area">
+    <div class="header-container">
+      <div class="header-left flex-3">
+        <h1><a href="/">Error Note</a></h1>
+      </div>
+      <div class="header-center flex-3">
+      </div>
+      <div class="header-right flex-3">
+      </div>
     </div>
-    <p>If you are the application owner check the logs for more information.</p>
+  </div>
+  <div class="app-body">
+    <section class="app-body-inner">
+      <h1>お探しのページは見つかりませんでした</h1>
+      <div class="log-updated-at">
+        <p>Error Note 運営チーム</p>
+      </div>
+      <div class="log-detail__content errors">
+        <p class="log-detail__content-title">エラーの内容</p>
+        <p class="log-detail__content-error">404 Not Found</p>
+      </div>
+      <div class="log-detail__content solutions">
+        <p class="log-detail__content-title">解決法</p>
+          <p class="log-detail__content-solution">「トップページ」から検索をお試しください。</p>
+      </div>
+    </div>
+    </section>
+  </div>
+  <div class="footer-area">
+    <div class="footer-top">
+      <div class="footer-left">
+        <a href="/" class= "footer-site-name">Error Note</a>
+        <p>Error will give you a hint.</p>
+        <div class="footer-sns-area">
+          <a href="https://lapras.com/public/GCUQE8M" target="_blank" rel="noopener noreferrer">
+            <img src="brain.png" height="20px" width="20px">
+          </a>
+          <a href="https://twitter.com/WAKO_program" target="_blank" rel="noopener noreferrer">
+            <img src="twitter.png" height="20px" width="20px">
+          </a>
+        </div>
+      </div>
+      <div class="footer-right">
+        <div class="footer-right-start">
+          <p>Error Note</p>
+          <a href="/terms" target="_blank" rel="noopener noreferrer">利用規約</a>
+          <a href="/privacy" target="_blank" rel="noopener noreferrer">プライバシー</a>
+          <a href="#" target="_blank" rel="noopener noreferrer">お問い合わせ</a>
+        </div>
+        <div class="footer-right-end">
+          <p>Joint Dev inc.</p>
+          <a href="https://github.com/k-kudo-hub" target="_blank" rel="noopener noreferrer">
+            Github<i class="fas fa-external-link-alt ml-5"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copy">©️ 2021 Joint Dev Inc.</p>
+    </div>
   </div>
 </body>
 </html>
