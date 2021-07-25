@@ -76,7 +76,18 @@ We'll evolve for your better experience.
 
 ...and more
 
-## Contribution
+## Try or Contribution
 We would appreciate it if you could contribute.We are always waiting for your participation.
 
-The documentation is not in place and will be published as soon as it is ready.
+### Try it
+1. `git clone https://github.com/k-kudo-hub/error_note_sample.git`
+1. `cd error_note_sample`
+1. `bundle install`
+1. `rails db:create`
+1. `rails db:migrate`
+1. `npm install`
+1. `rails s`
+1. `Access localhost:3000`
+
+### Contribution
+sorry. "How to Contribute" document is not yet complete. We will publish it as soon as it is completed.
