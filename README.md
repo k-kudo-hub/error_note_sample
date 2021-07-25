@@ -14,9 +14,17 @@ This may also contribute to people who are not good at document management.
 
 ## Composition of Error Note
 
-* Ruby on Rails
-* Vue.js
-* and more...
+| item                 | require               | version |
+| -------------------- | --------------------- | ------- |
+|  OS                  | AmazonLinux AMI       | 2.0     |
+|  Application Server  | Unicorn               | 6.0.0   |
+|  Web Server          | Nginx                 | 1.20.0  |
+|  DB Server           | AWS RDS(MySQL)        | 8.0.25  |
+|  Backend             | Ruby                  | 2.7.2   |
+|  BackendFramework    | Ruby on Rails         | 6.1.3.2 |
+|  Frontend            | HTML, CSS, Javascript | -       |
+|  FrontendFramework   | Vue.js                | 2.6.12  |
+|  AutomaticDeployment | Capistrano            | 3.1.0   |
 
 ## How to use
 
