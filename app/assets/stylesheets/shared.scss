@@ -337,6 +337,9 @@ form {
       left: 20%;
       position: absolute;
       top: 20%;
+      &:hover {
+        cursor: pointer;
+      }
       a {
         color: $site-font-color;
         text-decoration: none;
@@ -440,6 +443,7 @@ form {
   }
   a:hover {
     color: $site-font-color;
+    cursor: pointer;
   }
   i {
     height: 15px;
