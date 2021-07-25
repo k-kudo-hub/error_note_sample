@@ -14,16 +14,24 @@ This may also contribute to people who are not good at document management.
 
 ## Composition of Error Note
 
-* Ruby on Rails
-* Vue.js
-* and more...
+| item                 | require               | version |
+| -------------------- | --------------------- | ------- |
+|  OS                  | AmazonLinux AMI       | 2.0     |
+|  Application Server  | Unicorn               | 6.0.0   |
+|  Web Server          | Nginx                 | 1.20.0  |
+|  DB Server           | AWS RDS(MySQL)        | 8.0.25  |
+|  Backend             | Ruby                  | 2.7.2   |
+|  BackendFramework    | Ruby on Rails         | 6.1.3.2 |
+|  Frontend            | HTML, CSS, Javascript | -       |
+|  FrontendFramework   | Vue.js                | 2.6.12  |
+|  AutomaticDeployment | Capistrano            | 3.1.0   |
 
 ## How to use
 
 ### Registration
 Before you start using your notebook, please tell us a little about you.
 
-1. Go to [Error Note's](http://www.error-note.com/) website.
+1. Go to [Error Note's](https://www.error-note.com/) website.
 1. Click the registration button at the top right of the page.
 1. All you need is your name, email address, and password.
 1. If you want to make your profile gorgeous, you can add images and self-introductions.
@@ -68,7 +76,18 @@ We'll evolve for your better experience.
 
 ...and more
 
-## Contribution
+## Try or Contribution
 We would appreciate it if you could contribute.We are always waiting for your participation.
 
-The documentation is not in place and will be published as soon as it is ready.
+### Try it
+1. `git clone https://github.com/k-kudo-hub/error_note_sample.git`
+1. `cd error_note_sample`
+1. `bundle install`
+1. `rails db:create`
+1. `rails db:migrate`
+1. `npm install`
+1. `rails s`
+1. `Access localhost:3000`
+
+### Contribution
+sorry. "How to Contribute" document is not yet complete. We will publish it as soon as it is completed.
