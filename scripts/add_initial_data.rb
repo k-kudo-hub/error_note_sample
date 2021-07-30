@@ -32,7 +32,7 @@ c_2 = Log.create(
   release: true,
 )
 
-# C# Lang
+# C#
 error = <<~EOS
   Index was out of range.
   インデックスは配列の範囲外ですと怒られた。該当のコードは以下の通り。
@@ -66,7 +66,7 @@ cs_1 = Log.create(
 #   release: true,
 # )
 
-# C++ Lang
+# C++
 error = <<~EOS
   C2513.cpp エラー。該当コードは以下。
   int main(){
@@ -179,5 +179,26 @@ go_1 = Log.create(
   user_id: 1,
   release: true,
 )
+error = <<~EOS
+  コンパイルエラー
+  a := int(10)
+  b := int64(5)
+  b = a
+EOS
+solution = <<~EOS
+  暗黙的に型を変換してしまっていた。
+  a := int(10)
+  b := int64(a)
+  上記のようにしたところ、エラーは解消した。
+EOS
+go_1 = Log.create(
+  error: error,
+  languages: Language.where(name: "Go"),
+  solution: solution,
+  title: '暗黙的な型変換でコンパイルエラー',
+  user_id: 1,
+  release: true,
+)
 
+# Java
 
