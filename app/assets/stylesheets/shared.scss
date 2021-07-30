@@ -23,7 +23,7 @@ form {
   border-radius: 20px;
   height: fit-content;
   margin: 20px auto;
-  padding: 1.2vh 2.5vw;
+  padding: 7px 2.5vw;
   text-decoration: none;
   &:hover {
     cursor: pointer;
@@ -670,7 +670,7 @@ form {
 
 .nav-bar {
   margin: 0 auto 15px;
-  max-width: 95%;
+  width: 95%;
   &__usage {
     height: 250px;
   }
