@@ -261,3 +261,61 @@ java_2 = Log.create(
   release: true,
 )
 
+# Javascript
+error = <<~EOS
+  Uncaught SyntaxError: Unexpected end of input
+  ```
+  function myFunc() {
+    if(true) {
+        console.log('Helllo');
+    }
+  ```
+  end of input っていうけどend入れるようなところはないぞ？
+EOS
+solution = <<~EOS
+  閉じカッコがなかった。
+  ```
+  function myFunc() {
+    if(true) {
+        console.log('Helllo');
+    }
+  end
+  ```
+  これでOK。
+EOS
+js = Log.create(
+  error: error,
+  languages: Language.where(name: "JavaScript"),
+  solution: solution,
+  title: 'Uncaught SyntaxError: Unexpected end of input',
+  user_id: 1,
+  release: true,
+)
+
+error = <<~EOS
+  Uncaught ReferenceError: morningGreet is not defined
+  ```
+  const moningGreet = 'Hello!';
+  console.log(morningGreet);
+  ```
+  EOS
+  solution = <<~EOS
+  関数の宣言時に名前を間違えていた。
+  ```
+  const moningGreet = 'Hello!';
+  console.log(morningGreet);
+  ```
+  タイポォぉぉ！
+EOS
+js = Log.create(
+  error: error,
+  languages: Language.where(name: "JavaScript"),
+  solution: solution,
+  title: 'Uncaught ReferenceError:',
+  user_id: 1,
+  release: true,
+)
+
+# Kotlin
+
+
