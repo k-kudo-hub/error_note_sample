@@ -201,4 +201,63 @@ go_1 = Log.create(
 )
 
 # Java
+error = <<~EOS
+  Exception in thread "main" java.lang.NullPointerException.
+  -- code ---
+  package sample;
+  public class SampleClass {
+    public static void main(String[] args) {
+      String buf = null;
+      System.out.println("buf length is " + buf.length());
+    }
+  }
+  -----------
+EOS
+solution = <<~EOS
+  "NullPo!"
+  package sample;
+  public class SampleClass {
+    public static void main(String[] args) {
+      String buf = hoge;
+      System.out.println("buf length is " + buf.length());
+    }
+  }
+  it works.
+EOS
+java_1 = Log.create(
+  error: error,
+  languages: Language.where(name: "Java"),
+  solution: solution,
+  title: 'Exception in thread "main" java.lang.NullPointerException',
+  user_id: 1,
+  release: true,
+)
+
+error = <<~EOS
+  Exception in thread "main" java.lang.ArithmeticException: / by zero
+  package sample;
+  public class SampleClass {
+    public static void main(String[] args) {
+      int valueA;
+      int valueB;
+      int result;
+
+      valueA = 1;
+      valueB = 0;
+      result = valueA / valueB;
+    }
+  }
+EOS
+solution = <<~EOS
+  1 ÷ 0 ってそりゃできるわけないか…。
+  いわゆるゼロ除算というものらしい。
+EOS
+java_2 = Log.create(
+  error: error,
+  languages: Language.where(name: "Java"),
+  solution: solution,
+  title: 'java.lang.ArithmeticException',
+  user_id: 1,
+  release: true,
+)
 
