@@ -81,7 +81,7 @@ export default {
         user_picture: "",
       },
       currentPage: 1,
-      itemPerPage: 10,
+      itemPerPage: 20,
       totalPages: null,
       pageTitle: "新着ノート",
       currentLogs: this.getLatestLogs,
@@ -160,7 +160,7 @@ export default {
         ))
     },
     trimName: function(langName){
-      var name = langName.toLowerCase().replace(/\s+/g, '').replace('#', 's').replace('.', 'd');
+      var name = langName.toLowerCase().replace(/\s+/g, '').replace('#', 's').replace('.', 'd').replace('++', 'pp');
       return name;
     },
     showMoreInformations: function(user_id, log_id){

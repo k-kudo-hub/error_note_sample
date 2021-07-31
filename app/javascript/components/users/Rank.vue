@@ -67,7 +67,7 @@ export default {
       this.date = year + '年' + month + '月' + day + '日';
     },
     trimName: function(langName){
-      var name = langName.toLowerCase().replace(/\s+/g, '').replace('#', 's').replace('.', 'd');
+      var name = langName.toLowerCase().replace(/\s+/g, '').replace('#', 's').replace('.', 'd').replace('++', 'pp');
       return name;
     },
     showMoreInformations: function(user_id, log_id){
