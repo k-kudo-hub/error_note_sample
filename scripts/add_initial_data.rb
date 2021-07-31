@@ -232,7 +232,6 @@ java_1 = Log.create(
   user_id: 1,
   release: true,
 )
-
 error = <<~EOS
   Exception in thread "main" java.lang.ArithmeticException: / by zero
   package sample;
@@ -291,15 +290,14 @@ js = Log.create(
   user_id: 1,
   release: true,
 )
-
 error = <<~EOS
   Uncaught ReferenceError: morningGreet is not defined
   ```
   const moningGreet = 'Hello!';
   console.log(morningGreet);
   ```
-  EOS
-  solution = <<~EOS
+EOS
+solution = <<~EOS
   関数の宣言時に名前を間違えていた。
   ```
   const moningGreet = 'Hello!';
