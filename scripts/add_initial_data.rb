@@ -1,3 +1,11 @@
+# Use this script only once when launching the application.
+# Usage: 
+#   rails runner scripts/add_initial_data.rb RAILS_ENV=#{environment}
+
+# initialize all logs
+Log.destroy_all
+ActiveRecord::Base.connection.execute('alter table logs auto_increment = 1;')
+
 # C Lang
 c_1 = Log.create(
   user_id: 1,
@@ -57,7 +65,7 @@ cs_1 = Log.create(
 # solution = <<~EOS
 #   
 # EOS
-# cs_1 = Log.create(
+# cs_2 = Log.create(
 #   error: error,
 #   languages: Language.where(name: "C#"),
 #   solution: solution,
@@ -99,7 +107,7 @@ solution = <<~EOS
   class cHasPubBase : public sbase {};
   ↑のように構造体に変更する必要がある。
 EOS
-cp_1 = Log.create(
+cp_2 = Log.create(
   error: error,
   languages: Language.where(name: "C++"),
   solution: solution,
@@ -143,7 +151,7 @@ EOS
 solution = <<~EOS
   普通にケアレスミス。END IFを入れるのを忘れていた。
 EOS
-cp_1 = Log.create(
+cobol_2 = Log.create(
   error: error,
   languages: Language.where(name: "COBOL"),
   solution: solution,
@@ -191,7 +199,7 @@ solution = <<~EOS
   b := int64(a)
   上記のようにしたところ、エラーは解消した。
 EOS
-go_1 = Log.create(
+go_2 = Log.create(
   error: error,
   languages: Language.where(name: "Go"),
   solution: solution,
@@ -203,7 +211,7 @@ go_1 = Log.create(
 # Java
 error = <<~EOS
   Exception in thread "main" java.lang.NullPointerException.
-  -- code ---
+  ```
   package sample;
   public class SampleClass {
     public static void main(String[] args) {
@@ -211,7 +219,7 @@ error = <<~EOS
       System.out.println("buf length is " + buf.length());
     }
   }
-  -----------
+  ```
 EOS
 solution = <<~EOS
   "NullPo!"
@@ -282,7 +290,7 @@ solution = <<~EOS
   ```
   これでOK。
 EOS
-js = Log.create(
+js_1 = Log.create(
   error: error,
   languages: Language.where(name: "JavaScript"),
   solution: solution,
@@ -305,7 +313,7 @@ solution = <<~EOS
   ```
   タイポォぉぉ！
 EOS
-js = Log.create(
+js_2 = Log.create(
   error: error,
   languages: Language.where(name: "JavaScript"),
   solution: solution,
@@ -315,5 +323,59 @@ js = Log.create(
 )
 
 # Kotlin
+error = <<~EOS
+  初期値がないと言われた。
+  Javaだとこれで動くんだけどな...。
+  ```
+  var message: TextView
+  ```
+EOS
+solution = <<~EOS
+  Kotlinでは初期値を書かなければいけないらしい。
+  ```
+  var message: TextView? = null
+  ```
+EOS
+kotlin_1 = Log.create(
+  error: error,
+  languages: Language.where(name: "Kotlin"),
+  solution: solution,
+  title: '初期値未入力エラー',
+  user_id: 1,
+  release: true,
+)
 
+# Kuin
+error = <<~EOS
+  ブロック名に対応する「end」が存在しません...?
+  ```
+  0x0001000F
+  class Parent()
+    {
+      処理A
+    }
+  end
+  ```
+EOS
+solution = <<~EOS
+  Kuinはendの後にブロックの種類を書く必要があるらしい
+  ```
+  ; OK!
+  class Parent()
+    {
+      処理A
+    }
+  end class
+  ```
+EOS
+kuin_1 = Log.create(
+  error: error,
+  languages: Language.where(name: "Kuin"),
+  solution: solution,
+  title: 'ブロック名に対応するendが存在しません。',
+  user_id: 1,
+  release: true,
+)
+
+# LISP
 
