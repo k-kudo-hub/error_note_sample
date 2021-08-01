@@ -378,4 +378,47 @@ kuin_1 = Log.create(
 )
 
 # LISP
+error = <<~EOS
+Error: TYPE-ERROR :DATUM (CDR LT) :EXPECTED-TYPE FUNCTION
+LISP全然わからん…
+EOS
+lisp_1 = Log.create(
+  error: error,
+  languages: Language.where(name: "LISP"),
+  solution: nil,
+  title: 'TYPE-ERROR :DATUM (CDR LT) :EXPECTED-TYPE FUNCTION',
+  user_id: 1,
+  release: true,
+)
+  
+# MATLAB
+error = <<~EOS
+  Error using combinations (line 3)
+  Cannot calculate with given values
+  ```
+  function com = combinations(a,b)
+  if a > b
+      error('Cannot calculate with given values')
+  end
+  com = factorial(a)/(factorial(b)*factorial(a-b));
+  end
+
+  combinations(4,8)
+  ```
+  EOS
+  solution = <<~EOS
+  combinationsの引数が無効だった。
+  ```
+  combinations(8,4)
+  ```
+  としたところエラーは起こらなかった。
+EOS
+kuin_1 = Log.create(
+  error: error,
+  languages: Language.where(name: "Kuin"),
+  solution: solution,
+  title: 'Cannot calculate with given values',
+  user_id: 1,
+  release: true,
+)
 
