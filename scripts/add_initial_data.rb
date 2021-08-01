@@ -405,19 +405,78 @@ error = <<~EOS
 
   combinations(4,8)
   ```
-  EOS
-  solution = <<~EOS
+EOS
+solution = <<~EOS
   combinationsの引数が無効だった。
   ```
   combinations(8,4)
   ```
   としたところエラーは起こらなかった。
 EOS
-kuin_1 = Log.create(
+mat_1 = Log.create(
   error: error,
-  languages: Language.where(name: "Kuin"),
+  languages: Language.where(name: "MATLAB"),
   solution: solution,
   title: 'Cannot calculate with given values',
+  user_id: 1,
+  release: true,
+)
+
+# Node.js
+error = <<~EOS
+  npm installがうまくいかない。
+  ```
+  npm ERR! Failed at the node-sass@3.13.1 postinstall script.
+  ```
+EOS
+solution = <<~EOS
+  node.jsのversionが高すぎたのかもしれない。
+  ```
+  $ nodebrew ls-remote
+  $ nodebrew install-binary v10.16.0
+  $ nodebrew use v10.16.0
+  $ node -v
+  -> v 10.16.0
+  ```
+  以上の手順でダウングレードしたところ、npm installもうまくいった。
+EOS
+node_1 = Log.create(
+  error: error,
+  languages: Language.where(name: "Node.js"),
+  solution: solution,
+  title: 'npm installがうまくいかない',
+  user_id: 1,
+  release: true,
+)
+
+# PHP
+error = <<~EOS
+  Larabelにて以下のエラー。
+  Parse error: syntax error, unexpected ‘{‘
+  ```
+  <?php
+  $message = "Good";
+  if(isset($message){
+    echo $message;
+  }
+  ```
+  { 入れるとこなんてある？
+EOS
+solution = <<~EOS
+  if文の閉じ括弧が抜けていた。
+  ```
+  <?php
+  $message = "Good";
+  if(isset($message){
+    echo $message;
+  )}
+  ```
+EOS
+php_1 = Log.create(
+  error: error,
+  languages: Language.where(name: "PHP"),
+  solution: solution,
+  title: "Parse error: syntax error, unexpected ‘{‘",
   user_id: 1,
   release: true,
 )
