@@ -140,7 +140,7 @@ export default {
         })
     },
     trimName: function(langName){
-      var name = langName.toLowerCase().replace(/\s+/g, '').replace('#', 's').replace('.', 'd');
+      var name = langName.toLowerCase().replace(/\s+/g, '').replace('#', 's').replace('.', 'd').replace('++', 'pp');
       return name;
     },
     getStockData: async function(){
