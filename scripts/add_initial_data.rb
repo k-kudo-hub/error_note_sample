@@ -564,10 +564,94 @@ ruby_1 = Log.create(
 )
 
 # Rust
+error = <<~EOS
+  error[E0308]: mismatched types
+  ```
+  use std::fs::File;
+  fn main() {
+      let f: u32 = File::open("hello.txt");
+  }
+  ```
+  EOS
+  solution = <<~EOS
+  不要な型注釈をつけてしまっていた。
+  ```
+  use std::fs::File;
+  fn main() {
+      let f = File::open("hello.txt");
+  }
+  ```
+  これで問題ない様子。
+EOS
+rust_1 = Log.create(
+  error: error,
+  languages: Language.where(name: "Rust"),
+  solution: solution,
+  title: "error[E0308]: mismatched types",
+  user_id: 1,
+  release: true,
+)
 
 # Scala
+error = <<~EOS
+  error: reassignment to val
+  ```
+  scala> val message = "Hello"
+  message: java.lang.String = Hello
+  scala> message = "Hi"
+  <console>:8: error: reassignment to val
+  message = "Hi"
+  ```
+  EOS
+  solution = <<~EOS
+  定数として宣言したmessageに再代入を試みていた。
+  ```
+  scala> val message = "Hello"
+  message: java.lang.String = Hello
+  scala> message = "Hi"
+  message: java.lang.String = Hi
+  ```
+EOS
+scala_1 = Log.create(
+  error: error,
+  languages: Language.where(name: "Scala"),
+  solution: solution,
+  title: "再代入しようとしてエラー",
+  user_id: 1,
+  release: true,
+)
 
 # Swift
+error = <<~EOS
+  Type annotation missing in pattern
+  ```
+  var message
+  // Type annotation missing in pattern
+  ```
+  EOS
+  solution = <<~EOS
+  型の指定がないことが原因だった。
+  ```
+  var message: String
+  message = "Hello"
+  // もしくは
+  var message:String = "Hello"
+  ```
+  でOKとのこと。
+  型の推定機能もあるので、普通に
+  ```
+  var message = "Hello"
+  ```
+  でも。
+EOS
+swift_1 = Log.create(
+  error: error,
+  languages: Language.where(name: "Swift"),
+  solution: solution,
+  title: "Type annotation missing in pattern",
+  user_id: 1,
+  release: true,
+)
 
 # TypeScript
 
