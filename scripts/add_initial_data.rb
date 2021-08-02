@@ -59,20 +59,6 @@ cs_1 = Log.create(
   user_id: 1,
   release: true,
 )
-# error = <<~EOS
-#   
-# EOS
-# solution = <<~EOS
-#   
-# EOS
-# cs_2 = Log.create(
-#   error: error,
-#   languages: Language.where(name: "C#"),
-#   solution: solution,
-#   title: '',
-#   user_id: 1,
-#   release: true,
-# )
 
 # C++
 error = <<~EOS
@@ -480,4 +466,111 @@ php_1 = Log.create(
   user_id: 1,
   release: true,
 )
+
+# Perl
+error = <<~EOS
+  変数が未定義とのこと。
+  ```
+  num = 56
+  print '$num\n'
+  ```
+  EOS
+  solution = <<~EOS
+  変数宣言時に$をつけ忘れていた。
+  ```
+  $num = 56
+  print '$num\n'
+  ```
+  期待通りの結果が得られた。
+EOS
+perl_1 = Log.create(
+  error: error,
+  languages: Language.where(name: "Perl"),
+  solution: solution,
+  title: "変数宣言で'$'をつけ忘れたエラー",
+  user_id: 1,
+  release: true,
+)
+
+# Python
+error = <<~EOS
+  SyntaxError: unexpected indent
+  ```
+  def calc_liner(x,a,b):
+    y = a * x + b
+     return y
+  ```
+EOS
+solution = <<~EOS
+  return部分のインデントがずれていた。
+  ```
+  def calc_liner(x,a,b):
+    y = a * x + b
+    return y
+  ```
+  pythonはインデントに厳しい！
+EOS
+py_1 = Log.create(
+  error: error,
+  languages: Language.where(name: "Python"),
+  solution: solution,
+  title: "SyntaxError: unexpected indent",
+  user_id: 1,
+  release: true,
+)
+
+# R
+error = <<~EOS
+  ## Error: <text>:1:4: unexpected symbol
+  ## 1: 1000m
+  ```
+  1000m <- "1km"
+  ```
+EOS
+solution = <<~EOS
+  数字で始まるオブジェクト名は作成できない。
+  ```
+  message <- "1km"
+  ```
+  これは大丈夫だった。
+EOS
+r_1 = Log.create(
+  error: error,
+  languages: Language.where(name: "R"),
+  solution: solution,
+  title: "Error: <text>:1:4: unexpected symbol",
+  user_id: 1,
+  release: true,
+)
+
+# Ruby
+error = <<~EOS
+  SassC::SyntaxError in Home#index
+  ```
+  @import "font-awesome-sprockets"
+  ```
+EOS
+solution = <<~EOS
+  gemfileに記述した後、bundle installをしていなかった。
+  サーバーを止めて、bundle installした後に、rails sで起動したところ直った。
+EOS
+ruby_1 = Log.create(
+  error: error,
+  languages: Language.where(name: "Ruby"),
+  solution: solution,
+  title: "SassC::SyntaxError in Home#index",
+  user_id: 1,
+  release: true,
+)
+
+# Rust
+
+# Scala
+
+# Swift
+
+# TypeScript
+
+# VisualBasic.NET
+
 
