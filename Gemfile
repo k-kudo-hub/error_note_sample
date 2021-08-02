@@ -13,7 +13,6 @@ gem 'devise-i18n'
 gem 'dotenv-rails'
 gem 'jbuilder', '~> 2.7'
 gem 'kaminari'
-gem 'listen', '~> 3.3'
 gem 'mysql2', '~> 0.5'
 gem 'puma', '~> 5.3'
 gem 'rails', '6.1.3.2'
@@ -38,6 +37,7 @@ end
 
 group :development do
   gem 'letter_opener_web'
+  gem 'listen', '~> 3.3'
   gem 'rack-mini-profiler', '~> 2.0'
   gem 'rubocop', require: false
   gem 'rubocop-performance', require: false

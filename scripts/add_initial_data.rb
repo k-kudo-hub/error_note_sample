@@ -1,6 +1,6 @@
 # Use this script only once when launching the application.
 # Usage: 
-#   rails runner scripts/add_initial_data.rb RAILS_ENV=#{environment}
+#   RAILS_ENV=#{environment} rails runner scripts/add_initial_data.rb
 
 # initialize all logs
 Log.destroy_all
@@ -675,3 +675,4 @@ ts_1 = Log.create(
   title: "error: Type 'number' is not assignable to type 'string'.",
   user_id: 1,
   release: true,
+)
