@@ -22,7 +22,7 @@ Rails.application.configure do
   # or in config/master.key. This key is used to decrypt credentials (and other encrypted files).
   config.require_master_key = true
 
-  config.action_mailer.default_url_options = { host: 'http://54.95.167.123' }
+  config.action_mailer.default_url_options = { host: 'https://www.error-note.com' }
   config.action_mailer.raise_delivery_errors = false
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
