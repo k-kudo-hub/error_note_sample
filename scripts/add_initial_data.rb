@@ -628,8 +628,8 @@ error = <<~EOS
   var message
   // Type annotation missing in pattern
   ```
-  EOS
-  solution = <<~EOS
+EOS
+solution = <<~EOS
   型の指定がないことが原因だった。
   ```
   var message: String
@@ -654,7 +654,24 @@ swift_1 = Log.create(
 )
 
 # TypeScript
-
-# VisualBasic.NET
-
-
+error = <<~EOS
+  error: Type 'number' is not assignable to type 'string'.
+  ```
+  const limit: number = 10;
+  const message: string = limit;
+  ```
+  EOS
+  solution = <<~EOS
+  すでに宣言済みのlimitをmessageに代入してしまっていた。
+  ```
+  const limit: number = 10;
+  const message: string = "Hello";
+  ```
+EOS
+ts_1 = Log.create(
+  error: error,
+  languages: Language.where(name: "TypeScript"),
+  solution: solution,
+  title: "error: Type 'number' is not assignable to type 'string'.",
+  user_id: 1,
+  release: true,
