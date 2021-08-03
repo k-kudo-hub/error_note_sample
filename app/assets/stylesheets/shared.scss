@@ -392,6 +392,30 @@ form {
   }
 }
 
+.modal-hidden {
+  display: none;
+}
+
+.modal-body {
+  display: none;
+}
+
+.modal .modal-check:checked + .modal-body {
+  display: block;
+}
+
+.modal-message {
+  margin-top: 30px;
+  text-align: center;
+}
+
+.modal-list {
+  margin: 20px auto 0;
+  line-height: 1.5;
+  text-align: left;
+  width: 300px;
+}
+
 .ml-5 {
   margin-left: 5px;
 }
@@ -496,6 +520,7 @@ form {
   text-decoration: none;
   &:hover {
     color: rgb(130, 130, 130);
+    cursor: pointer;
     transition-duration: 0.25s;
   }
 }

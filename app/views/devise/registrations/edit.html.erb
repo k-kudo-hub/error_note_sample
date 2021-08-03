@@ -30,6 +30,28 @@
         <% end %>
       </div>
     <% end %>
+    <div class="modal devise-links">
+      <label class="modal-label silver-font" for="modal-check">退会手続きを行う</label>
+      <input type="checkbox" class="modal-check modal-hidden" id="modal-check"/>
+      <div class="modal-body log-modal__back">
+        <div class="log-modal__container-destroy">
+          <h2>退会手続き</h2>
+          <p class="modal-message">退会すると、以下のデータが完全に削除されます。</p>
+          <ul class="modal-list">
+            <li>プロフィール情報</li>
+            <li>作成した全てのノート</li>
+            <li>ストック情報</li>
+          </ul>
+          <p class="modal-message">同意する場合は、退会するボタンを押してください。</p>
+          <div class="inner-bottom-btn-wrap">
+            <label class="modal-label btn-default" for="modal-check"><i class="fas fa-long-arrow-alt-left"></i> キャンセル</label>
+            <%= link_to user_registration_path, method: :delete, class: "btn-danger", data: {confirm: "【最終のご確認】\nアカウントを削除してもよろしいですか？\n削除したアカウントは復元できません。"} do %>
+              <i class="fas fa-user-minus"></i> 退会する
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
   </section>
 </div>
 <%= render "shared/footer" %>
