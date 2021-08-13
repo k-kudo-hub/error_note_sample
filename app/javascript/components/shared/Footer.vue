@@ -1,5 +1,5 @@
 <template>
-  <div class="footer-area">
+  <footer class="footer-area">
     <div class="footer-top">
       <div class="footer-left">
         <a href="/" class="footer-site-name">{{ site.name }}</a>
@@ -29,7 +29,7 @@
     <div class="footer-bottom">
       <p class="footer-copy">{{ site.copy }}</p>
     </div>
-  </div>
+  </footer>
 </template>
 <script>
 import LaprasImage from "../../../assets/images/brain.png"
