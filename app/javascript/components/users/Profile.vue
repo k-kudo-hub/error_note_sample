@@ -1,5 +1,5 @@
 <template>
-  <div class="app-bottom-inner">
+  <aside class="app-bottom-inner">
     <div class="bottom-profile__upper">
       <div class="profile-img__container">
         <img v-if="user.picture != null" :src="user.picture">
@@ -27,7 +27,7 @@
         </template>
       </div>
     </div>
-  </div>
+  </aside>
 </template>
 
 <script>

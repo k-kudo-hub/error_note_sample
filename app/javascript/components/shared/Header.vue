@@ -1,8 +1,8 @@
 <template>
-  <div class="header-area">
+  <header class="header-area">
     <div class="header-container">
       <div class="header-left flex-3">
-        <h1 @click="goHome">Error Note</h1>
+        <h1 @click="goHome">{{ site_title }}</h1>
       </div>
       <div class="header-center flex-3">
       </div>
@@ -41,15 +41,17 @@
         </div>
       </div>
     </div>
-  </div>
+  </header>
 </template> 
 
 <script>
 import axios from 'axios';
+import site from '../../site-data.js'
 export default {
   data(){
     return {
       keyword: "",
+      site_title: site.TITLE
     }
   },
   props: {

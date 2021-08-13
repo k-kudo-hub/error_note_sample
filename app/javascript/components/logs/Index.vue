@@ -9,7 +9,7 @@
         <input type="hidden" value="検索">
       </form>
     </section>
-    <section class="nav-bar">
+    <nav class="nav-bar">
       <div class="nav-bar__navigation">
         <div class="navigation__link-wrap">
           <i class="far fa-clock"></i>
@@ -26,7 +26,7 @@
           </div>
         </template>
       </div>
-    </section>
+    </nav>
     <LogsTable
       :logs="logs"
       :currentUser="currentUser"
@@ -39,7 +39,7 @@
       @showMoreInfo="showMoreInformations"
       @showMoreUserInfo="showMoreUserInformations"
     />
-    <section class="nav-bar">
+    <aside class="nav-bar">
       <!-- <div class="nav-bar__usage" id="nav_bar_usage">
         <iframe width="300"
                 height="200"
@@ -53,7 +53,7 @@
       <div class="nav-bar__lang-rank" id="nav_bar_lang_rank">
         <UserRank/>
       </div>
-    </section>
+    </aside>
   </div>
 </template>
 
