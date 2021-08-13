@@ -4,7 +4,7 @@
     <v-list three-line v-if="this.logs.length > 0">
       <article v-for="(item) in logs" :key="item.id" class="log-block" :items-per-page="itemPerPage">
         <div class="log-block__upper">
-          <h1 @click="$emit('showMoreInfo', item.user_id, item.id)">{{ item.title }}</h1>
+          <h1 @click="$emit('showMoreInfo', item.user_id, item.id)" class="note-title">{{ item.title }}</h1>
         </div>
         <div class="log-block__lower">
           <div class="log-block__lower-languages">

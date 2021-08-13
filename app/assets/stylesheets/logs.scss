@@ -301,6 +301,10 @@
   }
 }
 
+.note-title {
+  font-size: 1.2rem;
+}
+
 // ---------------- //
 
 @media screen and (max-width: 390px){
@@ -388,6 +392,10 @@ form {
 
 .log-updated-at {
   font-size: 0.8rem;
+}
+
+.note-title {
+  font-size: 1rem !important;
 }
 
 }
