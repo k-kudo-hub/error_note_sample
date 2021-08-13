@@ -18,7 +18,7 @@
     />
     <section class="app-body-inner">
       <div class="log-detail">
-        <h1>{{ log.title }}</h1>
+        <h1 class="page-title">{{ log.title }}</h1>
         <div class="log-detail__langs">
           <template v-for="language in languages">
             <p class="lang" :class="trimName(language.name)" :key="language.name">{{ language.name }}</p>
