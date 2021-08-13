@@ -62,11 +62,10 @@ import axios from 'axios';
 import Vuetify from 'vuetify';
 import UserRank from 'components/users/Rank.vue';
 import LogsTable from 'components/logs/Table.vue';
-
 export default {
   components: {
-    'UserRank': UserRank,
-    'LogsTable': LogsTable,
+    UserRank,
+    LogsTable,
   },
   data(){
     return{
