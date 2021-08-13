@@ -6,6 +6,7 @@
      :currentUser="currentUser"
     />
     <div class="app-body" id="app_body">
+      <Loading v-if="this.loading" />
       <LogsCreate 
         v-if="currentUser.auth"
         :logSignal="logSignal"
@@ -14,6 +15,8 @@
       <router-view
         :catchKeyword="keyword"
         :currentUser="currentUser"
+        @startLoad="startLoad"
+        @endLoad="endLoad"
       />
     </div>
     <Footer/>
@@ -26,13 +29,14 @@ import LogsIndex from 'components/logs/Index.vue'
 import LogsCreate from 'components/logs/Create.vue'
 import Header from 'components/shared/Header.vue'
 import Footer from 'components/shared/Footer.vue'
-
+import Loading from 'components/shared/Loading.vue'
 export default {
   components: {
     LogsIndex,
     LogsCreate,
     Header,
     Footer,
+    Loading,
   },
   data(){
     return {
@@ -43,6 +47,7 @@ export default {
       },
       keyword: "",
       logSignal: false,
+      loading: true,
     }
   },
   created() {
@@ -50,6 +55,9 @@ export default {
     axios
       .get('/api/v1/users/authentication.json')
       .then(response => (self.currentUser = response.data))
+  },
+  mounted(){
+    this.endLoad();
   },
   methods: {
     searchSignal: function(keyword){
@@ -60,6 +68,13 @@ export default {
     },
     closeLog: function(){
       this.logSignal = false;
+    },
+    startLoad: function(message){
+      this.loading = true;
+      if(message){console.log(message)}
+    },
+    endLoad: function(){
+      this.loading = false;
     }
   }
 }
