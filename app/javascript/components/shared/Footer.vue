@@ -34,6 +34,7 @@
 <script>
 import LaprasImage from "../../../assets/images/brain.png"
 import TwitterImage from "../../../assets/images/twitter.png"
+import site from "../../site-data.js"
 export default {
   data(){
     return {
@@ -42,14 +43,14 @@ export default {
         twitter: TwitterImage,
       },
       url: {
-        lapras: "https://lapras.com/public/GCUQE8M",
-        twitter: "https://twitter.com/WAKO_program",
-        github: "https://github.com/k-kudo-hub",
+        lapras: site.URL.LAPRAS,
+        twitter: site.URL.TWITTER,
+        github: site.URL.GITHUB,
       },
       site: {
-        name: "Error Note",
-        subtitle: "Error will give you a hint.",
-        copy: "©️ 2021 Joint Dev Inc."
+        name: site.TITLE,
+        subtitle: site.SUB_TITLE,
+        copy: site.COPY,
       }
     }
   }

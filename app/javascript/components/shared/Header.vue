@@ -46,10 +46,12 @@
 
 <script>
 import axios from 'axios';
+import site from '../../site-data.js'
 export default {
   data(){
     return {
       keyword: "",
+      site_title: site.TITLE
     }
   },
   props: {
