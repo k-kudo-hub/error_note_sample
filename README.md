@@ -2,7 +2,7 @@
 <img src="https://img.shields.io/github/commit-activity/y/k-kudo-hub/error_note_sample?color=yellow">&ensp;<img src="https://img.shields.io/github/last-commit/k-kudo-hub/error_note_sample">&ensp;<img src="https://img.shields.io/github/languages/top/k-kudo-hub/error_note_sample?color=red">
 
 
-## What's Error Note?
+## What's Error Note? 🤔
 
 ![ErrorNote's logo](public/logo-large.png "logo")
 
@@ -12,7 +12,7 @@ Error Note was born for developers. A simple tool for recording daily errors and
 
 This may also contribute to people who are not good at document management.
 
-## Composition of Error Note
+## Composition of Error Note 🛠️
 
 | item                 | require               | version |
 | -------------------- | --------------------- | ------- |
@@ -26,7 +26,7 @@ This may also contribute to people who are not good at document management.
 |  FrontendFramework   | Vue.js                | 2.6.12  |
 |  AutomaticDeployment | Capistrano            | 3.1.0   |
 
-## How to use
+## How to use 📓
 
 ### Registration
 Before you start using your notebook, please tell us a little about you.
@@ -65,7 +65,14 @@ This is your chance. Open Error Note.
 1. There is a page dedicated to you. Here you will find all the notes you have made.
 1. By clicking on the title, you will be able to refer to the notes you wrote before.
 
-## Plan for improvement
+## Screen introduction 📷
+### for PC
+![Capture for PC](./public/capture_mac.png)
+
+### for Phone
+![Capture for Phone](./public/capture_phone.png)
+
+## Plan for improvement 📎
 
 #### Function to find your notes
 The more notes you have, the harder it can be to find.We plan to add a search function limited to your notebook in the near future.
@@ -76,7 +83,7 @@ We'll evolve for your better experience.
 
 ...and more
 
-## Try or Contribution
+## Try or Contribution 💻
 We would appreciate it if you could contribute.We are always waiting for your participation.
 
 ### Try it
