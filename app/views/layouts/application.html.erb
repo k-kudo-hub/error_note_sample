@@ -13,6 +13,9 @@
       </script>
     <% end %>
     <title><%= content_for?(:html_title) ? yield(:html_title) : "Error Note" %></title>
+    <% if content_for(:html_description) %>
+      <meta name="description" content="<%= yield(:html_description) %>">
+    <% end %>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.9.0/css/all.css">
     <link href="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.min.css" rel="stylesheet">
