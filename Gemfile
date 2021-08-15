@@ -22,6 +22,8 @@ gem 'sass-rails', '>= 6'
 gem 'turbolinks', '~> 5'
 gem 'unicorn'
 gem 'webpacker', '~> 5.0'
+gem 'omniauth'
+gem 'omniauth-twitter'
 
 group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
