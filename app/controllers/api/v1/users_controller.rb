@@ -23,38 +23,33 @@ class Api::V1::UsersController < ApplicationController
   end
 
   def user_log_index
-    @user = User.find(params[:user_id])
-    logs = published_log.order(updated_at: :desc).page(params[:page]).per(10)
-    array = []
-    shape_object(logs, array)
-    total_pages = logs.total_pages
-    response = { logs: array, total_pages: total_pages }
+    user = User.find(params[:user_id])
+    if user_signed_in? && (user.id == current_user.id)
+      logs = user.all_logs.page(params[:page]).per(10)
+    else
+      logs = user.published_log.page(params[:page]).per(10)
+    end
+    array = shape_object(logs)
+    response = { logs: array, total_pages: logs.total_pages }
     render json: response
   end
 
   private
 
-    def published_log
-      if user_signed_in? && (@user.id == current_user.id)
-        @user.logs.all.includes(:user, :languages)
-      else
-        @user.logs.where(release: true).includes(:user, :languages)
-      end
+  def shape_object(logs)
+    array = []
+    logs.each do |log|
+      array.push(
+        id: log.id,
+        title: log.title,
+        languages: log.extract_lang_name,
+        updated_at: l(log.updated_at, format: :default),
+        release: log.release,
+        user_id: log.user.id,
+        user_name: log.user.name,
+        user_picture: log.user.picture_url
+      )
     end
-
-    def shape_object(logs, array)
-      logs.each do |log|
-        array.push(
-          id: log.id,
-          title: log.title,
-          languages: log.extract_lang_name,
-          updated_at: l(log.updated_at, format: :default),
-          release: log.release,
-          user_id: log.user.id,
-          user_name: log.user.name,
-          user_picture: log.user.picture_url
-        )
-      end
-      array
-    end
+    array
+  end
 end
