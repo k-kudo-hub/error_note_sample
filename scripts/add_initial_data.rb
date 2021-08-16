@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 # Use this script only once when launching the application.
-# Usage: 
+# Usage:
 #   RAILS_ENV=#{environment} rails runner scripts/add_initial_data.rb
 
 # initialize all logs
@@ -9,13 +11,13 @@ ActiveRecord::Base.connection.execute('alter table logs auto_increment = 1;')
 # C Lang
 c_1 = Log.create(
   user_id: 1,
-  title: "No such file or directory",
+  title: 'No such file or directory',
   error: "No such file or directory hogehoge.
 hogehogeディレクトリがありませんと怒られた。",
   solution: "ディレクトリを見直したところ、hogehugaディレクトリとなっていた。
 ディレクトリ名をhogehogeに変更したところ、エラーは解消した。",
-  languages: Language.where(name: "C"),
-  release: true,
+  languages: Language.where(name: 'C'),
+  release: true
 )
 error = <<~EOS
   prompt > gcc a.c
@@ -36,8 +38,8 @@ c_2 = Log.create(
   error: error,
   title: 'syntax error before "printf"',
   solution: solution,
-  languages: Language.where(name: "C"),
-  release: true,
+  languages: Language.where(name: 'C'),
+  release: true
 )
 
 # C#
@@ -53,11 +55,11 @@ solution = <<~EOS
 EOS
 cs_1 = Log.create(
   error: error,
-  languages: Language.where(name: "C#"),
+  languages: Language.where(name: 'C#'),
   solution: solution,
   title: 'Index was out of range. Must be non-negative...',
   user_id: 1,
-  release: true,
+  release: true
 )
 
 # C++
@@ -76,11 +78,11 @@ solution = <<~EOS
 EOS
 cp_1 = Log.create(
   error: error,
-  languages: Language.where(name: "C++"),
+  languages: Language.where(name: 'C++'),
   solution: solution,
   title: 'コンパイルエラー C2513',
   user_id: 1,
-  release: true,
+  release: true
 )
 error = <<~EOS
   C2569.cpp エラー。コードは以下。
@@ -95,11 +97,11 @@ solution = <<~EOS
 EOS
 cp_2 = Log.create(
   error: error,
-  languages: Language.where(name: "C++"),
+  languages: Language.where(name: 'C++'),
   solution: solution,
   title: 'コンパイルエラー C2569 EnumOrUnion...',
   user_id: 1,
-  release: true,
+  release: true
 )
 
 # COBOL
@@ -117,11 +119,11 @@ solution = <<~EOS
 EOS
 cobol_1 = Log.create(
   error: error,
-  languages: Language.where(name: "COBOL"),
+  languages: Language.where(name: 'COBOL'),
   solution: solution,
   title: 'スペルミスでコンパイルエラー',
   user_id: 1,
-  release: true,
+  release: true
 )
 error = <<~EOS
   コンパイルエラー。ネストしたから？
@@ -139,11 +141,11 @@ solution = <<~EOS
 EOS
 cobol_2 = Log.create(
   error: error,
-  languages: Language.where(name: "COBOL"),
+  languages: Language.where(name: 'COBOL'),
   solution: solution,
   title: 'ENDIFを忘れてコンパイルエラー',
   user_id: 1,
-  release: true,
+  release: true
 )
 
 # Go Lang
@@ -167,11 +169,11 @@ solution = <<~EOS
 EOS
 go_1 = Log.create(
   error: error,
-  languages: Language.where(name: "Go"),
+  languages: Language.where(name: 'Go'),
   solution: solution,
   title: 'unexpected samicolon or newline before',
   user_id: 1,
-  release: true,
+  release: true
 )
 error = <<~EOS
   コンパイルエラー
@@ -187,11 +189,11 @@ solution = <<~EOS
 EOS
 go_2 = Log.create(
   error: error,
-  languages: Language.where(name: "Go"),
+  languages: Language.where(name: 'Go'),
   solution: solution,
   title: '暗黙的な型変換でコンパイルエラー',
   user_id: 1,
-  release: true,
+  release: true
 )
 
 # Java
@@ -220,11 +222,11 @@ solution = <<~EOS
 EOS
 java_1 = Log.create(
   error: error,
-  languages: Language.where(name: "Java"),
+  languages: Language.where(name: 'Java'),
   solution: solution,
   title: 'Exception in thread "main" java.lang.NullPointerException',
   user_id: 1,
-  release: true,
+  release: true
 )
 error = <<~EOS
   Exception in thread "main" java.lang.ArithmeticException: / by zero
@@ -247,11 +249,11 @@ solution = <<~EOS
 EOS
 java_2 = Log.create(
   error: error,
-  languages: Language.where(name: "Java"),
+  languages: Language.where(name: 'Java'),
   solution: solution,
   title: 'java.lang.ArithmeticException',
   user_id: 1,
-  release: true,
+  release: true
 )
 
 # Javascript
@@ -278,11 +280,11 @@ solution = <<~EOS
 EOS
 js_1 = Log.create(
   error: error,
-  languages: Language.where(name: "JavaScript"),
+  languages: Language.where(name: 'JavaScript'),
   solution: solution,
   title: 'Uncaught SyntaxError: Unexpected end of input',
   user_id: 1,
-  release: true,
+  release: true
 )
 error = <<~EOS
   Uncaught ReferenceError: morningGreet is not defined
@@ -301,11 +303,11 @@ solution = <<~EOS
 EOS
 js_2 = Log.create(
   error: error,
-  languages: Language.where(name: "JavaScript"),
+  languages: Language.where(name: 'JavaScript'),
   solution: solution,
   title: 'Uncaught ReferenceError:',
   user_id: 1,
-  release: true,
+  release: true
 )
 
 # Kotlin
@@ -324,11 +326,11 @@ solution = <<~EOS
 EOS
 kotlin_1 = Log.create(
   error: error,
-  languages: Language.where(name: "Kotlin"),
+  languages: Language.where(name: 'Kotlin'),
   solution: solution,
   title: '初期値未入力エラー',
   user_id: 1,
-  release: true,
+  release: true
 )
 
 # Kuin
@@ -356,27 +358,27 @@ solution = <<~EOS
 EOS
 kuin_1 = Log.create(
   error: error,
-  languages: Language.where(name: "Kuin"),
+  languages: Language.where(name: 'Kuin'),
   solution: solution,
   title: 'ブロック名に対応するendが存在しません。',
   user_id: 1,
-  release: true,
+  release: true
 )
 
 # LISP
 error = <<~EOS
-Error: TYPE-ERROR :DATUM (CDR LT) :EXPECTED-TYPE FUNCTION
-LISP全然わからん…
+  Error: TYPE-ERROR :DATUM (CDR LT) :EXPECTED-TYPE FUNCTION
+  LISP全然わからん…
 EOS
 lisp_1 = Log.create(
   error: error,
-  languages: Language.where(name: "LISP"),
+  languages: Language.where(name: 'LISP'),
   solution: nil,
   title: 'TYPE-ERROR :DATUM (CDR LT) :EXPECTED-TYPE FUNCTION',
   user_id: 1,
-  release: true,
+  release: true
 )
-  
+
 # MATLAB
 error = <<~EOS
   Error using combinations (line 3)
@@ -401,11 +403,11 @@ solution = <<~EOS
 EOS
 mat_1 = Log.create(
   error: error,
-  languages: Language.where(name: "MATLAB"),
+  languages: Language.where(name: 'MATLAB'),
   solution: solution,
   title: 'Cannot calculate with given values',
   user_id: 1,
-  release: true,
+  release: true
 )
 
 # Node.js
@@ -428,11 +430,11 @@ solution = <<~EOS
 EOS
 node_1 = Log.create(
   error: error,
-  languages: Language.where(name: "Node.js"),
+  languages: Language.where(name: 'Node.js'),
   solution: solution,
   title: 'npm installがうまくいかない',
   user_id: 1,
-  release: true,
+  release: true
 )
 
 # PHP
@@ -460,11 +462,11 @@ solution = <<~EOS
 EOS
 php_1 = Log.create(
   error: error,
-  languages: Language.where(name: "PHP"),
+  languages: Language.where(name: 'PHP'),
   solution: solution,
-  title: "Parse error: syntax error, unexpected ‘{‘",
+  title: 'Parse error: syntax error, unexpected ‘{‘',
   user_id: 1,
-  release: true,
+  release: true
 )
 
 # Perl
@@ -474,8 +476,8 @@ error = <<~EOS
   num = 56
   print '$num\n'
   ```
-  EOS
-  solution = <<~EOS
+EOS
+solution = <<~EOS
   変数宣言時に$をつけ忘れていた。
   ```
   $num = 56
@@ -485,11 +487,11 @@ error = <<~EOS
 EOS
 perl_1 = Log.create(
   error: error,
-  languages: Language.where(name: "Perl"),
+  languages: Language.where(name: 'Perl'),
   solution: solution,
   title: "変数宣言で'$'をつけ忘れたエラー",
   user_id: 1,
-  release: true,
+  release: true
 )
 
 # Python
@@ -512,11 +514,11 @@ solution = <<~EOS
 EOS
 py_1 = Log.create(
   error: error,
-  languages: Language.where(name: "Python"),
+  languages: Language.where(name: 'Python'),
   solution: solution,
-  title: "SyntaxError: unexpected indent",
+  title: 'SyntaxError: unexpected indent',
   user_id: 1,
-  release: true,
+  release: true
 )
 
 # R
@@ -536,11 +538,11 @@ solution = <<~EOS
 EOS
 r_1 = Log.create(
   error: error,
-  languages: Language.where(name: "R"),
+  languages: Language.where(name: 'R'),
   solution: solution,
-  title: "Error: <text>:1:4: unexpected symbol",
+  title: 'Error: <text>:1:4: unexpected symbol',
   user_id: 1,
-  release: true,
+  release: true
 )
 
 # Ruby
@@ -556,11 +558,11 @@ solution = <<~EOS
 EOS
 ruby_1 = Log.create(
   error: error,
-  languages: Language.where(name: "Ruby"),
+  languages: Language.where(name: 'Ruby'),
   solution: solution,
-  title: "SassC::SyntaxError in Home#index",
+  title: 'SassC::SyntaxError in Home#index',
   user_id: 1,
-  release: true,
+  release: true
 )
 
 # Rust
@@ -572,8 +574,8 @@ error = <<~EOS
       let f: u32 = File::open("hello.txt");
   }
   ```
-  EOS
-  solution = <<~EOS
+EOS
+solution = <<~EOS
   不要な型注釈をつけてしまっていた。
   ```
   use std::fs::File;
@@ -585,11 +587,11 @@ error = <<~EOS
 EOS
 rust_1 = Log.create(
   error: error,
-  languages: Language.where(name: "Rust"),
+  languages: Language.where(name: 'Rust'),
   solution: solution,
-  title: "error[E0308]: mismatched types",
+  title: 'error[E0308]: mismatched types',
   user_id: 1,
-  release: true,
+  release: true
 )
 
 # Scala
@@ -602,8 +604,8 @@ error = <<~EOS
   <console>:8: error: reassignment to val
   message = "Hi"
   ```
-  EOS
-  solution = <<~EOS
+EOS
+solution = <<~EOS
   定数として宣言したmessageに再代入を試みていた。
   ```
   scala> val message = "Hello"
@@ -614,11 +616,11 @@ error = <<~EOS
 EOS
 scala_1 = Log.create(
   error: error,
-  languages: Language.where(name: "Scala"),
+  languages: Language.where(name: 'Scala'),
   solution: solution,
-  title: "再代入しようとしてエラー",
+  title: '再代入しようとしてエラー',
   user_id: 1,
-  release: true,
+  release: true
 )
 
 # Swift
@@ -646,11 +648,11 @@ solution = <<~EOS
 EOS
 swift_1 = Log.create(
   error: error,
-  languages: Language.where(name: "Swift"),
+  languages: Language.where(name: 'Swift'),
   solution: solution,
-  title: "Type annotation missing in pattern",
+  title: 'Type annotation missing in pattern',
   user_id: 1,
-  release: true,
+  release: true
 )
 
 # TypeScript
@@ -660,8 +662,8 @@ error = <<~EOS
   const limit: number = 10;
   const message: string = limit;
   ```
-  EOS
-  solution = <<~EOS
+EOS
+solution = <<~EOS
   すでに宣言済みのlimitをmessageに代入してしまっていた。
   ```
   const limit: number = 10;
@@ -670,9 +672,9 @@ error = <<~EOS
 EOS
 ts_1 = Log.create(
   error: error,
-  languages: Language.where(name: "TypeScript"),
+  languages: Language.where(name: 'TypeScript'),
   solution: solution,
   title: "error: Type 'number' is not assignable to type 'string'.",
   user_id: 1,
-  release: true,
+  release: true
 )

@@ -35,9 +35,7 @@ class Log < ApplicationRecord
   end
 
   def extract_lang_name
-    self.languages.limit(3).map do |lang|
-      lang.name
-    end
+    languages.limit(3).map(&:name)
   end
 
   def extract_lang_data

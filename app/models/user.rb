@@ -28,10 +28,10 @@ class User < ApplicationRecord
   end
 
   def all_logs
-    self.logs.includes(:user, :languages).order(updated_at: :desc)
+    logs.includes(:user, :languages).order(updated_at: :desc)
   end
 
   def published_log
-    self.logs.where(release: true).includes(:user, :languages).order(updated_at: :desc)
+    logs.where(release: true).includes(:user, :languages).order(updated_at: :desc)
   end
 end
