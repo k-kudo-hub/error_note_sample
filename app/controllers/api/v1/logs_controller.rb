@@ -95,15 +95,4 @@ class Api::V1::LogsController < ApplicationController
     def log_params
       params.require(:log).permit(:title, :error, :solution, :release, { language_ids: [] }).merge(user_id: current_user.id)
     end
-
-    def shape_object(logs)
-      array = []
-      logs.each do |log|
-        array.push(
-          id: log.id, title: log.title, languages: log.extract_lang_name, updated_at: l(log.updated_at, format: :default),
-          release: log.release, user_id: log.user.id, user_name: log.user.name, user_picture: log.user.picture_url
-        )
-      end
-      array
-    end
 end
