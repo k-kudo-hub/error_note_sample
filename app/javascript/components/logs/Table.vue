@@ -4,7 +4,7 @@
     <v-list three-line v-if="this.logs.length > 0">
       <article v-for="(item) in logs" :key="item.id" class="log-block" :items-per-page="itemPerPage">
         <div class="log-block__upper">
-          <h1 @click="$emit('showMoreInfo', item.user_id, item.id)" class="note-title">{{ item.title }}</h1>
+          <h1 @click="$emit('showMoreInfo', item.user_id, item.id)" class="note-title"><button>{{ item.title }}</button></h1>
         </div>
         <div class="log-block__lower">
           <div class="log-block__lower-languages">
@@ -21,7 +21,7 @@
             </template>
             <div class="log-block__text-container">
               <template v-if="item.release">
-                <p class="mr-5"><a @click="$emit('showMoreUserInfo', item.user_id)">{{ item.user_name }}</a></p>
+                <p class="mr-5"><button @click="$emit('showMoreUserInfo', item.user_id)">{{ item.user_name }}</button></p>
                 <p>が{{ item.updated_at }}に公開</p>
               </template>
               <template v-else>  

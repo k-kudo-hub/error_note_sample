@@ -1,7 +1,10 @@
 <template>
   <div id="rank_content">
     <template v-if="this.toggle">
-      <h2>開発言語ランキング<i v-on:click="toggleBtn" class="fas fa-random fa-lg"></i></h2>
+      <div class="rank_header">
+        <h2>開発言語ランキング</h2>
+        <button class="rank_toggle-btn" v-on:click="toggleBtn"><i class="fas fa-random fa-lg"></i></button>
+      </div>
       <p class="lang-rank__date">{{ date }} 現在</p>
       <div class="lang-rank__box" v-for="(item, index) in languages" :key="item.id">
         <div class="lang-rank__box-left">
@@ -14,7 +17,10 @@
       </div>
     </template>
     <template v-else>
-      <h2>ストックランキング<i v-on:click="toggleBtn" class="fas fa-random fa-lg"></i></h2>
+      <div class="rank_header">
+        <h2>ストックランキング</h2>
+        <button class="rank_toggle-btn" v-on:click="toggleBtn"><i class="fas fa-random fa-lg"></i></button>
+      </div>
       <p class="lang-rank__date">{{ date }} 現在</p>
       <div class="lang-rank__box-container">
         <div class="lang-rank__box" v-for="(item, index) in logs" :key="item.id">

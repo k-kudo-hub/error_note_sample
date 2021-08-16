@@ -17,7 +17,9 @@
     <div class="bottom-profile__lower">
       <div class="profile-btn__container">
         <template v-if="use_case == 'log'">
-          <a @click="showMoreUserInformations" class="btn-default"><i class="fas fa-external-link-alt"></i> プロフィールへ</a>
+          <button @click="showMoreUserInformations" class="btn-default">
+            <i class="fas fa-external-link-alt"></i> プロフィールへ
+          </button>
         </template>
         <template v-else>
           <template v-if="currentUser.auth && (currentUser.id == user.id)">

@@ -13,16 +13,16 @@
       <div class="nav-bar__navigation">
         <div class="navigation__link-wrap">
           <i class="far fa-clock"></i>
-          <a class="nav-link" @click="this.getLatestLogs">新着ノート</a>
+          <button class="nav-link" @click="this.getLatestLogs">新着ノート</button>
         </div>
         <div class="navigation__link-wrap">
           <i class="fas fa-fire-alt"></i>
-          <a class="nav-link" @click="this.getMostStockedLogs">話題のノート</a>
+          <button class="nav-link" @click="this.getMostStockedLogs">話題のノート</button>
         </div>
         <template v-if="this.currentUser.auth">
           <div class="navigation__link-wrap">
             <i class="fas fa-cubes"></i>
-            <a class="nav-link" @click="this.getLatestStocks">最近ストックしたノート</a>
+            <button class="nav-link" @click="this.getLatestStocks">最近ストックしたノート</button>
           </div>
         </template>
       </div>
