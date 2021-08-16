@@ -30,12 +30,12 @@
         <%= f.label "パスワード（確認）" %>
         <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: "確認のためもう一度入力してください", class: "user-input" %>
       </div>
-      <div class="user-input-field">
-        <%= f.check_box :accepted, {}, checked_value = "true", unchecked_value = "false" %>
-        <%= link_to "利用規約", terms_path, target: :_blank, rel: "noopener noreferrer" %>
-        ・
-        <%= link_to "プライバシーポリシー", privacy_path, target: :_blank, rel: "noopener noreferrer" %>
-        に同意する
+      <div class="user-check-field input-flex">
+        <%= f.check_box :accepted, {}, checked_value: "true", unchecked_value: "false" %>
+        <p class="user-input__agreement-message ml-5">
+          <%= link_to "利用規約", terms_path, target: :_blank, rel: "noopener noreferrer" %>および
+          <%= link_to "プライバシーポリシー", privacy_path, target: :_blank, rel: "noopener noreferrer" %>に同意する
+        </p>
       </div>
       <div class="inner-bottom-btn-wrap">
         <%= f.submit "登録する", class: "btn-default" %>
