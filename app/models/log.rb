@@ -14,16 +14,20 @@ class Log < ApplicationRecord
 
   validates :release, inclusion: { in: [true, false] }
 
-  def self.published_all
-    where(release: true).includes(:user, :languages).order(updated_at: :desc)
+  def extract_lang_data
+    languages = []
+    self.languages.each do |lang|
+      languages.push(id: lang.id, name: lang.name)
+    end
+    languages
   end
 
-  def self.search(keyword)
-    if keyword.empty?
-      Log.where(release: true).includes(:user, :languages).order(updated_at: :desc)
-    else
-      Log.where('title LIKE(?)', "%#{keyword}%").where(release: true).includes(:user, :languages).order(updated_at: :desc)
-    end
+  def extract_lang_name
+    languages.limit(3).map(&:name)
+  end
+
+  def self.published_all
+    where(release: true).includes(:user, :languages).order(updated_at: :desc)
   end
 
   def self.stock_rank(limit = 10)
@@ -34,15 +38,11 @@ class Log < ApplicationRecord
     joins(:stocks).group('log_id').order('count(log_id) DESC').select('logs.id, logs.title, logs.user_id, count(log_id) AS count').limit(limit)
   end
 
-  def extract_lang_name
-    languages.limit(3).map(&:name)
-  end
-
-  def extract_lang_data
-    languages = []
-    self.languages.each do |lang|
-      languages.push(id: lang.id, name: lang.name)
+  def self.search(keyword)
+    if keyword.empty?
+      Log.where(release: true).includes(:user, :languages).order(updated_at: :desc)
+    else
+      Log.where('title LIKE(?)', "%#{keyword}%").where(release: true).includes(:user, :languages).order(updated_at: :desc)
     end
-    languages
   end
 end
