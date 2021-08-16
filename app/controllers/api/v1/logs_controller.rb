@@ -59,13 +59,7 @@ class Api::V1::LogsController < ApplicationController
 
   def update
     log = Log.find(params[:log][:id])
-    if log.update(
-      title: params[:log][:title],
-      error: params[:log][:error],
-      solution: params[:log][:solution],
-      release: params[:log][:release],
-      language_ids: params[:languages]
-    )
+    if log.update(log_update_params)
       log_info = { id: log.id, user_id: current_user.id }
       render json: log_info
     else
@@ -94,5 +88,9 @@ class Api::V1::LogsController < ApplicationController
 
     def log_params
       params.require(:log).permit(:title, :error, :solution, :release, { language_ids: [] }).merge(user_id: current_user.id)
+    end
+
+    def log_update_params
+      params.require(:log).permit(:id, :title, :error, :solution, :release).merge(language_ids: params[:languages])
     end
 end
