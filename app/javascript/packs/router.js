@@ -24,5 +24,8 @@ export default new Router({
       component: UsersShow,
       name: 'users-show',
     }
-  ]
+  ],
+  scrollBehavior () {
+    return { x: 0, y: 0 }
+  }
 });
