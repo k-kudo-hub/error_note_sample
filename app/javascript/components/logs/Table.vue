@@ -25,7 +25,8 @@
                 <p>が{{ item.updated_at }}に公開</p>
               </template>
               <template v-else>  
-                <p> 非公開（{{ item.updated_at }}作成）</p>
+                <p><i class="fas fa-lock mr-5"></i>非公開</p>
+                <p>（{{ item.updated_at }}作成）</p>
               </template>
             </div>
           </div>
