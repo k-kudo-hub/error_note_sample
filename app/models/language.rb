@@ -7,19 +7,19 @@ class Language < ApplicationRecord
   scope :all_id_and_name, -> {
     id_and_name.sort_by_id
   }
-  
+
   scope :group_by_name, -> {
     group('name')
   }
-  
+
   scope :id_and_name, -> {
     select(:id, :name)
   }
-  
+
   scope :sort_by_lang_count, -> {
     order('count(language_id) desc')
   }
-  
+
   scope :limited, ->(count) {
     limit(count)
   }
@@ -31,7 +31,7 @@ class Language < ApplicationRecord
   scope :sort_by_id, -> {
     order(id: :asc)
   }
-  
+
   scope :with_log_langs, -> {
     joins(:log_languages)
   }

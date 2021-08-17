@@ -31,11 +31,11 @@ class Api::V1::StocksController < ApplicationController
   def check
     log = Log.find(params[:log_id])
     count = log.stocks.count
-    if user_signed_in?
-      stocked = current_user.already_stocked?(log)
-    else
-      stocked = false
-    end
+    stocked = if user_signed_in?
+                current_user.already_stocked?(log)
+              else
+                false
+              end
     response = { stocked: stocked, count: count }
     render json: response
   end
