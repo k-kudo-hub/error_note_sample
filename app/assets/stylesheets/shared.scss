@@ -54,6 +54,7 @@ form {
 
 @mixin inner-base {
   background-color: white;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
   width: 730px;
   padding: 32px;
   .page-title {
@@ -453,6 +454,7 @@ form {
     height: 200px;
   }
   &__lang-rank {
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
     height: 310px;
     padding: 20px;
     h2 {
@@ -468,10 +470,11 @@ form {
     text-decoration: none;
     color: $site-font-color-gray;
   }
-  a {
-    margin-left: 10px;
+  button {
+    margin-left: 5px;
+    text-align: left;
   }
-  a:hover {
+  button:hover {
     color: $site-font-color;
     cursor: pointer;
   }
