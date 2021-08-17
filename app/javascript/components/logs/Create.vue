@@ -45,9 +45,9 @@
         </form>
       </div>
     </div>
-    <div v-on:click="toggleModal" class="log-modal__opener" v-else>
+    <button v-on:click="toggleModal" class="log-modal__opener" v-else>
       <i class="fas fa-pen fa-lg"></i>
-    </div>
+    </button>
   </div>
 </template>
 <script>
