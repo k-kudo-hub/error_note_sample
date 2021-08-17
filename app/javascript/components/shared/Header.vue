@@ -2,7 +2,7 @@
   <header class="header-area">
     <div class="header-container">
       <div class="header-left flex-3">
-        <h1 @click="goHome"><button>{{ site_title }}</button></h1>
+        <h1><button class="site-title" @click="goHome">{{ site_title }}</button></h1>
       </div>
       <div class="header-center flex-3">
       </div>

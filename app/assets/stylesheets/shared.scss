@@ -544,6 +544,14 @@ form {
   }
 }
 
+.site-title {
+  &:hover,
+  &:focus {
+    color: rgba(0, 0, 0, 0.5);
+
+  }
+}
+
 .scroll-lock {
   overflow: hidden;
 }
