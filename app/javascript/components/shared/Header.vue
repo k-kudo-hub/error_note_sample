@@ -38,7 +38,7 @@
       </div>
     </div>
   </header>
-</template> 
+</template>
 
 <script>
 import axios from 'axios';
