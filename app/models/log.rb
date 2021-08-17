@@ -14,11 +14,11 @@ class Log < ApplicationRecord
 
   validates :release, inclusion: { in: [true, false] }
 
-  scope :group_by_id, -> { 
+  scope :group_by_id, -> {
     group('log_id')
   }
 
-  scope :limited, -> (count) {
+  scope :limited, ->(count) {
     limit(count)
   }
 
@@ -30,7 +30,7 @@ class Log < ApplicationRecord
     order('count(log_id) DESC')
   }
 
-  scope :searched, -> (keyword) {
+  scope :searched, ->(keyword) {
     where('title LIKE(?)', "%#{keyword}%")
   }
 
@@ -50,19 +50,23 @@ class Log < ApplicationRecord
     includes(:user, :languages)
   }
 
-  scope :published_all, -> {
-     published.with_user_and_langs.sorted 
+  scope :all!, -> {
+    with_user_and_langs.sorted
   }
 
-  scope :stock_rank, -> (count) {
+  scope :published_all, -> {
+    published.with_user_and_langs.sorted
+  }
+
+  scope :stock_rank, ->(count) {
     with_stocks.group_by_id.rank.limited(count)
   }
 
-  scope :stock_rank_with_counts, -> (count) {
-     with_stocks.group_by_id.rank.select_for_rank.limited(count)
+  scope :stock_rank_with_counts, ->(count) {
+    with_stocks.group_by_id.rank.select_for_rank.limited(count)
   }
 
-  scope :search, -> (keyword) {
+  scope :search, ->(keyword) {
     if keyword.empty?
       published.with_user_and_langs.sorted
     else

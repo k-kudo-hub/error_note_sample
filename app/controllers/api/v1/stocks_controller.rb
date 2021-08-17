@@ -33,10 +33,10 @@ class Api::V1::StocksController < ApplicationController
     count = log.stocks.count
     if user_signed_in?
       stocked = current_user.already_stocked?(log)
-      response = { stocked: stocked, count: count }
     else
-      response = { stocked: false, count: count }
+      stocked = false
     end
+    response = { stocked: stocked, count: count }
     render json: response
   end
 end

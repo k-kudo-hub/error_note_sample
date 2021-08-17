@@ -25,9 +25,9 @@ class Api::V1::UsersController < ApplicationController
   def user_log_index
     user = User.find(params[:user_id])
     logs = if user_signed_in? && (user.id == current_user.id)
-             user.all_logs.page(params[:page]).per(10)
+             user.logs.all!.page(params[:page]).per(10)
            else
-             user.published_log.page(params[:page]).per(10)
+             user.logs.published_all.page(params[:page]).per(10)
            end
     array = shape_object(logs)
     response = { logs: array, total_pages: logs.total_pages }
