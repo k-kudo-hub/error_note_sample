@@ -14,6 +14,62 @@ class Log < ApplicationRecord
 
   validates :release, inclusion: { in: [true, false] }
 
+  scope :group_by_id, -> { 
+    group('log_id')
+  }
+
+  scope :limited, -> (count) {
+    limit(count)
+  }
+
+  scope :published, -> {
+    where(release: true)
+  }
+
+  scope :rank, -> {
+    order('count(log_id) DESC')
+  }
+
+  scope :searched, -> (keyword) {
+    where('title LIKE(?)', "%#{keyword}%")
+  }
+
+  scope :select_for_rank, -> {
+    select('logs.id, logs.title, logs.user_id, count(log_id) AS count')
+  }
+
+  scope :sorted, -> {
+    order(updated_at: :desc)
+  }
+
+  scope :with_stocks, -> {
+    joins(:stocks)
+  }
+
+  scope :with_user_and_langs, -> {
+    includes(:user, :languages)
+  }
+
+  scope :published_all, -> {
+     published.with_user_and_langs.sorted 
+  }
+
+  scope :stock_rank, -> (count) {
+    with_stocks.group_by_id.rank.limited(count)
+  }
+
+  scope :stock_rank_with_counts, -> (count) {
+     with_stocks.group_by_id.rank.select_for_rank.limited(count)
+  }
+
+  scope :search, -> (keyword) {
+    if keyword.empty?
+      published.with_user_and_langs.sorted
+    else
+      searched(keyword).published.with_user_and_langs.sorted
+    end
+  }
+
   def extract_lang_data
     languages = []
     self.languages.each do |lang|
@@ -24,25 +80,5 @@ class Log < ApplicationRecord
 
   def extract_lang_name
     languages.limit(3).map(&:name)
-  end
-
-  def self.published_all
-    where(release: true).includes(:user, :languages).order(updated_at: :desc)
-  end
-
-  def self.stock_rank(limit = 10)
-    joins(:stocks).group('log_id').order('count(log_id) DESC').limit(limit)
-  end
-
-  def self.stock_rank_with_counts(limit = 5)
-    joins(:stocks).group('log_id').order('count(log_id) DESC').select('logs.id, logs.title, logs.user_id, count(log_id) AS count').limit(limit)
-  end
-
-  def self.search(keyword)
-    if keyword.empty?
-      Log.where(release: true).includes(:user, :languages).order(updated_at: :desc)
-    else
-      Log.where('title LIKE(?)', "%#{keyword}%").where(release: true).includes(:user, :languages).order(updated_at: :desc)
-    end
   end
 end
