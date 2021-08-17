@@ -54,6 +54,7 @@ form {
 
 @mixin inner-base {
   background-color: white;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
   width: 730px;
   padding: 32px;
   .page-title {
@@ -256,7 +257,8 @@ form {
     }
     .footer-sns-area {
       display: flex;
-      img {
+      a {
+        width: fit-content;
         margin-right: 20px;
       }
     }
@@ -368,6 +370,12 @@ form {
   width: 640px;
 }
 
+.input-flex {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+
 .lang-rank {
   &__box {
     display: flex;
@@ -446,12 +454,12 @@ form {
     height: 200px;
   }
   &__lang-rank {
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
     height: 310px;
     padding: 20px;
     h2 {
       font-size: 1rem;
       text-align: center;
-      padding-bottom: 20px;
     }
   }
 }
@@ -462,10 +470,11 @@ form {
     text-decoration: none;
     color: $site-font-color-gray;
   }
-  a {
-    margin-left: 10px;
+  button {
+    margin-left: 5px;
+    text-align: left;
   }
-  a:hover {
+  button:hover {
     color: $site-font-color;
     cursor: pointer;
   }
@@ -515,6 +524,16 @@ form {
   }
 }
 
+.rank_header {
+  display: flex;
+  justify-content: center;
+  padding-bottom: 20px;
+}
+
+.rank_toggle-btn {
+  height: fit-content;
+}
+
 .silver-font {
   color: silver;
   text-decoration: none;
@@ -522,6 +541,14 @@ form {
     color: rgb(130, 130, 130);
     cursor: pointer;
     transition-duration: 0.25s;
+  }
+}
+
+.site-title {
+  &:hover,
+  &:focus {
+    color: rgba(0, 0, 0, 0.5);
+
   }
 }
 
@@ -596,6 +623,10 @@ form {
   height: 30px;
   width: 300px;
   border: 1px solid gray;
+  &__agreement-message {
+    line-height: 1.25;
+    text-align: left;
+  }
   &-large {
     height: 80px;
     width: 300px;
@@ -608,7 +639,7 @@ form {
     color: rgb(111, 110, 110);
     padding: 20px;
     margin: 0 auto 30px;
-    width: 85%;
+    width: 95%;
     h3 {
       margin-bottom: 10px;
       text-align: center;
@@ -750,6 +781,7 @@ iframe {
       margin: 0 16px 24px !important;
     }
     input {
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
       width: 90vw;
     }
   }

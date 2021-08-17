@@ -44,13 +44,10 @@
           </div>
         </form>
       </div>
-      <div class="log-modal__opener">
-        <i v-on:click="toggleModal" class="fas fa-times fa-lg"></i>
-      </div>
     </div>
-    <div class="log-modal__opener" v-else>
-      <i v-on:click="toggleModal" class="fas fa-pen fa-lg"></i>
-    </div>
+    <button v-on:click="toggleModal" class="log-modal__opener" v-else>
+      <i class="fas fa-pen fa-lg"></i>
+    </button>
   </div>
 </template>
 <script>

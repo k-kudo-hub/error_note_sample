@@ -15,15 +15,15 @@ class User < ApplicationRecord
     stocks.exists?(log_id: log.id)
   end
 
-  def stock_ids
-    Stock.where(user_id: id).pluck(:log_id)
-  end
-
   def my_stocks
-    Log.where(id: stock_ids).order(created_at: :desc)
+    Log.where(id: stock_ids).where(release: true).order(created_at: :desc)
   end
 
   def picture_url
     picture? ? picture.url : nil
+  end
+
+  def stock_ids
+    stocks.pluck(:log_id)
   end
 end

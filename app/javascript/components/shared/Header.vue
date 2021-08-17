@@ -2,7 +2,7 @@
   <header class="header-area">
     <div class="header-container">
       <div class="header-left flex-3">
-        <h1 @click="goHome">{{ site_title }}</h1>
+        <h1><button class="site-title" @click="goHome">{{ site_title }}</button></h1>
       </div>
       <div class="header-center flex-3">
       </div>
@@ -16,17 +16,13 @@
             <input type="hidden" value="検索">
           </form>
           <div class="header-btn-wrap">
-            <a class="header-btn">
-              <i @click="$emit('newLog')" class="fas fa-pen fa-lg"></i>
-            </a>
-            <a @click="showCurrentUserInformations" class="header-btn">
-              <template v-if="this.currentUser.picture">
-                <img :src="this.currentUser.picture" height="30px" width="30">
-              </template>
-              <template v-else>
-                <img src="../../../assets/images/human.png" height="30px" width="30px">
-              </template>
-            </a>
+            <button @click="$emit('newLog')" class="header-btn">
+              <i class="fas fa-pen fa-lg"></i>
+            </button>
+            <button @click="showCurrentUserInformations" class="header-btn">
+              <img v-if="this.currentUser.picture" :src="this.currentUser.picture" height="30px" width="30">
+              <img v-else src="../../../assets/images/human.png" height="30px" width="30px">
+            </button>
           </div>
         </div>
         <div v-else>

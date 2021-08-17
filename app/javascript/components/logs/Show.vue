@@ -33,7 +33,7 @@
         </div>
         <div class="log-detail__content solutions">
           <p class="log-detail__content-title">解決法</p>
-            <p v-if="log.solution" class="log-detail__content-solution">{{log.solution}}</p>
+            <p v-if="log.solution" class="log-detail__content-solution">{{ log.solution }}</p>
             <p v-else class="log-detail__content-nil">解決法はまだ登録されていません。</p>
         </div>
       </div>
@@ -44,16 +44,12 @@
             <a @click="toggleConfirmModal" class="btn-danger"><i class="fas fa-trash-alt"></i> 削除する</a>
           </template>
           <template v-else>
-            <template v-if="alreadyStocked">
-              <button class="btn-filled" @click="destroyStock">
-                <p>ストックを取り消す <span class="stock-count__number">{{ stockedCount }}</span></p>
-              </button>
-            </template>
-            <template v-else>
-              <button class="btn-default" @click="createStock">
-                <p>ストックする <span class="stock-count__number">{{ stockedCount }}</span></p>
-              </button>
-            </template>
+            <button v-if="alreadyStocked" class="btn-filled" @click="destroyStock">
+              <p>ストックを取り消す <span class="stock-count__number">{{ stockedCount }}</span></p>
+            </button>
+            <button v-else class="btn-default" @click="createStock">
+              <p>ストックする <span class="stock-count__number">{{ stockedCount }}</span></p>
+            </button>
           </template>
         </template>
         <template v-else>
@@ -78,9 +74,9 @@ axios.defaults.headers.common["X-CSRF-Token"] = token;
 
 export default {
   components: {
-    'UsersProfile': UsersProfile,
-    'LogsUpdate': LogsUpdate,
-    'LogsDestroy': LogsDestroy,
+    UsersProfile,
+    LogsUpdate,
+    LogsDestroy,
   },
   data(){
     return {
@@ -179,17 +175,11 @@ export default {
     changeCheckedLanguages(...args){
       this.newCheckedLanguages = args
     },
-    beforUpdate: function(e){
+    inputValidation: function(e){
       this.errors = [];
-      if (this.log.title && this.log.error) {
-        return true;
-      }
-      if (!this.log.title){
-        this.errors.push('タイトルを入力してください');
-      }
-      if (!this.log.error){
-        this.errors.push('エラーの内容を入力してください');
-      };
+      if (this.log.title && this.log.error) return true;
+      if (!this.log.title) this.errors.push('タイトルを入力してください');
+      if (!this.log.error) this.errors.push('エラーの内容を入力してください');
       e.preventDefault();
     },
     updateLog: async function(log, languages){
@@ -203,14 +193,14 @@ export default {
           console.log('error:', error)
         })
     },
-    afterUpdate: function(){
+    goToDetailPage: function(){
       var self = this;
       location.href="/users/"+self.log_info.user_id+"/logs/"+self.log_info.id;
     },
     updateNote: async function(...args){
-      await this.beforUpdate();
+      await this.inputValidation();
       await this.updateLog(args[0], this.newCheckedLanguages[0]);
-      await this.afterUpdate();
+      await this.goToDetailPage();
     },
     destroyNote: function(){
       axios
@@ -230,6 +220,9 @@ export default {
           .then(response => {
             console.log(response.data)
           })
+          .catch(error => {
+            console.log('error:', error)
+          })
         this.alreadyStocked = true;
         this.stockedCount += 1;
       } else {
@@ -241,6 +234,9 @@ export default {
         .delete(`/api/v1/stocks/destroy.json?log_id=${this.log.id}`)
         .then(response => {
           console.log(response.data)
+        })
+        .catch(error => {
+          console.log('error:', error)
         })
       this.alreadyStocked = false;
       this.stockedCount -= 1;
