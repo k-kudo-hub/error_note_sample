@@ -11,6 +11,7 @@ class User < ApplicationRecord
 
   validates :name, presence: { message: 'が入力されていません。' }
   validates :accepted, presence: { message: 'いただけない場合、アカウントを作成できません。' }, on: :create
+  validate :validate_on_update_email
 
   def self.find_for_oauth(auth)
     user = User.where(uid: auth.uid, provider: auth.provider).first
@@ -49,5 +50,11 @@ class User < ApplicationRecord
 
   def self.dummy_email(auth)
     "#{auth.uid}-#{auth.provider}@example.com"
+  end
+
+  def validate_on_update_email
+    if self.email_changed? && self.uid.present?
+      errors.add(:email, 'はTwitter認証の場合変更できません。')
+    end
   end
 end
