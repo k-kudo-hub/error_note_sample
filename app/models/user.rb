@@ -11,7 +11,7 @@ class User < ApplicationRecord
 
   validates :name, presence: { message: 'が入力されていません。' }
   validates :accepted, presence: { message: 'いただけない場合、アカウントを作成できません。' }, on: :create
-  validate :validate_on_update_email
+  validate :validate_on_update_email, on: :update
 
   def self.find_for_oauth(auth)
     user = User.where(uid: auth.uid, provider: auth.provider).first
