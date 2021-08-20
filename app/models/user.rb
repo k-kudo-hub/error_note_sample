@@ -15,18 +15,16 @@ class User < ApplicationRecord
 
   def self.find_for_oauth(auth)
     user = User.where(uid: auth.uid, provider: auth.provider).first
-    unless user
-      user = User.create(
-        uid:      auth.uid,
-        provider: auth.provider,
-        email:    User.dummy_email(auth),
-        password: Devise.friendly_token[0, 20],
-        name:     auth.info.name,
-        accepted: true,
-        confirmation_token: Devise.friendly_token[0, 20],
-        confirmed_at: Time.current
-      )
-    end
+    user ||= User.create(
+      uid: auth.uid,
+      provider: auth.provider,
+      email: User.dummy_email(auth),
+      password: Devise.friendly_token[0, 20],
+      name: auth.info.name,
+      accepted: true,
+      confirmation_token: Devise.friendly_token[0, 20],
+      confirmed_at: Time.current
+    )
     user
   end
 
@@ -48,13 +46,13 @@ class User < ApplicationRecord
 
   private
 
-  def self.dummy_email(auth)
-    "#{auth.uid}-#{auth.provider}@example.com"
-  end
-
-  def validate_on_update_email
-    if self.email_changed? && self.uid.present?
-      errors.add(:email, 'はTwitter認証の場合変更できません。')
+    def self.dummy_email(auth)
+      "#{auth.uid}-#{auth.provider}@example.com"
     end
-  end
+
+    def validate_on_update_email
+      if email_changed? && uid.present?
+        errors.add(:email, 'はTwitter認証の場合変更できません。')
+      end
+    end
 end

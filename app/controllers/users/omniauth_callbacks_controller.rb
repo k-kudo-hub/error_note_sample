@@ -35,17 +35,17 @@ module Users
 
     private
 
-    def callback_from(provider)
-      provider = provider.to_s
+      def callback_from(provider)
+        provider = provider.to_s
 
-      @user = User.find_for_oauth(request.env['omniauth.auth'])
-      logger.debug @user.errors.inspect
-      if @user.persisted?
-        sign_in_and_redirect @user, event: :authentication
-      else
-        session["devise.#{provider}_data"] = request.env['omniauth.auth'].except("extra")
-        redirect_to new_user_registration_url
+        @user = User.find_for_oauth(request.env['omniauth.auth'])
+        logger.debug @user.errors.inspect
+        if @user.persisted?
+          sign_in_and_redirect @user, event: :authentication
+        else
+          session["devise.#{provider}_data"] = request.env['omniauth.auth'].except('extra')
+          redirect_to new_user_registration_url
+        end
       end
-    end
   end
 end
