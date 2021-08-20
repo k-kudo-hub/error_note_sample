@@ -4,6 +4,12 @@
 <div class="app-body">
   <section class="app-body-inner">
     <h1 class="page-title">ログイン</h1>
+    <div class="inner-bottom-btn-wrap">
+      <%= link_to user_twitter_omniauth_authorize_path, method: :post, class: "btn-twitter" do %>
+        <i class="fab fa-twitter"></i> Twitterアカウントでログイン
+      <% end %>
+    </div>
+    <hr class="mx-auto" size="1px" width="75%" color="#b3b3b3" noshade>
     <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
       <div class="user-input-field">
         <%= f.label "メールアドレス" %>
@@ -20,7 +26,9 @@
         </div>
       <% end %>
       <div class="inner-bottom-btn-wrap">
-        <%= f.submit "ログイン", class: "btn-default" %>
+        <%= f.button class: "btn-default" do %>
+          <i class="fa fa-sign-in-alt fa-lg"></i> ログイン
+        <% end %>
       </div>
     <% end %>
     <div class="devise-links">
