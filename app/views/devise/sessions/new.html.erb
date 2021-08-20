@@ -9,6 +9,7 @@
         <i class="fab fa-twitter"></i> Twitterアカウントでログイン
       <% end %>
     </div>
+    <p class="login-message">続行した場合は、<a href="/terms" target="_blank" rel="noopener noreferrer">利用規約</a>および<a href="/privacy" target="_blank" rel="noopener noreferrer">プライバシーポリシー</a>に同意したとみなします。</p>
     <hr class="mx-auto" size="1px" width="75%" color="#b3b3b3" noshade>
     <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
       <div class="user-input-field">
