@@ -3,13 +3,32 @@
 class User < ApplicationRecord
   mount_uploader :picture, PictureUploader
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable, :confirmable
+         :recoverable, :rememberable, :validatable, :confirmable,
+         :omniauthable, omniauth_providers: [:twitter]
   has_many :logs, dependent: :destroy
   has_many :stocks, dependent: :destroy
   has_many :stocked_logs, through: :stocks, source: :log
 
   validates :name, presence: { message: 'が入力されていません。' }
   validates :accepted, presence: { message: 'いただけない場合、アカウントを作成できません。' }, on: :create
+  validate :validate_on_update_email
+
+  def self.find_for_oauth(auth)
+    user = User.where(uid: auth.uid, provider: auth.provider).first
+    unless user
+      user = User.create(
+        uid:      auth.uid,
+        provider: auth.provider,
+        email:    User.dummy_email(auth),
+        password: Devise.friendly_token[0, 20],
+        name:     auth.info.name,
+        accepted: true,
+        confirmation_token: Devise.friendly_token[0, 20],
+        confirmed_at: Time.current
+      )
+    end
+    user
+  end
 
   def already_stocked?(log)
     stocks.exists?(log_id: log.id)
@@ -25,5 +44,17 @@ class User < ApplicationRecord
 
   def stock_ids
     stocks.pluck(:log_id)
+  end
+
+  private
+
+  def self.dummy_email(auth)
+    "#{auth.uid}-#{auth.provider}@example.com"
+  end
+
+  def validate_on_update_email
+    if self.email_changed? && self.uid.present?
+      errors.add(:email, 'はTwitter認証の場合変更できません。')
+    end
   end
 end

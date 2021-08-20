@@ -25,8 +25,10 @@ form {
   margin: 20px auto;
   padding: 7px 2.5vw;
   text-decoration: none;
+  transition-duration: 0.25s;
   &:hover {
     cursor: pointer;
+    transition-duration: 0.25s;
   }
 }
 
@@ -111,7 +113,6 @@ form {
   @include btn-danger;
   &:hover {
     @include btn-danger-fill;
-    transition-duration: 0.25s;
   }
 }
 
@@ -120,12 +121,10 @@ form {
   @include btn-empty;
   &:hover {
     @include btn-fill;
-    transition-duration: 0.25s;
     .stock-count__number {
       @include btn-empty();
       padding: 3px 5px;
       border-radius: 20px;
-      transition-duration: 0.25s;
     }
   }
   .stock-count__number {
@@ -140,18 +139,27 @@ form {
   @include btn-fill;
   &:hover {
     @include btn-empty;
-    transition-duration: 0.25s;
     .stock-count__number {
       @include btn-fill();
       padding: 3px 5px;
       border-radius: 20px;
-      transition-duration: 0.25s;
     }
   }
   .stock-count__number {
     @include btn-empty();
     padding: 3px 5px;
     border-radius: 20px;
+  }
+}
+
+.btn-twitter {
+  @include btn;
+  background-color: white;
+  border: 2px solid rgb(29, 161, 242);
+  color: rgb(29, 161, 242);
+  &:hover {
+    background-color: rgb(29, 161, 242);
+    color: white;
   }
 }
 
@@ -400,6 +408,13 @@ form {
   }
 }
 
+.login-message {
+  width: 75%;
+  font-size: 0.8rem;
+  color: gray;
+  margin: 0 auto 20px;
+}
+
 .modal-hidden {
   display: none;
 }
@@ -430,6 +445,10 @@ form {
 
 .mr-5 {
   margin-right: 5px;
+}
+
+.mx-auto {
+  margin: 0 auto;
 }
 
 .mobile__search-bar {
@@ -632,22 +651,6 @@ form {
     width: 300px;
     vertical-align: middle;
     border: 1px solid gray;
-  }
-  &__notice {
-    background-color: $site-light-color;
-    border-radius: 20px;
-    color: rgb(111, 110, 110);
-    padding: 20px;
-    margin: 0 auto 30px;
-    width: 95%;
-    h3 {
-      margin-bottom: 10px;
-      text-align: center;
-    }
-    ul {
-      list-style: none;
-      line-height: 1.5;
-    }
   }
 }
 

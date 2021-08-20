@@ -13,12 +13,8 @@
             </template>
           </div>
           <div class="log-block__lower-user">
-            <template v-if="item.user_picture">
-              <img :src="item.user_picture" height="25px" width="25px">
-            </template>
-            <template v-else>
-              <img src="../../../assets/images/human.png" height="25px" width="25px">
-            </template>
+            <img v-if="item.user_picture" :src="item.user_picture" height="25px" width="25px">
+            <img v-else src="../../../assets/images/human.png" height="25px" width="25px">
             <div class="log-block__text-container">
               <template v-if="item.release">
                 <p class="mr-5"><button @click="$emit('showMoreUserInfo', item.user_id)">{{ item.user_name }}</button></p>
