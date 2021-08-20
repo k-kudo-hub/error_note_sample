@@ -3,7 +3,8 @@
 class User < ApplicationRecord
   mount_uploader :picture, PictureUploader
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable, :confirmable
+         :recoverable, :rememberable, :validatable, :confirmable,
+         :omniauthable, omniauth_providers: [:twitter]
   has_many :logs, dependent: :destroy
   has_many :stocks, dependent: :destroy
   has_many :stocked_logs, through: :stocks, source: :log
