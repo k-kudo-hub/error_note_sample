@@ -652,22 +652,6 @@ form {
     vertical-align: middle;
     border: 1px solid gray;
   }
-  &__notice {
-    background-color: $site-light-color;
-    border-radius: 20px;
-    color: rgb(111, 110, 110);
-    padding: 20px;
-    margin: 0 auto 30px;
-    width: 95%;
-    h3 {
-      margin-bottom: 10px;
-      text-align: center;
-    }
-    ul {
-      list-style: none;
-      line-height: 1.5;
-    }
-  }
 }
 
 @media screen and (max-width: 390px){
