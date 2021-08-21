@@ -1,19 +1,45 @@
 <template>
-  <nav class="nav-headbar">
-    <div class="nav-headbar__container">
-      <div class="nav-headbar__title">
-        <a href="#">【お知らせ】Twitter認証機能導入について</a>
-      </div>
-      <div class="nav-headbar__button">
-        <button>×</button>
+  <nav class="nav-head-bar" :class="this.separateColor()">
+    <div class="nav-head-bar__container">
+      <div class="nav-head-bar__title">
+        <button @click="openNoticeSignal()"><a>{{ notification.title }}</a></button>
       </div>
     </div>
   </nav>
 </template>
 
 <script>
+import axios from 'axios'
 export default {
-
+  data(){
+    return {
+      notification: {}
+    }
+  },
+  mounted() {
+    this.getNotification()
+  },
+  methods: {
+    getNotification(){
+      axios
+        .get('/api/v1/notifications/show_below_header.json')
+        .then(response => {
+          this.notification = response.data
+          if(response.data.length == 0){
+            this.$emit("closeNotice")
+          }
+        })
+        .catch(error => {
+          console.log(error)
+        })
+    },
+    openNoticeSignal(){
+      this.$emit('openNoticeDetail', this.notification.id)
+    },
+    separateColor(){
+      return this.notification.is_important ? "bg-danger" : ""
+    }
+  }
 }
 </script>
 

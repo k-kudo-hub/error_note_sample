@@ -1,11 +1,15 @@
 <template>
   <div id="app" class="app">
     <Header
-     @search="searchSignal"
-     @newLog="newLogSignal"
-     :currentUser="currentUser"
+      @search="searchSignal"
+      @newLog="newLogSignal"
+      :currentUser="currentUser"
     />
-    <NoticeBar />
+    <NoticeBar 
+      v-if="haveNotice"
+      @closeNotice="closeNotice"
+      @openNoticeDetail="openNoticeDetail"
+    />
     <div class="app-body" id="app_body">
       <Loading v-if="this.loading" />
       <LogsCreate 
@@ -51,6 +55,8 @@ export default {
       keyword: "",
       logSignal: false,
       loading: true,
+      haveNotice: true,
+      notification_id: 0,
     }
   },
   created() {
@@ -63,21 +69,28 @@ export default {
     this.endLoad();
   },
   methods: {
-    searchSignal: function(keyword){
+    searchSignal(keyword){
       this.keyword = keyword;
     },
-    newLogSignal: function(){
+    newLogSignal(){
       this.logSignal = true;
     },
-    closeLog: function(){
+    closeLog(){
       this.logSignal = false;
     },
-    startLoad: function(message){
+    closeNotice(){
+      this.haveNotice = false;
+    },
+    startLoad(message){
       this.loading = true;
       if(message){console.log(message)}
     },
-    endLoad: function(){
+    endLoad(){
       this.loading = false;
+    },
+    openNoticeDetail(...args){
+      this.notification_id = args[0]
+      
     }
   }
 }
