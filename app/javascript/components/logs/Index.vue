@@ -9,8 +9,8 @@
         <input type="hidden" value="検索">
       </form>
     </section>
-    <nav class="nav-bar">
-      <div class="nav-bar__navigation">
+    <nav class="nav-sidebar">
+      <div class="nav-sidebar__navigation">
         <div class="navigation__link-wrap">
           <i class="far fa-clock"></i>
           <button class="nav-link" @click="this.getLatestLogs">新着ノート</button>
@@ -39,8 +39,8 @@
       @showMoreInfo="showMoreInformations"
       @showMoreUserInfo="showMoreUserInformations"
     />
-    <aside class="nav-bar">
-      <!-- <div class="nav-bar__usage" id="nav_bar_usage">
+    <aside class="nav-sidebar">
+      <!-- <div class="nav-sidebar__usage" id="nav_bar_usage">
         <iframe width="300"
                 height="200"
                 src="" 
@@ -50,7 +50,7 @@
                 allowfullscreen>
         </iframe>
       </div> -->
-      <div class="nav-bar__lang-rank" id="nav_bar_lang_rank">
+      <div class="nav-sidebar__lang-rank" id="nav_bar_lang_rank">
         <UserRank/>
       </div>
     </aside>

@@ -455,7 +455,45 @@ form {
   display: none;
 }
 
-.nav-bar {
+.nav-headbar {
+  background-color: $site-dark-color;
+  height: 30px;
+  padding: 0 20px 0 50px;
+  width: 100%;
+  &__container {
+    align-items: center;
+    display: flex;
+    font-size: 0.9rem;
+    height: 100%;
+    margin: 0 auto;
+    max-width: 850px;
+    width: 100%;
+  }
+  &__title,
+  &__button {
+    height: 100%;
+    display: flex;
+    align-items: center;
+  }
+  &__title {
+    width: 95%;
+    a {
+      color: white;
+      text-decoration: none;
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+  &__button {
+    width: 5%;
+    button {
+      color: white;
+    }
+  }
+}
+
+.nav-sidebar {
   width: 300px;
   margin: 0 30px 30px;
   > * {
@@ -727,7 +765,7 @@ form {
   }
 }
 
-.nav-bar {
+.nav-sidebar {
   margin: 0 auto 15px;
   width: 95%;
   &__usage {

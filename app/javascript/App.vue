@@ -5,6 +5,7 @@
      @newLog="newLogSignal"
      :currentUser="currentUser"
     />
+    <NoticeBar />
     <div class="app-body" id="app_body">
       <Loading v-if="this.loading" />
       <LogsCreate 
@@ -24,19 +25,21 @@
 </template>
 <script>
 import axios from 'axios'
-import VueRouter from 'vue-router'
-import LogsIndex from 'components/logs/Index.vue'
-import LogsCreate from 'components/logs/Create.vue'
-import Header from 'components/shared/Header.vue'
 import Footer from 'components/shared/Footer.vue'
+import Header from 'components/shared/Header.vue'
 import Loading from 'components/shared/Loading.vue'
+import LogsCreate from 'components/logs/Create.vue'
+import LogsIndex from 'components/logs/Index.vue'
+import NoticeBar from 'components/notifications/NavBar.vue'
+import VueRouter from 'vue-router'
 export default {
   components: {
-    LogsIndex,
-    LogsCreate,
-    Header,
     Footer,
+    Header,
     Loading,
+    LogsCreate,
+    LogsIndex,
+    NoticeBar,
   },
   data(){
     return {
