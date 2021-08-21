@@ -455,7 +455,7 @@ form {
   display: none;
 }
 
-.nav-headbar {
+.nav-head-bar {
   background-color: $site-dark-color;
   height: 30px;
   padding: 0 20px 0 50px;
@@ -469,31 +469,26 @@ form {
     max-width: 850px;
     width: 100%;
   }
-  &__title,
-  &__button {
+  &__title {
     height: 100%;
     display: flex;
     align-items: center;
-  }
-  &__title {
-    width: 95%;
     a {
       color: white;
+      font-weight: bold;
       text-decoration: none;
       &:hover {
         text-decoration: underline;
       }
     }
   }
-  &__button {
-    width: 5%;
-    button {
-      color: white;
-    }
-  }
 }
 
-.nav-sidebar {
+.bg-danger {
+  background-color: rgb(191, 0, 0);
+}
+
+.nav-side-bar {
   width: 300px;
   margin: 0 30px 30px;
   > * {
@@ -765,7 +760,7 @@ form {
   }
 }
 
-.nav-sidebar {
+.nav-side-bar {
   margin: 0 auto 15px;
   width: 95%;
   &__usage {
