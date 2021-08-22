@@ -17,6 +17,11 @@
         :logSignal="logSignal"
         @closeLogSignal="closeLog"
       />
+      <NotificationsShow
+        v-if="notification_id != 0"
+        @closeNoticeDetail="closeNoticeDetail"
+        :notification_id="notification_id"
+      />
       <router-view
         :catchKeyword="keyword"
         :currentUser="currentUser"
@@ -35,6 +40,7 @@ import Loading from 'components/shared/Loading.vue'
 import LogsCreate from 'components/logs/Create.vue'
 import LogsIndex from 'components/logs/Index.vue'
 import NoticeBar from 'components/notifications/NavBar.vue'
+import NotificationsShow from 'components/notifications/Show.vue'
 import VueRouter from 'vue-router'
 export default {
   components: {
@@ -44,6 +50,7 @@ export default {
     LogsCreate,
     LogsIndex,
     NoticeBar,
+    NotificationsShow,
   },
   data(){
     return {
@@ -81,6 +88,9 @@ export default {
     closeNotice(){
       this.haveNotice = false;
     },
+    closeNoticeDetail(){
+      this.notification_id = 0;
+    },
     startLoad(message){
       this.loading = true;
       if(message){console.log(message)}
@@ -90,7 +100,6 @@ export default {
     },
     openNoticeDetail(...args){
       this.notification_id = args[0]
-      
     }
   }
 }
