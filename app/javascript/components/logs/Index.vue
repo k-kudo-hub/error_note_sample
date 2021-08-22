@@ -22,7 +22,7 @@
         <template v-if="this.currentUser.auth">
           <div class="navigation__link-wrap">
             <i class="fas fa-cubes"></i>
-            <button class="nav-link" @click="this.getLatestStocks">最近ストックしたノート</button>
+            <button class="nav-link" @click="this.getLatestStocks">ストックしたノート</button>
           </div>
         </template>
       </div>
@@ -40,19 +40,10 @@
       @showMoreUserInfo="showMoreUserInformations"
     />
     <aside class="nav-side-bar">
-      <!-- <div class="nav-side-bar__usage" id="nav_bar_usage">
-        <iframe width="300"
-                height="200"
-                src="" 
-                title="YouTube video player" 
-                frameborder="0" 
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                allowfullscreen>
-        </iframe>
-      </div> -->
-      <div class="nav-side-bar__lang-rank" id="nav_bar_lang_rank">
-        <UserRank/>
-      </div>
+      <UserRank/>
+      <NotificationsIndex
+        @openNoticeDetail="openNoticeDetail"
+      />
     </aside>
   </div>
 </template>
@@ -62,10 +53,12 @@ import axios from 'axios';
 import Vuetify from 'vuetify';
 import UserRank from 'components/users/Rank.vue';
 import LogsTable from 'components/logs/Table.vue';
+import NotificationsIndex from 'components/notifications/Index.vue'
 export default {
   components: {
     UserRank,
     LogsTable,
+    NotificationsIndex,
   },
   data(){
     return{
@@ -85,6 +78,7 @@ export default {
       pageTitle: "新着ノート",
       currentLogs: this.getLatestLogs,
       keyword: null,
+      notification_id: null,
     }
   },
   props: {
@@ -183,6 +177,11 @@ export default {
       this.currentPage = args[0]
       this.currentLogs();
     },
+    openNoticeDetail(...args){
+      this.notification_id = args[0]
+      console.log(args[0])
+      this.$emit("openNoticeDetail", this.notification_id)
+    }
   },
 }
 </script>

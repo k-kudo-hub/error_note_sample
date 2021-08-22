@@ -27,6 +27,7 @@
         :currentUser="currentUser"
         @startLoad="startLoad"
         @endLoad="endLoad"
+        @openNoticeDetail="openNoticeDetail"
       />
     </div>
     <Footer/>
