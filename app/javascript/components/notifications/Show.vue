@@ -19,9 +19,7 @@ import dateFormat from '../../date-format.js'
 export default {
   data(){
     return {
-      notification: {
-
-      }
+      notification: {}
     }
   },
   props: {
@@ -48,7 +46,3 @@ export default {
   }
 }
 </script>
-
-<style>
-
-</style>
