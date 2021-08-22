@@ -5,7 +5,8 @@ ActiveRecord::Base.connection.execute('alter table notifications auto_increment 
 content = <<~EOS
   ErrorNoteをご利用いただきありがとうございます。
   この度、Twitterアカウントでログインができるようになりました。
-  「ログイン」より、「Twitterアカウントでログイン」ボタンを押していただくと、Twitterアカウントでログインいただけます。
+  画面右上の「ログイン」から、「Twitterアカウントでログイン」ボタンを押していただくと、Twitterアカウントでログインいただけます。
+  新しい認証方法をぜひご利用ください。
 EOS
 Notification.create!(
   title: '【お知らせ】Twitterアカウントでログインできるようになりました。',
