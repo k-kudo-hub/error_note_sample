@@ -38,7 +38,10 @@
             <label for="release">非公開</label>
           </div>
           <div class="inner-bottom-btn-wrap">
-            <button v-on:click="createNote" type="submit" class="btn-default">
+            <button v-on:click="toggleModal" type="submit" class="btn-default">
+              <i class="fas fa-long-arrow-alt-left"></i> キャンセル
+            </button>
+            <button v-on:click="createNote" type="submit" class="btn-filled">
               <i class="fas fa-upload"></i> 保存する
             </button>
           </div>
