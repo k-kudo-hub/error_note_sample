@@ -21,11 +21,15 @@ class Notification < ApplicationRecord
   }
 
   scope :some_of_sorted, ->(count = 5) {
-    limited(count).sorted
+    select_for_index.limited(count).sorted
   }
 
   scope :select_minimum, -> {
     select(:id, :title, :is_important)
+  }
+
+  scope :select_for_index, -> {
+    select(:id, :title, :updated_at)
   }
 
   scope :sorted, -> {
