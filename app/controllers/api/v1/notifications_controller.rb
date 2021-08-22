@@ -9,7 +9,7 @@ class Api::V1::NotificationsController < ApplicationController
   end
 
   def show
-    notification = Notification.find(params[:id])
+    notification = Notification.find_and_adjust(params[:id])
     render json: notification
   end
 
