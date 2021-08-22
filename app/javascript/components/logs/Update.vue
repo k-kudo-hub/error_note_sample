@@ -1,7 +1,7 @@
 <template>
   <div id="log_modal">
-    <div class="log-modal__back" @click.self="$emit('toggle')">
-      <div class="log-modal__container">
+    <div class="modal__back" @click.self="$emit('toggle')">
+      <div class="modal__container">
         <h2>ノート編集</h2>
         <form @submit.prevent>
           <div v-if="errors.length" class="error-message__container">
