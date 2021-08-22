@@ -52,6 +52,13 @@ Rails.application.routes.draw do
           get 'check'
         end
       end
+      resources :notifications, only: [] do
+        collection do
+          get 'index'
+          get 'show'
+          get 'show_below_header'
+        end
+      end
     end
   end
   if Rails.env.development?

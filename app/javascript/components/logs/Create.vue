@@ -1,7 +1,7 @@
 <template>
   <div id="log_modal">
-    <div class="log-modal__back" v-if="this.modal" v-on:click.self="toggleModal">
-      <div class="log-modal__container">
+    <div class="modal__back" v-if="this.modal" v-on:click.self="toggleModal">
+      <div class="modal__container">
         <h2>新規ノート作成</h2>
         <form @submit.prevent>
           <div v-if="errors.length" class="error-message__container">
@@ -38,14 +38,17 @@
             <label for="release">非公開</label>
           </div>
           <div class="inner-bottom-btn-wrap">
-            <button v-on:click="createNote" type="submit" class="btn-default">
+            <button v-on:click="toggleModal" type="submit" class="btn-default">
+              <i class="fas fa-long-arrow-alt-left"></i> キャンセル
+            </button>
+            <button v-on:click="createNote" type="submit" class="btn-filled">
               <i class="fas fa-upload"></i> 保存する
             </button>
           </div>
         </form>
       </div>
     </div>
-    <button v-on:click="toggleModal" class="log-modal__opener" v-else>
+    <button v-on:click="toggleModal" class="modal__opener" v-else>
       <i class="fas fa-pen fa-lg"></i>
     </button>
   </div>

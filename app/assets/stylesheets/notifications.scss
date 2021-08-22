@@ -1,0 +1,56 @@
+@import "colors.scss";
+
+.nav-head-bar {
+  background-color: $site-dark-color;
+  height: 30px;
+  padding: 0 20px 0 50px;
+  width: 100%;
+  &__container {
+    align-items: center;
+    display: flex;
+    font-size: 0.9rem;
+    height: 100%;
+    margin: 0 auto;
+    max-width: 850px;
+    width: 100%;
+  }
+  &__title {
+    align-items: center;
+    display: flex;
+    height: 100%;
+    overflow-x: scroll;
+    width: 100%;
+    &::-webkit-scrollbar {
+      display: none;
+    }
+    a {
+      color: white;
+      font-weight: bold;
+      text-decoration: none;
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}
+
+.bg-danger {
+  background-color: rgb(191, 0, 0);
+}
+
+@media screen and (max-width: 390px){
+.nav-head-bar {
+  padding: 0;
+  height: 25px;
+  &__title {
+    button {
+      width: 100%;
+    }
+    a {
+      font-size: 0.7rem;
+      white-space: nowrap;
+    }
+  }
+}
+
+}

@@ -9,8 +9,8 @@
         <input type="hidden" value="検索">
       </form>
     </section>
-    <nav class="nav-bar">
-      <div class="nav-bar__navigation">
+    <nav class="nav-side-bar">
+      <div class="nav-side-bar__navigation">
         <div class="navigation__link-wrap">
           <i class="far fa-clock"></i>
           <button class="nav-link" @click="this.getLatestLogs">新着ノート</button>
@@ -22,7 +22,7 @@
         <template v-if="this.currentUser.auth">
           <div class="navigation__link-wrap">
             <i class="fas fa-cubes"></i>
-            <button class="nav-link" @click="this.getLatestStocks">最近ストックしたノート</button>
+            <button class="nav-link" @click="this.getLatestStocks">ストックしたノート</button>
           </div>
         </template>
       </div>
@@ -39,20 +39,11 @@
       @showMoreInfo="showMoreInformations"
       @showMoreUserInfo="showMoreUserInformations"
     />
-    <aside class="nav-bar">
-      <!-- <div class="nav-bar__usage" id="nav_bar_usage">
-        <iframe width="300"
-                height="200"
-                src="" 
-                title="YouTube video player" 
-                frameborder="0" 
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                allowfullscreen>
-        </iframe>
-      </div> -->
-      <div class="nav-bar__lang-rank" id="nav_bar_lang_rank">
-        <UserRank/>
-      </div>
+    <aside class="nav-side-bar">
+      <UserRank/>
+      <NotificationsIndex
+        @openNoticeDetail="openNoticeDetail"
+      />
     </aside>
   </div>
 </template>
@@ -62,10 +53,12 @@ import axios from 'axios';
 import Vuetify from 'vuetify';
 import UserRank from 'components/users/Rank.vue';
 import LogsTable from 'components/logs/Table.vue';
+import NotificationsIndex from 'components/notifications/Index.vue'
 export default {
   components: {
     UserRank,
     LogsTable,
+    NotificationsIndex,
   },
   data(){
     return{
@@ -85,6 +78,7 @@ export default {
       pageTitle: "新着ノート",
       currentLogs: this.getLatestLogs,
       keyword: null,
+      notification_id: null,
     }
   },
   props: {
@@ -99,13 +93,13 @@ export default {
     this.getLatestLogs();
   },
   watch: {
-    catchKeyword: function(){
+    catchKeyword(){
       this.keyword = this.$props.catchKeyword;
       this.getSearchLogs();
     }
   },
   methods: {
-    getLatestLogs: function(){
+    getLatestLogs(){
       if (this.currentLogs != this.getLatestLogs){
         this.currentPage = 1;
         this.currentLogs = this.getLatestLogs;
@@ -119,7 +113,7 @@ export default {
         ))
       this.currentLogs = this.getLatestLogs;
     },
-    getMostStockedLogs: function(){
+    getMostStockedLogs(){
       if (this.currentLogs != this.getMostStockedLogs){
         this.currentPage = 1;
         this.currentLogs = this.getMostStockedLogs;
@@ -132,11 +126,11 @@ export default {
           this.totalPages = response.data.totalPages
         ))
     },
-    getLatestStocks: function(){
+    getLatestStocks(){
       if (this.currentLogs != this.getLatestStocks){
         this.currentPage = 1;
         this.currentLogs = this.getLatestStocks;
-        this.pageTitle = "最近ストックしたノート"
+        this.pageTitle = "ストックしたノート"
       }
       axios
         .get(`/api/v1/logs/latest_stocks_index.json?page=${this.currentPage}&per=${this.itemPerPage}`)
@@ -145,7 +139,7 @@ export default {
           this.totalPages = response.data.totalPages
         ))
     },
-    getSearchLogs: function(){
+    getSearchLogs(){
       if (this.currentLogs != this.getSearchLogs){
         this.currentPage = 1;
         this.currentLogs = this.getSearchLogs;
@@ -158,11 +152,11 @@ export default {
           this.totalPages = response.data.total_pages
         ))
     },
-    trimName: function(langName){
+    trimName(langName){
       var name = langName.toLowerCase().replace(/\s+/g, '').replace('#', 's').replace('.', 'd').replace('++', 'pp');
       return name;
     },
-    showMoreInformations: function(user_id, log_id){
+    showMoreInformations(user_id, log_id){
       this.$router.push({
         name: 'logs-show',
         params: {
@@ -171,7 +165,7 @@ export default {
         }
       })
     },
-    showMoreUserInformations: function(user_id){
+    showMoreUserInformations(user_id){
       this.$router.push({
         name: 'users-show',
         params: {
@@ -179,10 +173,15 @@ export default {
         }
       })
     },
-    paginateLog: function(...args){
+    paginateLog(...args){
       this.currentPage = args[0]
       this.currentLogs();
     },
+    openNoticeDetail(...args){
+      this.notification_id = args[0]
+      console.log(args[0])
+      this.$emit("openNoticeDetail", this.notification_id)
+    }
   },
 }
 </script>

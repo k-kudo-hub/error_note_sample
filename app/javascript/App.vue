@@ -1,9 +1,14 @@
 <template>
   <div id="app" class="app">
     <Header
-     @search="searchSignal"
-     @newLog="newLogSignal"
-     :currentUser="currentUser"
+      @search="searchSignal"
+      @newLog="newLogSignal"
+      :currentUser="currentUser"
+    />
+    <NoticeBar 
+      v-if="haveNotice"
+      @closeNotice="closeNotice"
+      @openNoticeDetail="openNoticeDetail"
     />
     <div class="app-body" id="app_body">
       <Loading v-if="this.loading" />
@@ -12,11 +17,17 @@
         :logSignal="logSignal"
         @closeLogSignal="closeLog"
       />
+      <NotificationsShow
+        v-if="notification_id != 0"
+        @closeNoticeDetail="closeNoticeDetail"
+        :notification_id="notification_id"
+      />
       <router-view
         :catchKeyword="keyword"
         :currentUser="currentUser"
         @startLoad="startLoad"
         @endLoad="endLoad"
+        @openNoticeDetail="openNoticeDetail"
       />
     </div>
     <Footer/>
@@ -24,19 +35,23 @@
 </template>
 <script>
 import axios from 'axios'
-import VueRouter from 'vue-router'
-import LogsIndex from 'components/logs/Index.vue'
-import LogsCreate from 'components/logs/Create.vue'
-import Header from 'components/shared/Header.vue'
 import Footer from 'components/shared/Footer.vue'
+import Header from 'components/shared/Header.vue'
 import Loading from 'components/shared/Loading.vue'
+import LogsCreate from 'components/logs/Create.vue'
+import LogsIndex from 'components/logs/Index.vue'
+import NoticeBar from 'components/notifications/NavBar.vue'
+import NotificationsShow from 'components/notifications/Show.vue'
+import VueRouter from 'vue-router'
 export default {
   components: {
-    LogsIndex,
-    LogsCreate,
-    Header,
     Footer,
+    Header,
     Loading,
+    LogsCreate,
+    LogsIndex,
+    NoticeBar,
+    NotificationsShow,
   },
   data(){
     return {
@@ -48,6 +63,8 @@ export default {
       keyword: "",
       logSignal: false,
       loading: true,
+      haveNotice: true,
+      notification_id: 0,
     }
   },
   created() {
@@ -60,21 +77,30 @@ export default {
     this.endLoad();
   },
   methods: {
-    searchSignal: function(keyword){
+    searchSignal(keyword){
       this.keyword = keyword;
     },
-    newLogSignal: function(){
+    newLogSignal(){
       this.logSignal = true;
     },
-    closeLog: function(){
+    closeLog(){
       this.logSignal = false;
     },
-    startLoad: function(message){
+    closeNotice(){
+      this.haveNotice = false;
+    },
+    closeNoticeDetail(){
+      this.notification_id = 0;
+    },
+    startLoad(message){
       this.loading = true;
       if(message){console.log(message)}
     },
-    endLoad: function(){
+    endLoad(){
       this.loading = false;
+    },
+    openNoticeDetail(...args){
+      this.notification_id = args[0]
     }
   }
 }

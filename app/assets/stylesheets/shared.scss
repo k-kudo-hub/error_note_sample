@@ -101,7 +101,6 @@ form {
     width: 100%;
     display: flex;
   }
-  
   &__lower {
     height: 30%;
     width: 100%;
@@ -415,6 +414,87 @@ form {
   margin: 0 auto 20px;
 }
 
+.modal {
+  &__back {
+    background-color: rgba(0,0,0, 0.4);
+    height: 110vh;
+    left: 0;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 5;
+  }
+  &__container {
+    background-color: white;
+    margin: 20px auto 30px;
+    max-height: 80%;
+    max-width: 800px;
+    overflow: scroll;
+    padding: 32px;
+    z-index: 6;
+    h2 {
+      text-align: center;
+    }
+    &-destroy {
+      background-color: white;
+      margin: 70px auto 30px;
+      height: fit-content;
+      max-width: 600px;
+      padding: 32px;
+      z-index: 6;
+      h2 {
+        text-align: center;
+      }
+    }
+  }
+  &-notice {
+    &__title {
+      font-size: 1.2rem;
+      text-align: left !important;
+      margin-bottom: 30px;
+    }
+    &__updated {
+      text-align: right;
+      margin: 0 20px 20px 0;
+      color: silver;
+    }
+    &__content {
+      line-height: 1.5;
+      overflow-wrap: break-word;
+      white-space: pre-wrap;
+    }
+  }
+  &__opener {
+    background-color: #509556;
+    bottom: 5%;
+    border-radius: 40px;
+    height: 50px;
+    position: fixed;
+    transition-duration: 0.25s;
+    right: 5%;
+    width: 50px;
+    z-index: 2;
+    &:hover {
+      background-color: $site-main-color;
+      cursor: pointer;
+      transition-duration: 0.25s;
+    }
+    i {
+      color: white;
+      height: 20px;
+      left: 32%;
+      position: absolute;
+      top: 35%;
+      width: 20px;
+    }
+  }
+  &__sub-title {
+    color: gray;
+    margin-top: 50px;
+    text-align: center;
+  }
+}
+
 .modal-hidden {
   display: none;
 }
@@ -455,7 +535,7 @@ form {
   display: none;
 }
 
-.nav-bar {
+.nav-side-bar {
   width: 300px;
   margin: 0 30px 30px;
   > * {
@@ -472,13 +552,44 @@ form {
   &__usage {
     height: 200px;
   }
-  &__lang-rank {
+  &__lang-rank,
+  &__notifications {
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-    height: 310px;
+    height: fit-content;
     padding: 20px;
     h2 {
       font-size: 1rem;
       text-align: center;
+    }
+  }
+  &__notifications {
+    h2 {
+      margin-bottom: 10px;
+    }
+    &-box {
+      padding: 10px 5px;
+      border-bottom: 1px silver solid;
+      &__upper {
+        margin-bottom: 5px;
+        p {
+          font-size: 0.8rem;
+        }
+      }
+      &__lower {
+        button {
+          font-size: 0.8rem;
+          text-align: left;
+          &:hover {
+            color: rgba(0, 0, 0, 0.7);
+          }
+        }
+      }
+    }
+    .empty-notice-message {
+      font-size: 0.8rem;
+      color: silver;
+      text-align: center;
+      margin: 20px 0 5px;
     }
   }
 }
@@ -655,13 +766,13 @@ form {
 }
 
 @media screen and (max-width: 390px){
-  
+
 .app-body {
   max-width: 390px;
   padding: 30px 0 20px;
   .app-bottom-inner {
     height: 200px;
-    padding: 24px;
+    padding: 24px 5px;
     width: 95%;
   }
   .inner-bottom-btn-wrap {
@@ -673,8 +784,9 @@ form {
 .inner-narrow {
   width: 95%;
   padding: 32px 5px;
-  h1 {
-    font-size: 1.6rem;
+  .page-title {
+    font-size: 1.4rem;
+    margin: 10px auto 20px;
   }
   .v-list {
     width: 100%; 
@@ -727,7 +839,7 @@ form {
   }
 }
 
-.nav-bar {
+.nav-side-bar {
   margin: 0 auto 15px;
   width: 95%;
   &__usage {
@@ -790,6 +902,13 @@ iframe {
   }
 }
 
+.modal {
+  &__container {
+    max-width: 370px;
+    padding: 25px 15px;
+  }
+}
+
 .profile-img {
   &__container {
     height: 60%;
@@ -803,7 +922,8 @@ iframe {
 .profile-introduce {
   &__name {
     h2 {
-      font-size: 1.2rem
+      font-size: 1.2rem;
+      margin: 10px 10px 10px 0;
     }
   }
   &__word {

@@ -1,9 +1,9 @@
 <template>
   <div id="log_modal">
-    <div class="log-modal__back" @click.self="$emit('cancel')">
-      <div class="log-modal__container-destroy">
+    <div class="modal__back" @click.self="$emit('cancel')">
+      <div class="modal__container-destroy">
         <h2>このノートを削除しますか？</h2>
-        <p class="log-modal__sub-title">「{{ title }}」</p>
+        <p class="modal__sub-title">「{{ title }}」</p>
         <div class="inner-bottom-btn-wrap">
           <button @click="$emit('cancel')" type="submit" class="btn-default">
             <i class="fas fa-long-arrow-alt-left"></i> キャンセル

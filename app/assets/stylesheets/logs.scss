@@ -170,70 +170,6 @@
   }
 }
 
-.log-modal {
-  &__back {
-    background-color: rgba(0,0,0, 0.4);
-    height: 100%;
-    left: 0;
-    position: fixed;
-    top: 0;
-    width: 100%;
-    z-index: 5;
-  }
-  &__container {
-    background-color: white;
-    margin: 20px auto 30px;
-    max-height: 87%;
-    max-width: 800px;
-    overflow: scroll;
-    padding: 32px;
-    z-index: 6;
-    h2 {
-      text-align: center;
-    }
-    &-destroy {
-      background-color: white;
-      margin: 70px auto 30px;
-      max-height: 60%;
-      max-width: 600px;
-      padding: 32px;
-      z-index: 6;
-      h2 {
-        text-align: center;
-      }
-    }
-  }
-  &__opener {
-    background-color: #509556;
-    bottom: 5%;
-    border-radius: 40px;
-    height: 50px;
-    position: fixed;
-    transition-duration: 0.25s;
-    right: 5%;
-    width: 50px;
-    z-index: 2;
-    &:hover {
-      background-color: $site-main-color;
-      cursor: pointer;
-      transition-duration: 0.25s;
-    }
-    i {
-      color: white;
-      height: 20px;
-      left: 32%;
-      position: absolute;
-      top: 35%;
-      width: 20px;
-    }
-  }
-  &__sub-title {
-    color: gray;
-    margin-top: 50px;
-    text-align: center;
-  }
-}
-
 .log-title {
   padding: 30px 0;
   text-align: center;
@@ -392,13 +328,6 @@ form {
       text-align: center;
       width: 100%;
     }
-  }
-}
-
-.log-modal {
-  &__container {
-    max-width: 370px;
-    padding: 25px 15px;
   }
 }
 
