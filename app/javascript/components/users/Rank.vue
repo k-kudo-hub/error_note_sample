@@ -1,39 +1,41 @@
 <template>
-  <div id="rank_content">
-    <template v-if="this.toggle">
-      <div class="rank_header">
-        <h2>開発言語ランキング</h2>
-        <button class="rank_toggle-btn" v-on:click="toggleBtn"><i class="fas fa-random fa-lg"></i></button>
-      </div>
-      <p class="lang-rank__date">{{ date }} 現在</p>
-      <div class="lang-rank__box" v-for="(item, index) in languages" :key="item.id">
-        <div class="lang-rank__box-left">
-          <p class="lang-rank__index">{{ index + 1 }}</p>
-          <a class="lang" v-bind:class="trimName(item.name)">{{ item.name }}</a>
+  <div class="nav-side-bar__lang-rank" id="nav_bar_lang_rank">
+    <div id="rank_content">
+      <template v-if="this.toggle">
+        <div class="rank_header">
+          <h2>開発言語ランキング</h2>
+          <button class="rank_toggle-btn" v-on:click="toggleBtn"><i class="fas fa-random fa-lg"></i></button>
         </div>
-        <div class="lang-rank__box-right">
-          <p class="lang-rank__count">{{item.count}} Notes</p>
-        </div>
-      </div>
-    </template>
-    <template v-else>
-      <div class="rank_header">
-        <h2>ストックランキング</h2>
-        <button class="rank_toggle-btn" v-on:click="toggleBtn"><i class="fas fa-random fa-lg"></i></button>
-      </div>
-      <p class="lang-rank__date">{{ date }} 現在</p>
-      <div class="lang-rank__box-container">
-        <div class="lang-rank__box" v-for="(item, index) in logs" :key="item.id">
+        <p class="lang-rank__date">{{ date }} 現在</p>
+        <div class="lang-rank__box" v-for="(item, index) in languages" :key="item.id">
           <div class="lang-rank__box-left">
             <p class="lang-rank__index">{{ index + 1 }}</p>
-            <a @click="showMoreInformations(item.user_id, item.id)" class="rank__stock-title">{{ item.title }}</a>
+            <a class="lang" v-bind:class="trimName(item.name)">{{ item.name }}</a>
           </div>
           <div class="lang-rank__box-right">
-            <p class="lang-rank__count">{{item.count}} Stocks</p>
+            <p class="lang-rank__count">{{item.count}} Notes</p>
           </div>
         </div>
-      </div>
-    </template>
+      </template>
+      <template v-else>
+        <div class="rank_header">
+          <h2>ストックランキング</h2>
+          <button class="rank_toggle-btn" v-on:click="toggleBtn"><i class="fas fa-random fa-lg"></i></button>
+        </div>
+        <p class="lang-rank__date">{{ date }} 現在</p>
+        <div class="lang-rank__box-container">
+          <div class="lang-rank__box" v-for="(item, index) in logs" :key="item.id">
+            <div class="lang-rank__box-left">
+              <p class="lang-rank__index">{{ index + 1 }}</p>
+              <a @click="showMoreInformations(item.user_id, item.id)" class="rank__stock-title">{{ item.title }}</a>
+            </div>
+            <div class="lang-rank__box-right">
+              <p class="lang-rank__count">{{item.count}} Stocks</p>
+            </div>
+          </div>
+        </div>
+      </template>
+    </div>
   </div>
 </template>
 
