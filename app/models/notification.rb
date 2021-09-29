@@ -7,7 +7,7 @@ class Notification < ApplicationRecord
   end
   validates :is_important, inclusion: { in: [true, false] }
   validates :below_header, inclusion: { in: [true, false] }
-  
+
   scope :find_and_adjust, ->(id) {
     select(:id, :title, :content, :updated_at).find(id)
   }
