@@ -9,7 +9,7 @@
     "@rails/webpacker": "5.2.1",
     "axios": "^0.21.1",
     "babel-plugin-transform-react-remove-prop-types": "^0.4.24",
-    "moment": "^2.29.1",
+    "moment": "^2.29.4",
     "prop-types": "^15.7.2",
     "turbolinks": "^5.2.0",
     "vue": "^2.6.12",
